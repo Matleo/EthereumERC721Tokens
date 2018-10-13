@@ -2,7 +2,7 @@
 System to provide a generic Token inheritance
 
 ## Developement
-This section is intended for developer infomation
+This section is intended for developer information
 
 ### References
 
