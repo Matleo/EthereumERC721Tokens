@@ -42,3 +42,4 @@ https://www.cryptokitties.co/
 Testnet:
 HowTo: https://medium.com/compound-finance/the-beginners-guide-to-using-an-ethereum-test-network-95bbbc85fc1d
 Rinkeby: https://www.rinkeby.io/#stats
+Get Ether: https://faucet.rinkeby.io/
