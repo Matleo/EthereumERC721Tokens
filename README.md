@@ -19,6 +19,7 @@ Ethereum Whitepaper:
 
 Ethereum ERC List(https://eips.ethereum.org/erc):
 - ERC-20 Token Standard: https://eips.ethereum.org/EIPS/eip-20
+- Creating a Token: https://ethereum.org/token
 - ERC-721 Non-Fungible Token Standard: https://eips.ethereum.org/EIPS/eip-721
 - ERC-1203 Multi-Class Token: https://eips.ethereum.org/EIPS/eip-1203
 - ERC-1155 Crypto Item Standard: https://eips.ethereum.org/EIPS/eip-1155
@@ -33,7 +34,11 @@ Solidity and Interfaces:
 - https://dev.to/damcosset/ethereum-development-interfaces-and-function-modifiers-4e4f
 
 Remix:
+- Docs: https://remix.readthedocs.io/en/latest/
 - https://remix.ethereum.org/
+
+Swarm:
+- https://swarm-guide.readthedocs.io/en/latest/introduction.html
 
 Blockchain Wikipedia:
 - https://de.wikipedia.org/wiki/Blockchain
