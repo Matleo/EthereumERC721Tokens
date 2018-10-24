@@ -54,3 +54,4 @@ Testnet:
 - Rinkeby: https://www.rinkeby.io/#stats
 - Get Ether: https://faucet.rinkeby.io/
 - Tools: https://www.ethereum.org/cli
+- Etherscan for Ropsten: https://ropsten.etherscan.io/
