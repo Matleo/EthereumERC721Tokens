@@ -56,3 +56,6 @@ Testnet:
 - Get more Ether for Ropsten: https://faucet.ropsten.be/
 - Tools: https://www.ethereum.org/cli
 - Etherscan for Ropsten: https://ropsten.etherscan.io/
+
+ERC-20 Example:
+-https://gist.github.com/LasterSlaster/bcf6ac627017648c3fc93af3ca33b17b
