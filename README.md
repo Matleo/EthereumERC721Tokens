@@ -59,5 +59,5 @@ Testnet:
 - Etherscan for Ropsten: https://ropsten.etherscan.io/
 
 ERC-20 Example:
--https://gist.github.com/LasterSlaster/bcf6ac627017648c3fc93af3ca33b17b
+- https://gist.github.com/LasterSlaster/bcf6ac627017648c3fc93af3ca33b17b
 
