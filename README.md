@@ -61,3 +61,10 @@ Testnet:
 ERC-20 Example:
 - https://gist.github.com/LasterSlaster/bcf6ac627017648c3fc93af3ca33b17b
 
+Documentation:
+
+[md manual] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[md example page ] (./documentation/example.md)
+
+
+
