@@ -66,5 +66,15 @@ Documentation:
 [md manual](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 [md example page](./documentation/example.md)
 
+#Structure
+
+1. [Testumgebung einrichten](./documentation/enviroment.md)
+2. [ERC 20](./documentation/erc20.md)
+3. [ERC 721](./documentation/erc721.md)
+4. [example md](./documentation/example.md)
+5. [FAQ](./documentation/faq.md)
+6. [Notizen](./documentation/notices.md)
+7. [Solidity und Remix IDE](./documentation/solidity.md)
+8. [Quellverzeichnis](./documentation/sources.md)
 
 
