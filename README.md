@@ -63,8 +63,8 @@ ERC-20 Example:
 
 Documentation:
 
-[md manual] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-[md example page ] (./documentation/example.md)
+[md manual](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[md example page](./documentation/example.md)
 
 
 
