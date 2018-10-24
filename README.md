@@ -53,5 +53,6 @@ Testnet:
 - HowTo: https://medium.com/compound-finance/the-beginners-guide-to-using-an-ethereum-test-network-95bbbc85fc1d
 - Rinkeby: https://www.rinkeby.io/#stats
 - Get Ether: https://faucet.rinkeby.io/
+- Get more Ether for Ropsten: https://faucet.ropsten.be/
 - Tools: https://www.ethereum.org/cli
 - Etherscan for Ropsten: https://ropsten.etherscan.io/
