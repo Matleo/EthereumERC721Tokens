@@ -21,8 +21,7 @@ Ethereum ERC List(https://eips.ethereum.org/erc):
 - ERC-20 Token Standard: https://eips.ethereum.org/EIPS/eip-20
 - Creating a Token: https://ethereum.org/token
 - ERC-721 Non-Fungible Token Standard: https://eips.ethereum.org/EIPS/eip-721
-- ERC-1203 Multi-Class Token: https://eips.ethereum.org/EIPS/eip-1203
-- ERC-1155 Crypto Item Standard: https://eips.ethereum.org/EIPS/eip-1155
+- ERC-721 Implementierung: https://medium.com/blockchannel/walking-through-the-erc721-full-implementation-72ad72735f3c
 
 Solidity:
 - https://solidity.readthedocs.io
@@ -60,6 +59,11 @@ Testnet:
 
 ERC-20 Example:
 - https://gist.github.com/LasterSlaster/bcf6ac627017648c3fc93af3ca33b17b
+
+Bisher unwichtig:
+- ERC-1203 Multi-Class Token: https://eips.ethereum.org/EIPS/eip-1203
+- ERC-1155 Crypto Item Standard: https://eips.ethereum.org/EIPS/eip-1155
+
 
 Documentation:
 
