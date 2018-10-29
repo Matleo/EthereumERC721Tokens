@@ -96,7 +96,7 @@ contract Owned {
 
 // ----------------------------------------------------------------------------
 // ERC20 Token, with the addition of symbol, name and decimals and a
-// fixed supply
+// variable supply
 // ----------------------------------------------------------------------------
 contract VariableSupplyToken is ERC20Interface, Owned {
     using SafeMath for uint;
