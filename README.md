@@ -47,6 +47,7 @@ Blockchain Tutorial:
 
 Cryptokitties:
 - https://www.cryptokitties.co/
+- [Artikel zu CryptoKitties und Accessoire](https://cointrend.de/cryptokitties-tagebuch-8/)
 
 Testnet:
 - HowTo: https://medium.com/compound-finance/the-beginners-guide-to-using-an-ethereum-test-network-95bbbc85fc1d
