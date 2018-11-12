@@ -24,7 +24,7 @@ contract ERC721_basic is ERC721, ERC165 {
 
     
     //------------Token Creation:------------
-    function create_token(address _to, uint256 _tokenId) external {
+    function create_token(address _to, uint256 _tokenId) public {
         require(_to != address(0));
         _addTokenTo(_to, _tokenId);
         emit Transfer(address(0), _to, _tokenId);
