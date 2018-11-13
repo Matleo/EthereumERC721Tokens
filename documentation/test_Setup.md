@@ -22,6 +22,9 @@ Nach dem Einbinden/Deployen eines Contracts ist dessen Schnittstelle unter 'Depl
 Hier können nun Calls(einfaches lesen ohne generierung einer Transaktion) und Transaktionen gestartet werden um mit dem Contract zu interagieren. 
 Transaktionen werden über die konfigurierte Environment und Account ausgeführt, hierzu gehört auch das Deployment.
 
+## Deployte Contracts testen
+
+
 # Metamask
 Um Contracts auch außerhalb der Browser VM zu testen, benötigen wir einen Web3.js Client, der uns ein Wallet zur Verwaltung der Accounts und dem Senden von Transaktionen ermöglicht. 
 MetaMask bietet hier eine einfache Integration in die Webbrowser Firefox und Chrome und stellt somit eine gute Ergänzung zur Remix IDE dar. Desweiteren ermöglicht MetaMask das Aufrufen von DApps im Webbrowser. 
