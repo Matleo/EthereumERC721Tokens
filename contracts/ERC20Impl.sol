@@ -7,10 +7,6 @@ pragma solidity ^0.4.24;
 // Name        : Test Token
 // Total supply: 1,000,000.000000000000000000
 // Decimals    : 18
-//
-// Enjoy.
-//
-// (c) BokkyPooBah / Bok Consulting Pty Ltd 2018. The MIT Licence.
 // ----------------------------------------------------------------------------
 
 
