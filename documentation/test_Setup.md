@@ -6,7 +6,7 @@ Ein einfaches Aufsetzten der Umgebung mit möglichst wenig Installationsaufwand 
 # IDE: Remix
 Als Entwicklungsumgebung verwenden wir die Remix IDE, da diese nur geringe Konfiguration und einfache Integration von Web3.js Clients ermöglicht. Remix ist über einen Webbrowser unter folgender URL zu erreichen https://remix.ethereum.org/#optimize=false.
 
-# Kompilieren und Deployen
+## Kompilieren und Deployen
 Um eigene Contract zu testen, können diese über den Reiter 'Compile' kompiliert werden und stehen uns dann über den Reiter 'Run' zum Deployment zur Verfügung. 
 Unter dem Reiter 'Run' können wir nun alle unsere kompilierten Contracts über einen Web3.js Client deployen.
 Für einfache Tests genügt hierbei die JavaScript VM 'Environment', welche direkt im Browser läuft, jedoch auch eingeschränkter ist als eine der anderen Optionen. 
@@ -46,8 +46,7 @@ Zwei Webseiten die wir benutzt haben sind:
 ## Eigene Tokens hinzufügen
 Um eigene Tokens hinzuzufügen auf _"Add Token"_ klicken, dann die Token Contract Adresse eintragen die beim Erstellen der Tokens in Remix mitgeteilt wurde. 
 Die restlichen Felder werden dann automatisch ausgefüllt. Nun auf _"Add"_ klicken und nun sind die Tokens unter dem Reiter _"Tokens"_ sichtbar.
-Wenn nun auf den erstellten Token geklickt wird, öffnet sich die Webseite  _"Ropsten Etherscan"_ auf der der Holder des Contracts, die Contract Adresse und die jeweiligen Transaktionen zu sehen sind .
-
+Wenn nun auf den erstellten Token geklickt wird, öffnet sich die Webseite  _"Ropsten Etherscan"_ auf der der Holder des Contracts, die Contract Adresse und die jeweiligen Transaktionen zu sehen sind.
 
 Nun kann man seine Tokens zwischen seinen Accounts verschicken oder kaufen jenachdem welche Funktionen der Contract implementiert.
 
