@@ -18,11 +18,16 @@ Achtung: Im Dropdown-Menü werden alle komilierten Contracts aufgelistet, also a
 Über den Button 'Deploy' kann dann der ausgewählte Contract in die konfigurierte Blockchain deployed werden. 
 Möchte man einen bereits deployten Contract für Tests innerhalb der Remix IDE einbinden, kann die Adresse unter der der Contract erreichbar ist unter 'At Address' eingetragen werden. 
 Bei dieser Methode wird jedoch weiterhin ein kompiliertes Interface des Contracts benötigt! Dieses Interface dient als Basis für die ABI der zu erzeugenden Transaktionen.
-Nach dem Einbinden/Deployen eines Contracts ist dessen Schnittstelle unter 'Deployed Contracts' verfügbar. 
-Hier können nun Calls(einfaches lesen ohne generierung einer Transaktion) und Transaktionen gestartet werden um mit dem Contract zu interagieren. 
-Transaktionen werden über die konfigurierte Environment und Account ausgeführt, hierzu gehört auch das Deployment.
+
 
 ## Deployte Contracts testen
+Nach dem Einbinden/Deployen eines Contracts ist dessen Schnittstelle unter 'Deployed Contracts' verfügbar, neben dem Namen des Contracts ist auch dessen Adresse angezeigt. 
+Nach einem Klick auf den Namen des Contracts werden dessen Methoden mit Feldern für die benötigten Übergabeparameter aufgelistet.
+Hierbei kann wird zwischen zwei Arten von Methoden unterschieden, solchen die den Zustand des Contracts ändern und den Publish einer Transaktion erfordern und solchen die den aktuellen Zustand nur lesen, sogenannte 'calls'. 
+Methoden die eine Transaktion generieren werden in Rot angezeigt, alle die über einen einfachen Call aufgerufen werden sind blau.
+Ein weiterer wesentlicher Unterschied bezieht sich auf den Rückgabewert. Bei einem Call ist dieser sofort zur Verfügung, bei Transaktionen hingegen kann dieser nicht übergeben werden.
+Hier kommt das Konzept von Events zur Kommunikation mit Clients ins Spiel. Bei einer Contract zu Contract Kommunikation werden Rückgabewerte wie gewohnt zurück gegeben!
+-> Transaktionen werden über die konfigurierte Environment und Account ausgeführt, hierzu gehört auch das Deployment.
 
 
 # Metamask
