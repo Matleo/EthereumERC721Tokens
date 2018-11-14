@@ -6,23 +6,29 @@ Dies dient als Vorbereitung für das Speichern der Daten ausserhalb der Blockcha
 Vorraussetzungen sind NPM, Truffle, Ganache und MetaMask.
 
 **Step 1**
-git clone project
+
+Git clone project.
 
 **Step 2**
-In der Console auf den Projektordner wechseln 
-`npm install` um dependencies zu installieren
+
+In der Console auf den Projektordner wechseln.
+`npm install` um dependencies zu installieren.
 
 **Step 3** 
-Start Ganache
+
+Start Ganache.
 
 **Step 4**
-Compile und deployen von Smart Contract mithilfe von truffle
+
+Compile und deployen von Smart Contract mithilfe von truffle.
 `truffle migrate --reset`
 
 **Step 5**
+
 MetaMask konfigurieren, dh. mit der lokalen Blockchain verbinden und die Accounts anmelden.
 
 **Step 6**
+
 Front End Application starten indem man den Server startet.
 `npm run dev` 
 
