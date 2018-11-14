@@ -66,7 +66,7 @@ Neben der Balance wird lediglich ein Interger mit der Anzahl der gesamten Tokenm
     }
 ### Komponenten
 Unser Token Contract besteht aus mehreren Komponenten, einer Library `SafeMath`, einem 'Interface' Contract `ERC20Interface`, 
-einem Contract zur Verwaltung eines Owners `Owned` und dem zu deployenden Contract Token Contract `TestToken`, 
+einem Contract zur Verwaltung eines Owners `Owned` und dem zu deployenden Token Contract `TestToken`, 
 welcher die zuvor erwähnten Komponenten mit einbindet.
 
 ### Transfer von Token
@@ -83,7 +83,7 @@ Hierbei werden jedoch nicht wirklich Token versendet, sondern lediglich die Bala
     
 Neben dem Transfer von Token vom eigenen Konto auf das eines anderen, gibt es noch die Möglichkeit einer anderen Adresse die Berechtigung für den Transfer
 einer bestimmten Tokenmenge vom eigenen Konto zu geben. Dieses Verhalten kann man für seine eigene Balance über die Funktion `approve(adress,uint)` einrichten.
-Der Der vom Aufrufer der Funktion `approve()` bestimmte 'Spender' kann dann über die Funktion `transferFrom(address,address,uint)` vom Konto des anderen Token versenden.
+Der vom Aufrufer der Funktion `approve()` bestimmte 'Spender' kann dann über die Funktion `transferFrom(address,address,uint)` vom Konto des anderen Token versenden.
 
 ## Erweiterung um Buy-Methode
 Bei der Standard Implementierung des ERC20Interfaces ist keine Möglichkeit zum Kaufen von Token vorgesehen. 
