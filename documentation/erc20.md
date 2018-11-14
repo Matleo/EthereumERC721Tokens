@@ -1,27 +1,90 @@
-# ERC20 Beispiel Deployment
+# ERC20 Fungibler Token Standard
+
+Hier erleutern wir die Funktionsweise eines Smart Contracts zur Verwaltung von fungiblen Tokens nach dem ERC20 Token Standard.
+Bei fungiblen Token handlet es sich um austauschbare Tokens, also Tokens die sich voneinander nicht unterscheiden lassen und den selben Wert haben.
+
+
+## Deployment
 Unsere Implementierung ist an folgenden Blog Eintrag angelehnt: [https://ethereum.org/token](https://ethereum.org/token)
 Eine simple ERC20 Implementierung ist unter der Adresse '0x941a3ff30f764cabac1b88271b0abc84ffaad5cc' zu Testzwecken deployed.
-Der entsprechende Solidity-Code befindet sich in der Datei '[link auf Datei]'.
+Der entsprechende Solidity-Code befindet sich [hier](/contracts/ERC20Impl.sol).
 
 Adresse: 0x941a3ff30f764cabac1b88271b0abc84ffaad5cc
 Symbol: Test
 Name: Test Token
 
 # Token Contract einbinden
+Um mit dem Token Contract zu interagieren können wir ihn entweder mit einem Wallet wie Metamask verbinden oder direkt über das Interface der Remix IDE 
+auf dessen Funktionen zugreifen. Zu beachten ist jedoch, dass bei unserer einfachen ERC20 Implementierung initial alle Tokens dem ersteller des Contracts zugewiesenwerden.
+Dieser Owner kann dann die Tokens an andere Adressen im Netzwerk versenden. Der ERC20 Standard definiert keine Funktion zum Kauf der Tokens!
 ## Metamask
 Der Token Contract kann z.B. über das Metamask Interface eingebunden werden.
+
 Tokens->Add Token->Insert Token Contract Address->Add
 ## Remix IDE
 Der Contract kann auch direkt über ein Remix Deployment angesprochen werden.
 Hierzu muss der Solidity-Code kompiliert und über das Feld 'At Address' eingebunden werden.
 Um Tokens zu erhalten muss eine bestehende Addresse mit Tokens angefragt werden.
-Hierzu werden Tokens über die Funktion 'transfer' übermittelt.
+Hierzu werden Tokens über die Funktion 'transfer' von der anfragenden Adresse an eine beliebige andere Adresse übermittelt.
 
 # Implementierung
 ## Standard ERC20Interface
+Unser ERC20 Contract stellt eine möglichst einfache Implementierung des Interface dar um die Grundlegende Funktionsweise eines solchen Token Contracts darzustellen.
+
+### Representation der Tokens
+Im Contract werden Tokens über einfache Integer representiert und über ein Mapping von Adressen auf Interger eine Balance der Eigentümer verwaltet.
+Ein fungibler Token hat also keine eigenen Eigenschaften die ihn von den anderen Tokens des Contracts unterscheiden könnten.
+Alle existierenden Tokens werden über das Mapping/Balance verwaltet, daher ist auch jeder Token einer bestimmten Adresse zugeordnet.
+Es gibt also keine Tokens ohne einen Besitzer!
+Neben der Balance wird lediglich Interger mit der Anzahl der gesamten Tokenmenge gesetzt. Dieser Wert initial beim Erstellen des Contracts einmal gesetzt.
+    
+    contract FixedSupplyToken is ERC20Interface, Owned {
+        using SafeMath for uint;
+    
+        string public symbol;
+        string public  name;
+        uint8 public decimals;
+        uint _totalSupply;
+    
+        mapping(address => uint) balances;
+        mapping(address => mapping(address => uint)) allowed;
+    
+    
+        // ------------------------------------------------------------------------
+        // Constructor
+        // ------------------------------------------------------------------------
+        constructor() public {
+            symbol = "TEST";
+            name = "Test Token";
+            decimals = 18;
+            _totalSupply = 1000000 * 10**uint(decimals);
+            balances[owner] = _totalSupply;
+            emit Transfer(address(0), owner, _totalSupply);
+        }
+    ...
+    }
+### Komponenten
+Unser Token Contract besteht aus mehreren Componenten, einer Library `SafeMath`, einem Interface Contract `ERC20Interface`, dem Contract `ApproveAndfallback`, 
+einem Contract zur Verwaltung eines Owners `Owned` und dem zu deployenden Contract  Token Contract `FixedSupplyToken`, 
+welcher die zuvor erwähnten Komponenten mit einbindet.
+
+### Transfer von Tokens
+Tokens können über die Funktion `transfer(address,uint)` von der eigenen Adresse/Konto zu einer anderen gesendet werden. 
+Hierbei werden jedoch nicht wirklich Tokens versendet, sondern lediglich die Balances der beiden Konten entsprechend angepasst.
+(Das Event `emit Transfer(msg.sender, to, tokens);` dient zur Benachrichtigung von Blockchain Clients)
+
+    function transfer(address to, uint tokens) public returns (bool success) {
+        balances[msg.sender] = balances[msg.sender].sub(tokens);
+        balances[to] = balances[to].add(tokens);
+        emit Transfer(msg.sender, to, tokens);
+        return true;
+    }
+    
+
+
 ## Erweiterung um Buy-Methode
 Bei der Standard Implementierung des ERC20Interfaces ist keine Möglichkeit zum Kaufen von Tokens vorgesehen. 
-Der Zugriff beschränkt sich hier lediglich auf die Möglichkeit den Besitz von Tokens von einer Adresse an eine Andere zu transferieren.
+Der Zugriff beschränkt sich hier lediglich auf die Möglichkeit den Besitz von Tokens von einer Adresse an eine andere zu transferieren.
 Das Standard Interface kann man in folgender Weise um eine `buy` Methode und eine `sell` Methode:
 
     function buy() payable public {
