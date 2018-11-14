@@ -182,7 +182,7 @@ contract TestToken is ERC20Interface, Owned {
 
     // ------------------------------------------------------------------------
     // Don't accept ETH.
-    // This function is called on send() for sending Ehter to this address
+    // This function is called on send() for sending Ehter to this address without any data
     // and on not matching function signature.
     // If this function is not declared payable contract can't receive Ether.
     // ------------------------------------------------------------------------
