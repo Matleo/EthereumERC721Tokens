@@ -11,4 +11,5 @@ This project was realized as students project from the HTWG Konstanz. We are try
 3. [ERC 721](./documentation/erc721.md)
 4. [FAQ](./documentation/faq.md)
 5. [Solidity Basics](./documentation/solidity.md)
-6. [Quellverzeichnis](documentation/references.md)
+6. [Relevanz von Interfaces](./documentation/relevanz_von_interfaces.md)
+7. [Quellverzeichnis](documentation/references.md)
