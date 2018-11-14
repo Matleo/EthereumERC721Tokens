@@ -58,11 +58,13 @@ ERC: https://eips.ethereum.org/erc
 
     Nachteil dieser Implementierung fremder Interfaces sind:
     - Wenn ein bereits deployter Contract angesprochen werden möchte muss dessen Interface erneut im eigenen Code definiert werden. Hier kann es zu Fehlern kommen
-    - Erfüllt ein entfernter Contract nicht die vermutete Schnittstelle kommt es zu Fehlern während der Ausführung. Diese müssen über vorherige Test abgefangen werden.
+    - Erfüllt ein entfernter Contract nicht die vermutete Schnittstelle kommt es zu Fehlern während der Ausführung. Diese müssen über vorherige Test abgefangen werden
     
-3. Wie können die Interfaces eines Smart Contract nach außenhin bekannt gemacht werden
+3. Wie können die Interfaces eines Smart Contract nach außenhin bekannt gemacht werden?
     
-    Wie in Fragestellung 2 bereits angesprochen sind Interfaces eines Smart Contract nach außenhin nicht bekannt
+    Wie in Fragestellung 2 bereits angesprochen sind Interfaces eines Smart Contract nach außen nicht bekannt
 
     ### Interface Publishing über ERC165
-
+    
+    #### Was ist ERC165
+    
