@@ -42,7 +42,7 @@ Im Contract werden Token über einfache Integer representiert und über ein Mapp
 Ein fungibler Token hat also keine eigenen Eigenschaften die ihn von den anderen Token des Contracts unterscheiden könnten.
 Alle existierenden Token werden über das Mapping/Balance verwaltet, daher ist auch jeder Token einer bestimmten Adresse zugeordnet.
 Es gibt also keine Token ohne einen Besitzer!
-Neben der Balance wird lediglich ein Interger mit der Anzahl der gesamten Tokenmenge gesetzt. Dieser Wert wird initial beim Erstellen des Contracts einmal gesetzt.
+Neben der Balance wird lediglich ein Interger mit der Anzahl der gesamten Tokenmenge verwaltet. Dieser Wert wird initial beim Erstellen des Contracts einmal gesetzt.
     
     contract FixedSupplyToken is ERC20Interface, Owned {
         using SafeMath for uint;
