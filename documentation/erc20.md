@@ -1,31 +1,37 @@
 # ERC20 Fungibler Token Standard
 
-Hier erleutern wir die Funktionsweise eines Smart Contracts zur Verwaltung von fungiblen Tokens nach dem ERC20 Token Standard.
-Bei fungiblen Token handlet es sich um austauschbare Tokens, also Tokens die sich voneinander nicht unterscheiden lassen und den selben Wert haben.
+Hier erleutern wir die Funktionsweise eines Smart Contracts zur Verwaltung von fungiblen Token nach dem ERC20 Token Standard.
+Als Erweiterung des Standard Interface fügen wir nachfolgend die Funktionalität zum Kauf von Tokens über den Contract, sowie das dynamische Erzeugen von neuen Tokens hinzu.
 
+## Fungible Token
+Bei fungiblen Token handlet es sich um austauschbare Tokens, also Token die sich voneinander nicht unterscheiden lassen und somit auch den selben Wert haben.
+Fungible Token lassen sich in kleinere Einheiten aufteilen, wobei es keine Rolle spielt in welchen Einheiten man einen Token erhält, solange deren Summe den gleichen Wert representiert.
+Aufgrund dieser Eigenschaft eignen sich fungible Tokens sehr gut als Kryptowährung.
 
 ## Deployment
 Unsere Implementierung ist an folgenden Blog Eintrag angelehnt: [https://ethereum.org/token](https://ethereum.org/token)
 Eine simple ERC20 Implementierung ist unter der Adresse '0x941a3ff30f764cabac1b88271b0abc84ffaad5cc' zu Testzwecken deployed.
 Der entsprechende Solidity-Code befindet sich [hier](/contracts/ERC20Impl.sol).
 
-Adresse: 0x941a3ff30f764cabac1b88271b0abc84ffaad5cc
-Symbol: Test
-Name: Test Token
+- Adresse: 0x941a3ff30f764cabac1b88271b0abc84ffaad5cc
+- Symbol: Test
+- Name: Test Token
 
 # Token Contract einbinden
 Um mit dem Token Contract zu interagieren können wir ihn entweder mit einem Wallet wie Metamask verbinden oder direkt über das Interface der Remix IDE 
 auf dessen Funktionen zugreifen. Zu beachten ist jedoch, dass bei unserer einfachen ERC20 Implementierung initial alle Tokens dem ersteller des Contracts zugewiesenwerden.
 Dieser Owner kann dann die Tokens an andere Adressen im Netzwerk versenden. Der ERC20 Standard definiert keine Funktion zum Kauf der Tokens!
-## Metamask
-Der Token Contract kann z.B. über das Metamask Interface eingebunden werden.
+1. Metamask:
 
-Tokens->Add Token->Insert Token Contract Address->Add
-## Remix IDE
-Der Contract kann auch direkt über ein Remix Deployment angesprochen werden.
-Hierzu muss der Solidity-Code kompiliert und über das Feld 'At Address' eingebunden werden.
-Um Tokens zu erhalten muss eine bestehende Addresse mit Tokens angefragt werden.
-Hierzu werden Tokens über die Funktion 'transfer' von der anfragenden Adresse an eine beliebige andere Adresse übermittelt.
+    Der Token Contract kann z.B. über das Metamask Interface wie folgt eingebunden werden:
+
+    Tokens->Add Token->Insert Token Contract Address->Add
+2. Remix IDE:
+
+    Der Contract kann auch direkt über ein Remix Deployment angesprochen werden.
+    Hierzu muss der Solidity-Code kompiliert und über das Feld 'At Address' eingebunden werden.
+    Um Tokens zu erhalten muss eine bestehende Addresse mit Tokens angefragt werden.
+    Hierzu werden Tokens über die Funktion 'transfer' von der anfragenden Adresse an eine beliebige andere Adresse übermittelt.
 
 # Implementierung
 ## Standard ERC20Interface
