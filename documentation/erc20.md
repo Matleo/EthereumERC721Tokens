@@ -80,7 +80,9 @@ Hierbei werden jedoch nicht wirklich Tokens versendet, sondern lediglich die Bal
         return true;
     }
     
-
+Neben dem Transfer von Tokens vom eigenen Konto auf das eines anderen, gibt es noch die Möglichkeit einer anderen Adresse die Berechtigung für den Transfer
+einer bestimmten Tokenmenge vom eigenen Konto zu geben. Dieses Verhalten kann man für seine eigene Balance über die Funktion `approve(adress,uint)` einrichten.
+Der Der vom Aufrufer der Funktion `approve()` bestimmte 'Spender' kann dann über die Funktion `transferFrom(address,address,uint)` vom Konto des anderen Tokens versenden.
 
 ## Erweiterung um Buy-Methode
 Bei der Standard Implementierung des ERC20Interfaces ist keine Möglichkeit zum Kaufen von Tokens vorgesehen. 
