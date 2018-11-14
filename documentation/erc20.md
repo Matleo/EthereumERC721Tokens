@@ -31,18 +31,18 @@ Dieser Owner kann dann die Token an andere Adressen im Netzwerk versenden. Der E
     Der Contract kann auch direkt über ein Remix Deployment angesprochen werden.
     Hierzu muss der Solidity-Code kompiliert und über das Feld 'At Address' eingebunden werden.
     Um Token zu erhalten muss eine bestehende Addresse mit Token angefragt werden.
-    Hierzu werden Token über die Funktion 'transfer' von der anfragenden Adresse an eine beliebige andere Adresse übermittelt.
+    Hierzu werden Token über die Funktion 'transfer()' von der anfragenden Adresse an eine beliebige andere Adresse übermittelt.
 
 # Implementierung
 ## Standard ERC20Interface
-Unser ERC20 Contract stellt eine möglichst einfache Implementierung des Interface dar um die Grundlegende Funktionsweise eines solchen Token Contracts darzustellen.
+Unser ERC20 Contract stellt eine möglichst einfache Implementierung des Interface dar, um die grundlegende Funktionsweise eines solchen Token Contracts darzustellen.
 
 ### Representation der Token
 Im Contract werden Token über einfache Integer representiert und über ein Mapping von Adressen auf Interger eine Balance der Eigentümer verwaltet.
 Ein fungibler Token hat also keine eigenen Eigenschaften die ihn von den anderen Token des Contracts unterscheiden könnten.
 Alle existierenden Token werden über das Mapping/Balance verwaltet, daher ist auch jeder Token einer bestimmten Adresse zugeordnet.
 Es gibt also keine Token ohne einen Besitzer!
-Neben der Balance wird lediglich Interger mit der Anzahl der gesamten Tokenmenge gesetzt. Dieser Wert initial beim Erstellen des Contracts einmal gesetzt.
+Neben der Balance wird lediglich ein Interger mit der Anzahl der gesamten Tokenmenge gesetzt. Dieser Wert wird initial beim Erstellen des Contracts einmal gesetzt.
     
     contract FixedSupplyToken is ERC20Interface, Owned {
         using SafeMath for uint;
@@ -53,12 +53,7 @@ Neben der Balance wird lediglich Interger mit der Anzahl der gesamten Tokenmenge
         uint _totalSupply;
     
         mapping(address => uint) balances;
-        mapping(address => mapping(address => uint)) allowed;
-    
-    
-        // ------------------------------------------------------------------------
-        // Constructor
-        // ------------------------------------------------------------------------
+        ...
         constructor() public {
             symbol = "TEST";
             name = "Test Token";
@@ -70,8 +65,8 @@ Neben der Balance wird lediglich Interger mit der Anzahl der gesamten Tokenmenge
     ...
     }
 ### Komponenten
-Unser Token Contract besteht aus mehreren Componenten, einer Library `SafeMath`, einem Interface Contract `ERC20Interface`, dem Contract `ApproveAndfallback`, 
-einem Contract zur Verwaltung eines Owners `Owned` und dem zu deployenden Contract  Token Contract `FixedSupplyToken`, 
+Unser Token Contract besteht aus mehreren Komponenten, einer Library `SafeMath`, einem 'Interface' Contract `ERC20Interface`, 
+einem Contract zur Verwaltung eines Owners `Owned` und dem zu deployenden Contract Token Contract `TestToken`, 
 welcher die zuvor erwähnten Komponenten mit einbindet.
 
 ### Transfer von Token
