@@ -34,40 +34,40 @@ Hier kommt das Konzept von Events zur Kommunikation mit Clients ins Spiel. Bei e
 Um Contracts auch außerhalb der Browser VM zu testen, benötigen wir einen Web3.js Client, der uns ein Wallet zur Verwaltung der Accounts und dem Senden von Transaktionen ermöglicht. 
 MetaMask bietet hier eine einfache Integration in die Webbrowser Firefox und Chrome und stellt somit eine gute Ergänzung zur Remix IDE dar. Desweiteren ermöglicht MetaMask das Aufrufen von DApps im Webbrowser. 
 
-## Ersten Schritte
+
+## Erste Schritte
 Wir sind auf das Plugin gestoßen als wir uns ein Codebeispiele für den ERC20 angesehen haben ([Webseite](https://steemit.com/ethereum/@maxnachamkin/how-to-create-your-own-ethereum-token-in-an-hour-erc20-verified)). 
-Dieses Wallet wurde auf dieser Seite empfohlen um einfach Tokens zu erstellen und diese dann mithilfe von Ether zu kaufen bzw. zu verkaufen.
+Meta Mask wurde auf dieser Seite empfohlen um einfach Tokens zu erstellen und diese dann mithilfe von Ether zu kaufen bzw. zu verkaufen.
 Als erstes muss das Plugin für den Browser herunterladen werden, wir haben in diesem Fall den Chrome Browser benutzt. MetaMask unterstützt allerdings auch Firefox und Opera. 
-Sobald dann die Erweiterung erfolgreich dem Browser hinzugefügt wurde meldet man sich in MetaMask an. Um sich anzumelden muss zuvor noch ein Passwort für den Account angegeben werden. Anschließend bekommt man 12 Wörter als Secret vorgelegt, diese sollte man sich sicher notieren, da es nur darüber möglich ist auf den Account zuzugreifen.
+Sobald dann die Erweiterung erfolgreich dem Browser hinzugefügt wurde muss sich in Meta Mask angelemdet werden. Um sich anzumelden muss zuvor noch ein Passwort für den Account angegeben werden. Anschließend werden einem 12 Wörter als Secret vorgelegt, diese sollten sicher notieren werden, da es nur darüber möglich ist den Account zu importieren.
 
 ## Account einrichten
-Sobald die Anmeldung erfolgreich abgeschlossen wurde, kann im Browser im Plugin Bereich auf das Fuchs Symbol geklickt werden um MetaMask zu öffnen. Nun kann der Account betrachtet werden. Auf der linken Seite oben steht nun das Netzwerk auf dem der Account sich befindet und weiter darunter stehen die Ether die dieser Account besitzt.
-Zuerst sollte dann das Netzwerk auf das jeweilige Testnetzwerk geändert werden, auf welches der Account später zugreifen soll. Wir haben uns in diesem Fall für das Ropsten Testnetzwerk entschieden. Dieses Testnetzwerk ist dafür gedacht Smart Contracts zu testen, ohne dass diese direkt auf die Haupt-Blockchain des Ethereum Netzwerk schreiben.
-Um allerdings Transaktionen durchzuführen braucht der Account Ether um die Miner zu bezahlen. Um an Ether zu kommen gibt es verschiedene Wege. 
-Es gibt die Möglichkeit kostenlos Ether auf seinen Account zu laden, indem die Adresse des Accounts angegeben wird. 
+Sobald die Anmeldung erfolgreich abgeschlossen wurde, kann im Browser im Plugin Bereich auf das "Fuchs" Symbol geklickt werden um MetaMask zu öffnen. Der Account kann nun betrachtet werden. In der oberen rechten Ecke steht das Netzwerk auf dem der Account sich befindet und weiter darunter stehen die Ether die dieser Account besitzt.
+Zuerst sollte dann das Netzwerk auf das jeweilige Testnetzwerk geändert werden, auf welches der Account später zugreifen soll. Wir haben uns in diesem Fall für das Ropsten Testnetzwerk entschieden. Dieses Testnetzwerk ist dafür gedacht Smart Contracts zu testen, ohne dass diese direkt auf die Haupt-Blockchain des Ethereum Netzwerks geschrieben werden.
+Um allerdings Transaktionen durchzuführen braucht der Account Ether um die Miner zu bezahlen. Es gibt verschiedene Wege Ether zu erhalten. 
+Da wir uns allerdings auf einer Test-Blockchain, befinden gibt es Möglchkeiten kostenlos Test-Ether auf seinen Account zu laden. 
+
 Zwei Webseiten die wir benutzt haben sind: 
 
 - [Ropsten Ethereum Faucet](https://faucet.ropsten.be/) 
 - [MetaMask EtherFaucet](https://faucet.metamask.io/)
 
-Der angefragte Ehter ist jedoch nur für das entsprechende Testnetzwerk verfügbar!
+
+Der angefragte Ether ist jedoch nur für das entsprechende Testnetzwerk verfügbar!
 Nachdem der Account mit Ether ausgestattet und mit dem gewünschten Netzwerk verbunden ist, kann dieser in der Remix IDE verwendet werden.
-Hierzu wählt man im Reiter 'Run' unter Environment 'Inject Web3' aus. MetaMask wird automatisch mit dem aktuell ausgewählten Netzwerk erkannt, auch der passende Account kann nun im Feld 'Account' ausgewählt werden.
-Nun können wir unsere Contracts auch in das ausgewählte Testnetzwerk über unseren neuen Account deployen.
+Hierzu wird in Remix im Reiter 'Run' unter Environment 'Inject Web3' ausgewählt. MetaMask wird automatisch im aktuell ausgewählten Netzwerk erkannt und auch der aktuell angemeldete Account wird automatisch in Remix ausgewählt.
+Nun können wir unsere Contracts in das ausgewählte Testnetzwerk über unseren neuen Account deployen.
 
 ## Eigene Tokens hinzufügen
-Um eigene Tokens hinzuzufügen klickt man auf _"Add Token"_, dann die Adresse des Token-Contract eintragen, die beim Deploy des Contracts in Remix mitgeteilt wurde. 
-Die restlichen Felder werden dann automatisch ausgefüllt. Nun auf _"Add"_ klicken und die Tokens sind unter dem Reiter _"Tokens"_ sichtbar.
-Wenn nun auf den erstellten Token geklickt wird, öffnet sich die Webseite  _"Ropsten Etherscan"_ auf der, der Holder des Contracts, die Contract Adresse und die jeweiligen Transaktionen zu sehen sind.
+Um eigene Tokens hinzuzufügen wird in Meta Maskauf _"Add Token"_ geklickt und dann kann die Adresse des Token-Contract eintragen werden. 
+Die restlichen Felder werden automatisch ausgefüllt. Nun auf _"Add"_ klicken und die Tokens sind unter dem Reiter _"Tokens"_ sichtbar.
+Wenn auf den erstellten Token geklickt wird, öffnet sich die Webseite  _"Ropsten Etherscan"_ auf der, der Holder des Contracts, die Contract Adresse und die jeweiligen Transaktionen zu sehen sind.
 
-Nun kann man seine Token zwischen seinen Accounts verschicken oder kaufen jenachdem welche Funktionen der Contract implementiert.
 
 # Testnet local: Ganache 
 Ganache ermöglicht es eine Blockchain lokal zu generieren ohne weitere Konfiguration oder Tools. Vorteil von lokalen Tests ist die Kontrolle über die Blockchain und die einfachere Nachverfolgung von Transaktionen, da kein Overhead externer Transaktionen besteht.
 
 # Testnet remote: Ropsten
-Um Contracts möglichst nah an einer 'echten' Ethereum Blockchain zu testen, gibt es die Möglichkeit Contracts über das Testnetzwerk Ropsten zu deployen. 
-Dies ist eine dem aktuellen echten Ethereum-Netzwerk nahe Blockchain, jedoch mit leichterer Blockgenerierung und fast wertfreiem Ether. 
-Dieser Ether kann über Faucets konstenlos angefragt werden https://ethereum-faucet.org/. 
-Mit diesem Ether können Transaktionen im Ropsten-Testnet generiert werden.
+
+Um Contracts möglichst nah an einer 'echten' Ehtereum Blockchain zu testen gibt es die Möglichkeit Contracts über das Testnet Ropsten zu deployen. Dies ist eine echte Blockchain, jedoch mit leichterer Blockgenerierung und fast wertfreiem Ehter. Wie Test-Ether erhalten werden kann, ist oben im Abschnitt 'Account einrichten' beschrieben. Mit diesem Ether können Transaktionen um Ropsten-Testnet generiert werden.
 
