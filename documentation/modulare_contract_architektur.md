@@ -11,12 +11,10 @@ zur Ausführung des Codes verwendet werden soll. Zum Setzten der Addresse ist na
 
 1. Vorteile
 	- Contracts können auch noch im Nachhinein für Updates abgeändert werden. Einfachere Versionierung, Patching etc.
-	- 
 2. Nachteile
 	- Beim Aufruf anderer Contracts müssen deren Schnittstellen bekannt sein und eingebunden werden -> Overhead, Fehleranfälligkeit
 	- Contracts werden so zwar Modular, was Verbesserungen am Contract im Nachhinein ermöglicht, jedoch wird so auch die ursprünglich gedachte Unveränderlichkeit von Contracts geschwächt. Bei solchen Contracts gibt es keine Gewissheit mehr, ob die Vereinbarung des Contracts eingehalten wird.
 	- Höhere Transaktionskosten
-	-
 Eine Beispielimplementierung befindet sich [hier](../contracts/Modular_Contracts/Delegate_Example)
 
 ## Delegate Pattern API
