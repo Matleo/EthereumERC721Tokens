@@ -21,7 +21,7 @@ Als erstes muss das Plugin für den Browser herunterladen werden, wir haben in d
 Sobald dann die Erweiterung erfolgreich dem Browser hinzugefügt wurde muss sich in Meta Mask angelemdet werden. Um sich anzumelden muss zuvor noch ein Passwort für den Account angegeben werden. Anschließend werden einem 12 Wörter als Secret vorgelegt, diese sollten sicher notieren werden, da es nur darüber möglich ist den Account zu importieren.
 
 ## Account einrichten
-Sobald die Anmeldung erfolgreich abgeschlossen wurde, kann im Browser im Plugin Bereich auf das "Fuchs" Symbol geklickt werden um MetaMask zu öffnen. Der Account kann nun betrachtet werden. Auf der linken Seite oben steht das Netzwerk auf dem der Account sich befindet und weiter darunter stehen die Ether die dieser Account besitzt.
+Sobald die Anmeldung erfolgreich abgeschlossen wurde, kann im Browser im Plugin Bereich auf das "Fuchs" Symbol geklickt werden um MetaMask zu öffnen. Der Account kann nun betrachtet werden. In der oberen rechten Ecke steht das Netzwerk auf dem der Account sich befindet und weiter darunter stehen die Ether die dieser Account besitzt.
 Zuerst sollte dann das Netzwerk auf das jeweilige Testnetzwerk geändert werden, auf welches der Account später zugreifen soll. Wir haben uns in diesem Fall für das Ropsten Testnetzwerk entschieden. Dieses Testnetzwerk ist dafür gedacht Smart Contracts zu testen, ohne dass diese direkt auf die Haupt-Blockchain des Ethereum Netzwerks geschrieben werden.
 Um allerdings Transaktionen durchzuführen braucht der Account Ether um die Miner zu bezahlen. Es gibt verschiedene Wege Ether zu erhalten. 
 Da wir uns allerdings auf einer Test-Blockchain, befinden gibt es Möglchkeiten kostenlos Test-Ether auf seinen Account zu laden. 
