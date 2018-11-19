@@ -44,5 +44,5 @@ Wenn auf den erstellten Token geklickt wird, öffnet sich die Webseite  _"Ropste
 Ganache ermöglicht es eine Blockchain lokal zu generieren ohne weitere Konfiguration oder Tools. Vorteil von lokalen Test ist die Kontrolle über die Blockchain und die einfachere Nachverfolgung von Transaktionen, da kein Overhead externer Transaktionen besteht.
 
 # Testnet remote: Ropsten
-Um Contracts möglichst nah an einer 'echten' Ehtereum Blockchain zu testen gibt es die Möglichkeit COntracts über das Testnet Ropsten zu deployen. Dies ist eine echte Blockchain, jedoch mit leichterer Blockgenerierung und fast wertfreiem Ehter. Dieser Ether kann über Facets konstenlos angefragt werden https://ethereum-faucet.org/. Mit diesem Ether können Transationen um Ropsten-Testnet feneriert werden.
+Um Contracts möglichst nah an einer 'echten' Ehtereum Blockchain zu testen gibt es die Möglichkeit Contracts über das Testnet Ropsten zu deployen. Dies ist eine echte Blockchain, jedoch mit leichterer Blockgenerierung und fast wertfreiem Ehter. Wie Test-Ether erhalten werden kann, ist oben im Abschnitt 'Account einrichten' beschrieben. Mit diesem Ether können Transaktionen um Ropsten-Testnet generiert werden.
 
