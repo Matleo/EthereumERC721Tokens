@@ -13,8 +13,8 @@ contract ExternalContract {
     
     uint256 public result;
     
-    constructor() {
-        api = 1;//TODO: hard code address of deployed contract 'APIDelegee'.
+    constructor(address apiAdress) {
+        api = apiAdress;
     }
     
     function accessAPI() public {
