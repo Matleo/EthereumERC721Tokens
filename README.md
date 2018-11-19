@@ -6,10 +6,10 @@ This project was realized as students project from the HTWG Konstanz. We are try
 
 ### Structure
 
-1. [Testumgebung einrichten](./documentation/test_Setup.md)
+1. [Entwicklungsumgebung einrichten](./documentation/test_Setup.md)
 2. [ERC 20](./documentation/erc20.md)
 3. [ERC 721](./documentation/erc721.md)
 4. [FAQ](./documentation/faq.md)
-5. [Solidity und Remix IDE](./documentation/solidity.md)
-6. [MetaMask](./documentation/MetaMask.md)
-6. [Quellverzeichnis](documentation/references.md)
+5. [Solidity Basics](./documentation/solidity.md)
+6. [Relevanz von Interfaces](./documentation/relevanz_von_interfaces.md)
+7. [Quellverzeichnis](documentation/references.md)
