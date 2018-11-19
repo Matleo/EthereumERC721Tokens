@@ -7,10 +7,6 @@ pragma solidity ^0.4.24;
 // Name        : Test Token
 // Total supply: 1,000,000.000000000000000000
 // Decimals    : 18
-//
-// Enjoy.
-//
-// (c) BokkyPooBah / Bok Consulting Pty Ltd 2018. The MIT Licence.
 // ----------------------------------------------------------------------------
 
 
@@ -55,17 +51,8 @@ contract ERC20Interface {
 
 
 // ----------------------------------------------------------------------------
-// Contract function to receive approval and execute function in one call
-//
-// Borrowed from MiniMeToken
-// ----------------------------------------------------------------------------
-contract ApproveAndCallFallBack {
-    function receiveApproval(address from, uint256 tokens, address token, bytes data) public;
-}
-
-
-// ----------------------------------------------------------------------------
-// Owned contract
+// Define an owner for this contract.
+// Functionality to manage an 'administrator' account with extended rights.
 // ----------------------------------------------------------------------------
 contract Owned {
     address public owner;
@@ -74,9 +61,11 @@ contract Owned {
     event OwnershipTransferred(address indexed _from, address indexed _to);
 
     constructor() public {
+        //Set contract creator as owner (address which created the transaction for contract deployment)
         owner = msg.sender;
     }
-
+    
+    // An modifier provides functionality to extend function definitions
     modifier onlyOwner {
         require(msg.sender == owner);
         _;
@@ -96,9 +85,9 @@ contract Owned {
 
 // ----------------------------------------------------------------------------
 // ERC20 Token, with the addition of symbol, name and decimals and a
-// fixed supply
+// fixed supply of tokens
 // ----------------------------------------------------------------------------
-contract FixedSupplyToken is ERC20Interface, Owned {
+contract TestToken is ERC20Interface, Owned {
     using SafeMath for uint;
 
     string public symbol;
@@ -118,13 +107,13 @@ contract FixedSupplyToken is ERC20Interface, Owned {
         name = "Test Token";
         decimals = 18;
         _totalSupply = 1000000 * 10**uint(decimals);
-        balances[owner] = _totalSupply;
+        balances[owner] = _totalSupply; // Assign all tokens initially to contract owner
         emit Transfer(address(0), owner, _totalSupply);
     }
 
 
     // ------------------------------------------------------------------------
-    // Total supply
+    // Total supply of tokens
     // ------------------------------------------------------------------------
     function totalSupply() public view returns (uint) {
         return _totalSupply.sub(balances[address(0)]);
@@ -141,7 +130,7 @@ contract FixedSupplyToken is ERC20Interface, Owned {
 
     // ------------------------------------------------------------------------
     // Transfer the balance from token owner's account to `to` account
-    // - Owner's account must have sufficient balance to transfer
+    // - Owner's account must have sufficient balance to transfer -> this functionality is provided by the SafeMath library
     // - 0 value transfers are allowed
     // ------------------------------------------------------------------------
     function transfer(address to, uint tokens) public returns (bool success) {
@@ -155,10 +144,6 @@ contract FixedSupplyToken is ERC20Interface, Owned {
     // ------------------------------------------------------------------------
     // Token owner can approve for `spender` to transferFrom(...) `tokens`
     // from the token owner's account
-    //
-    // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md
-    // recommends that there are no checks for the approval double-spend attack
-    // as this should be implemented in user interfaces 
     // ------------------------------------------------------------------------
     function approve(address spender, uint tokens) public returns (bool success) {
         allowed[msg.sender][spender] = tokens;
@@ -175,6 +160,7 @@ contract FixedSupplyToken is ERC20Interface, Owned {
     // - From account must have sufficient balance to transfer
     // - Spender must have sufficient allowance to transfer
     // - 0 value transfers are allowed
+    // -> this functionality is provided by the SafeMath library
     // ------------------------------------------------------------------------
     function transferFrom(address from, address to, uint tokens) public returns (bool success) {
         balances[from] = balances[from].sub(tokens);
@@ -195,20 +181,10 @@ contract FixedSupplyToken is ERC20Interface, Owned {
 
 
     // ------------------------------------------------------------------------
-    // Token owner can approve for `spender` to transferFrom(...) `tokens`
-    // from the token owner's account. The `spender` contract function
-    // `receiveApproval(...)` is then executed
-    // ------------------------------------------------------------------------
-    function approveAndCall(address spender, uint tokens, bytes data) public returns (bool success) {
-        allowed[msg.sender][spender] = tokens;
-        emit Approval(msg.sender, spender, tokens);
-        ApproveAndCallFallBack(spender).receiveApproval(msg.sender, tokens, this, data);
-        return true;
-    }
-
-
-    // ------------------------------------------------------------------------
-    // Don't accept ETH
+    // Don't accept ETH.
+    // This function is called on send() for sending Ehter to this address without any data
+    // and on not matching function signature.
+    // If this function is not declared payable contract can't receive Ether.
     // ------------------------------------------------------------------------
     function () public payable {
         revert();
@@ -217,6 +193,7 @@ contract FixedSupplyToken is ERC20Interface, Owned {
 
     // ------------------------------------------------------------------------
     // Owner can transfer out any accidentally sent ERC20 tokens
+    // to prevent the case that external tokens will be locked to this contract address.
     // ------------------------------------------------------------------------
     function transferAnyERC20Token(address tokenAddress, uint tokens) public onlyOwner returns (bool success) {
         return ERC20Interface(tokenAddress).transfer(owner, tokens);
