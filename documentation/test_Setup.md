@@ -59,7 +59,7 @@ Hierzu wird in Remix im Reiter 'Run' unter Environment 'Inject Web3' ausgewählt
 Nun können wir unsere Contracts in das ausgewählte Testnetzwerk über unseren neuen Account deployen.
 
 ## Eigene Tokens hinzufügen
-Um eigene Tokens hinzuzufügen wird in Meta Maskauf _"Add Token"_ geklickt und dann kann die Adresse des Token-Contract eintragen werden. 
+Um eigene Tokens hinzuzufügen wird in Meta Mask auf _"Add Token"_ geklickt und dann kann die Adresse des Token-Contract eintragen werden. 
 Die restlichen Felder werden automatisch ausgefüllt. Nun auf _"Add"_ klicken und die Tokens sind unter dem Reiter _"Tokens"_ sichtbar.
 Wenn auf den erstellten Token geklickt wird, öffnet sich die Webseite  _"Ropsten Etherscan"_ auf der, der Holder des Contracts, die Contract Adresse und die jeweiligen Transaktionen zu sehen sind.
 
