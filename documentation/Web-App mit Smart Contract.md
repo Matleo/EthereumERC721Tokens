@@ -8,14 +8,17 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 1. Firefox / Chrome mit MetaMask Erweiterung (inkl. Account)
 2. NPM: https://nodejs.org/npm 
 3. Truffle: https://github.com/trufflesuite/truffle
-4. **TODO -siehe ....**
-
-5 . Bockchain 
+4. Bockchain 
  - Lokal: Ganache: https://truffleframework.com/ganache
  - Extern: Ropsten mit Infura: https://infura.io/
  (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-
-## ...
+5. Ganache öffnen
+6. Git-Projekt clonen
+7. Open Terminal, wechsel zum Projekt Ordner
+ - `$ truffle migrate --reset`
+ - In Metamask anmelden und ggf. Account von Ganache importieren
+ - Server starten `$ npm run dev`, run the Front End Application
+8. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden
 
 ## Smart Contract
 Der Smart Contract stellt einfache Funktionen bereit um einen Token mit einem bestimmten Pfad und einer bestimmten Beschreibung zu erstellen und diese auf der Blockchain zu speichern.
@@ -58,10 +61,10 @@ contract DataPath {
     }
 }
 ```
-- Zu erst wird ein struct für den Token erstellt mit einer id, dem Pfad und der Beschreibung.
-- Es erfolgt ein Mapping von unit auf Token, eine Variable für den Token Count und ein Event für das hinzufügen eines Tokens wird erstellt.
+- Zu erst wird ein struct für den Token erstellt mit `id`, `path` und `description`.
+- Ein Mapping von unit auf Token, eine Variable für den Token Count und ein Event für das hinzufügen eines Tokens wird erstellt.
 - Es folgt ein gekennzeichneter Konstruktor mit 2 Initial Tokens.
-- Der Funktion "addPath" wird ein path und eine Beschreibung übergeben. Die Funktion fügt dann dem mapping tokens einen Token mit den jeweiligen Parametern hinzu.
+- Der Funktion  `addPath` wird `_path` und `_description` übergeben. Die Funktion fügt dann dem mapping tokens einen Token mit den jeweiligen Parametern hinzu.
 
 Im Contract werden zu jedem Eintrag eine fortlaufende ID, der Speicherort und eine Beschreibung hinterlegt.
 
