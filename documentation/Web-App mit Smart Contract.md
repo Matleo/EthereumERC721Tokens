@@ -12,8 +12,8 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
  - Lokal: Ganache: https://truffleframework.com/ganache
  - Extern: Ropsten mit Infura: https://infura.io/
  (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-5. Ganache öffnen
-6. Git-Projekt clonen
+5. Git-Projekt clonen
+6. Ganache öffnen 
 7. Open Terminal, wechsel zum Projekt Ordner
  - `$ truffle migrate --reset`
  - In Metamask anmelden und ggf. Account von Ganache importieren
