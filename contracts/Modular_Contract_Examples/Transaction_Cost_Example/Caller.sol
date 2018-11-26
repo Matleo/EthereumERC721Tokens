@@ -10,31 +10,31 @@ contract Caller {
     
     address receiver;
     
-    constructor(address _receiver) {
+    constructor(address _receiver) public {
         receiver = _receiver;
     }
     
-    function callGetValue() public {
+    function callGetValue() public view {
         Receiver(receiver).getValue();
     }
     
-    function callProcessSomething(uint256 n) public {
+    function callProcessSomething(uint256 n) public view {
         Receiver(receiver).processSomething(n);
     }
     
-    function callReturnLargeArrayPublic(uint256 length) public {
+    function callReturnLargeArrayPublic(uint256 length) public view {
         Receiver(receiver).returnLargeArrayPublic(length);
     }
     
-    function callReturnLargeArrayExternal(uint256 length) public {
+    function callReturnLargeArrayExternal(uint256 length) public view {
         Receiver(receiver).returnLargeArrayExternal(length);
     }
     
-    function callExpectLargeArrayPublic(uint256[] array) public {
+    function callExpectLargeArrayPublic(uint256[] array) public view {
         Receiver(receiver).expectLargeArrayPublic(array);
     }
     
-    function callExpectLargeArrayExternal(uint256[] array) public {
+    function callExpectLargeArrayExternal(uint256[] array) public view {
         Receiver(receiver).expectLargeArrayExternal(array);
     }
 }
