@@ -72,6 +72,37 @@ contract DataPath {
 
 Im Contract werden zu jedem Eintrag eine fortlaufende ID, der Speicherort und eine Beschreibung hinterlegt.
 
+## Netzwerkeinstellungen für Truffle
+Wenn verschiedene Blockchains angesprochen werden sollen, kann das realisiert werden indem die truffle.js im Projektordner angepasst wird. Im folgenden haben wir die Blockchain von Ropsten hinzugefügt.
+
+```
+var HDWalletProvider = require("truffle-hdwallet-provider");
+
+var infura_apikey = "XXXXXX";
+var mnemonic = "twelve words you can find 
+           in metamask/settings/reveal seed words";
+
+module.exports = {
+  networks: {
+    development: {
+      host: "localhost",
+      port: 8545,
+      network_id: "*" // Match any network id
+    },
+    ropsten: {
+      provider: new HDWalletProvider(mnemonic, 
+           "https://ropsten.infura.io/"+infura_apikey),
+      network_id: 3
+    }
+  }
+};
+```
+- `var HDWalletProvider = require("truffle-hdwallet-provider");` Überprüft ob sich die Datei im Projekt Ordner befindet.
+- `var infura_apikey = "XXXXXX";`Infura Key der nach dem Anmelden angezeigt wird.
+- `var mnemonic = "twelve words you can find in metamask/settings/reveal seed words";` 12 Wörter für die Identifikation des Meta Mask Accounts.
+- Netzwerk `development` ist mit dem Port der lokalen Blockchain verbunden.
+- Netzwerk `ropsten` wird über den hdwalletprovider aufgerufen, dem der Infura Key und die Meta Mask identifikation übergeben werden.
+
 ---
 
 ## Ergebnis:
