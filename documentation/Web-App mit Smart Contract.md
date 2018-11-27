@@ -6,19 +6,23 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 ## Aufbau des Systemumgebung
 **Voraussetzungen:**
 1. Firefox / Chrome mit MetaMask Erweiterung (inkl. Account)
-2. NPM: https://nodejs.org/npm 
-3. Truffle: https://github.com/trufflesuite/truffle
+2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`npm install --global --production windows-build-tools`, `npm install --global node-gyp`) 
+3. Truffle: 
+-`npm install -g truffle`
+- Um mit der Ropsten-Blockchain zu kommunizieren: ` npm install truffle-hdwallet-provider --save`
 4. Bockchain 
  - Lokal: Ganache: https://truffleframework.com/ganache
  - Extern: Ropsten mit Infura: https://infura.io/
  (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
 5. Git-Projekt clonen
+
+**Start**
 6. Ganache öffnen 
 7. Open Terminal, wechsel zum Projekt Ordner
- - `$ truffle migrate --reset`
  - In Metamask anmelden und ggf. Account von Ganache importieren
+ - `$ truffle migrate --reset` (Falls der Ethereum Client nicht gefunden werden kann, in der Datei "Truffle.js" beim Netzwerk "development" den Port auf den Selben wie in Ganache aendern.)
  - Server starten `$ npm run dev`, run the Front End Application
-8. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden
+8. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
 
 ## Smart Contract
 Der Smart Contract stellt einfache Funktionen bereit um einen Token mit einem bestimmten Pfad und einer bestimmten Beschreibung zu erstellen und diese auf der Blockchain zu speichern.
