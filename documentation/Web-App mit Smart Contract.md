@@ -14,7 +14,7 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
  - Lokal: Ganache: https://truffleframework.com/ganache
  - Extern: Ropsten mit Infura: https://infura.io/
  (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-5. Git-Projekt clonen
+5. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
 
 **Start**
 6. Ganache öffnen 
