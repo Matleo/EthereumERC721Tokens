@@ -8,7 +8,7 @@ Der Unterschied hierbei liegt in der Art der Funktion.
 Generell kann zwischen der Kommunikation eines externen Clients mit der Blockchain bzw. einem Contract und der Kommunikation zwischen Contracts unterschieden werden.
 
 
-### Call
+### 1. Call
 
 Wird eine Funktion als view/pure deklariert verändert sie den Zustand des Contracts nicht
 und somit auch nicht den Zustand der Blockchain. Daher müssen andere Blockchainkonten auch nicht über den Aufruf der Funktion über das Publishing einer Transaktion informiert werden.
@@ -19,7 +19,7 @@ Bei einem Funktionsaufruf über einen Call fallen keine Gas-Kosten an, da hier n
 
 
 
-### Transaction
+### 2. Transaktionen
 
 Transaktionen werden beim Aufruf von Funktionen generiert, welche den Zustand des Contracts verändern. Da heißt sie verändern Zustandsvariablen des Contracts und benötigen ein Publishing des neuen Blockchainzustands,
 an das Netzwerk. 
