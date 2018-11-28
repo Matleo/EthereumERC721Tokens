@@ -106,5 +106,5 @@ module.exports = {
 ---
 
 ## Ergebnis:
-Der Contract ist unter 0x0f0a02804486D4dE34C27dfc032Aed5D0eea69E5 zu finden.
+Der Contract ist unter **0x0f0a02804486D4dE34C27dfc032Aed5D0eea69E5** zu finden.
 Aktuell werden die Daten manuell über das Webinterface hinterlegt, der nächste denkbare Schritt ist, das Daten über das Web interface hochgeladen werden können und der zugehörige Eintrag automatisch erfolgt.
