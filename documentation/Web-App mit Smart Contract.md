@@ -6,10 +6,10 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 ## Aufbau des Systemumgebung
 **Voraussetzungen:**
 1. Firefox / Chrome mit MetaMask Erweiterung (inkl. Account)
-2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`npm install --global --production windows-build-tools`, `npm install --global node-gyp`) 
+2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
 3. Truffle: 
--`npm install -g truffle`
-- Um mit der Ropsten-Blockchain zu kommunizieren: ` npm install truffle-hdwallet-provider --save`
+-`$ npm install -g truffle`
+- Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
 4. Bockchain 
  - Lokal: Ganache: https://truffleframework.com/ganache
  - Extern: Ropsten mit Infura: https://infura.io/
