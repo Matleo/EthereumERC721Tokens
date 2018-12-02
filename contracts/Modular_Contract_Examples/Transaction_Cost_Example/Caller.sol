@@ -10,7 +10,7 @@ contract Caller {
     
     address receiver;
     
-    constructor(address _receiver) {
+    constructor(address _receiver) public {
         receiver = _receiver;
     }
     
@@ -18,16 +18,16 @@ contract Caller {
         Receiver(receiver).getValue();
     }
     
-    function callProcessSomething(uint256 n) public {
-        Receiver(receiver).processSomething(n);
+    function callProcessSomething(uint256 n) public returns (bool isPrime) {
+        return Receiver(receiver).processSomething(n);
     }
     
-    function callReturnLargeArrayPublic(uint256 length) public {
-        Receiver(receiver).returnLargeArrayPublic(length);
+    function callReturnLargeArrayPublic(uint256 length) public returns (uint256[] array) {
+        return Receiver(receiver).returnLargeArrayPublic(length);
     }
     
-    function callReturnLargeArrayExternal(uint256 length) public {
-        Receiver(receiver).returnLargeArrayExternal(length);
+    function callReturnLargeArrayExternal(uint256 length) public returns (uint256[] array) {
+        return Receiver(receiver).returnLargeArrayExternal(length);
     }
     
     function callExpectLargeArrayPublic(uint256[] array) public {
