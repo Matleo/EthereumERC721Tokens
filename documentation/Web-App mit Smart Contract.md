@@ -1,7 +1,7 @@
 ## Einleitung
-Es wird versucht eine WebApplikation aufzubauen, welche mit dem Framework Truffle und einer Blockchain interagiert. Das Ziel ist es, in der Blockchain Daten zu speichern die dann auf ein Externe Quelle verweisen. Somit kann ein Teil der Daten in der Blockchain gespeichert werden und die Ressourcen intensive Erweiterungen Extern. Hierzu gibt es zwei Ansätze, zum einen das speichern einer Quelle zu einer Datenbank oder die Daten in IPFS zu hinterlegen und den erhaltenen Hash zu speichern.
+Es wird versucht eine dezentrale Webapplikation aufzubauen, welche mit dem Framework Truffle und einer Blockchain interagiert. Das Ziel ist es in der Blockchain Daten zu speichern, die dann auf eine externe Quelle verweisen. Somit kann ein Teil der Daten in der Blockchain gespeichert werden und die Ressourcen intensiven Erweiterungen extern. Hierzu gibt es zwei Ansätze, zum einen das Speichern einer Quelle zu einer Datenbank oder die Daten in IPFS zu hinterlegen und den erhaltenen Hash zu speichern.
 
-Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein Hash erzeugt. Der Zugriff erfolgt über den Hash. Im Gegensatz zum normalen DB Ansatz wird nicht gespeichert wo die Daten liegen, sondern es wird per Hash angegeben welche Datei man möchte. IPFS entscheidet dann wo diese herkommt bzw. tatsächlich gespeichert ist (Content-addressed vs. location-addressed).
+Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein Hash erzeugt. Der Zugriff erfolgt über den Hash. Im Gegensatz zum normalen DB-Ansatz wird nicht gespeichert wo die Daten liegen, sondern es wird per Hash angegeben welche Datei man möchte. IPFS entscheidet dann wo diese Datei herkommt bzw. tatsächlich gespeichert ist (Content-addressed vs. location-addressed).
 
 ## Aufbau des Systemumgebung
 **Voraussetzungen:**
