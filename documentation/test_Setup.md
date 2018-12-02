@@ -71,3 +71,5 @@ Ganache ermöglicht es eine Blockchain lokal zu generieren ohne weitere Konfigur
 
 Um Contracts möglichst nah an einer 'echten' Ehtereum Blockchain zu testen gibt es die Möglichkeit Contracts über das Testnet Ropsten zu deployen. Dies ist eine echte Blockchain, jedoch mit leichterer Blockgenerierung und fast wertfreiem Ehter. Wie Test-Ether erhalten werden kann, ist oben im Abschnitt 'Account einrichten' beschrieben. Mit diesem Ether können Transaktionen um Ropsten-Testnet generiert werden.
 
+
+TODO: Truffle, Infura, Web3.js, IPFS
