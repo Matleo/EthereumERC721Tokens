@@ -85,7 +85,7 @@ ERC165 basiert auf einer definierten Vorgehensweise um einem bestimmten Interfac
         bytes4(keccak256('getApproved(uint256)')) ^
         bytes4(keccak256('isApprovedForAll(address,address)'));
         
-  ##### ERC165 Interface
+##### ERC165 Interface
   Das Interface definiert nur eine Methode `supportsInterface`:
   	
     interface ERC165 {
@@ -99,7 +99,7 @@ ERC165 basiert auf einer definierten Vorgehensweise um einem bestimmten Interfac
  
 Zunächst sieht es etwas merkwürdig aus, dass nur der plain Text der Methodensignaturen (bzw der *function selector*) verglichen wird und bei Übereinstimmung dieser auf Gleichheit der implementierten Interfaces geschlussfolgert wird. Allerdings ist bei genauerer Betrachtung ersichtlich, dass genau so ein Interface definiert ist, nämlich durch die Menge an Methoden und deren Signaturen. Daher ist die Schlussfolgerung zu Unterstützen, dass sobald die *function selectors* zweier Interfaces übereinstimmen, genau die gleichen Interfaces vorliegen. 
  
- ##### Beispiel Contract implementiert ERC165
+##### Beispiel Contract implementiert ERC165
  Damit andere Contracts diese Funktionalität nutzen können, muss der Entwickler beim Aufsetzen seines Contracts zusätzlich das Interface ERC165 korrekt implementieren. Aus unserem [ERC721_basic](https://git.uni-konstanz.de/ja431gre/GenTokens/blob/master/contracts/ERC721_basic.sol) Contract:
 
 	bytes4 constant InterfaceSignature_ERC165 = bytes4(keccak256('supportsInterface(bytes4)'));
@@ -123,7 +123,7 @@ Zunächst sieht es etwas merkwürdig aus, dass nur der plain Text der Methodensi
      
  Da dieser Contract nur die beiden Interfaces ERC721 und ERC165 implementiert, müssen die beiden *function selectors* gespeichert werden, und jeweils beim Aufruf der Methode `supportsInterface` abgeglichen werden. 
  
- ##### Beispiel Contract der implementierte Interfaces abfragt
+##### Beispiel Contract der implementierte Interfaces abfragt
  Möchte nun ein externer Contract mit unserem *ERC721_basic* Contract kommunizieren, aber zuvor sicherstellen, dass der Contract das aktuelle ERC721 Interface implementiert, muss zunächst überprüft werden, ob überhaupt das Interface ERC165 implementiert wurde (ansonsten wäre der Aufruf von  `supportsInterface` sinnlos). Die beiden Konstanten `InterfaceSignature_ERC165` und `InterfaceSignature_ERC721 ` sowie das `ERC165` Interface seien in diesem Contract ebenfalls deklariert :
  
  	

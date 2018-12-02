@@ -6,19 +6,23 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 ## Aufbau des Systemumgebung
 **Voraussetzungen:**
 1. Firefox / Chrome mit MetaMask Erweiterung (inkl. Account)
-2. NPM: https://nodejs.org/npm 
-3. Truffle: https://github.com/trufflesuite/truffle
+2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
+3. Truffle: 
+-`$ npm install -g truffle` Verwendete Version node v.10.13.0, npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
+- Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
 4. Bockchain 
  - Lokal: Ganache: https://truffleframework.com/ganache
  - Extern: Ropsten mit Infura: https://infura.io/
  (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-5. Git-Projekt clonen
-6. Ganache öffnen 
+5. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
+
+**Start**
+6. Ganache öffnen Version 1.2.2
 7. Open Terminal, wechsel zum Projekt Ordner
- - `$ truffle migrate --reset`
  - In Metamask anmelden und ggf. Account von Ganache importieren
+ - `$ truffle migrate --reset` (Falls der Ethereum Client nicht gefunden werden kann, in der Datei "Truffle.js" beim Netzwerk "development" den Port auf den Selben wie in Ganache aendern.)
  - Server starten `$ npm run dev`, run the Front End Application
-8. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden
+8. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
 
 ## Smart Contract
 Der Smart Contract stellt einfache Funktionen bereit um einen Token mit einem bestimmten Pfad und einer bestimmten Beschreibung zu erstellen und diese auf der Blockchain zu speichern.
@@ -68,8 +72,41 @@ contract DataPath {
 
 Im Contract werden zu jedem Eintrag eine fortlaufende ID, der Speicherort und eine Beschreibung hinterlegt.
 
+## Netzwerkeinstellungen für Truffle
+Wenn verschiedene Blockchains angesprochen werden sollen, kann das realisiert werden indem die truffle.js im Projektordner angepasst wird. Im folgenden haben wir die Blockchain von Ropsten hinzugefügt.
+
+```
+var HDWalletProvider = require("truffle-hdwallet-provider");
+
+var infura_apikey = "XXXXXX";
+var mnemonic = "twelve words you can find 
+           in metamask/settings/reveal seed words";
+
+module.exports = {
+  networks: {
+    development: {
+      host: "localhost",
+      port: 8545,
+      network_id: "*" // Match any network id
+    },
+    ropsten: {
+      provider: new HDWalletProvider(mnemonic, 
+           "https://ropsten.infura.io/"+infura_apikey),
+      network_id: 3
+    }
+  }
+};
+```
+- `var HDWalletProvider = require("truffle-hdwallet-provider");` Überprüft ob sich die Datei im Projekt Ordner befindet.
+- `var infura_apikey = "XXXXXX";`Infura Key der nach dem Anmelden angezeigt wird.
+- `var mnemonic = "twelve words you can find in metamask/settings/reveal seed words";` 12 Wörter für die Identifikation des Meta Mask Accounts.
+- Netzwerk `development` ist mit dem Port der lokalen Blockchain verbunden.
+- Netzwerk `ropsten` wird über den hdwalletprovider aufgerufen, dem der Infura Key und die Meta Mask identifikation übergeben werden.
+
+[Grafik der Kommunikation](documentation/Bilder/Technologiestack_Webapp_Blockchain.png)
+
 ---
 
 ## Ergebnis:
-Der Contract ist unter 0x0f0a02804486D4dE34C27dfc032Aed5D0eea69E5 zu finden.
+Der Contract ist unter **0x0f0a02804486D4dE34C27dfc032Aed5D0eea69E5** zu finden.
 Aktuell werden die Daten manuell über das Webinterface hinterlegt, der nächste denkbare Schritt ist, das Daten über das Web interface hochgeladen werden können und der zugehörige Eintrag automatisch erfolgt.

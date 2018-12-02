@@ -14,10 +14,10 @@ contract Caller {
         receiver = _receiver;
     }
     
-    function callGetValue() public {
+    function callGetValue() public view {
         Receiver(receiver).getValue();
     }
-    
+
     function callProcessSomething(uint256 n) public returns (bool isPrime) {
         return Receiver(receiver).processSomething(n);
     }
@@ -30,11 +30,11 @@ contract Caller {
         return Receiver(receiver).returnLargeArrayExternal(length);
     }
     
-    function callExpectLargeArrayPublic(uint256[] array) public {
+    function callExpectLargeArrayPublic(uint256[] array) public view {
         Receiver(receiver).expectLargeArrayPublic(array);
     }
     
-    function callExpectLargeArrayExternal(uint256[] array) public {
+    function callExpectLargeArrayExternal(uint256[] array) public view {
         Receiver(receiver).expectLargeArrayExternal(array);
     }
 }
