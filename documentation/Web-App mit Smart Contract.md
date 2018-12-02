@@ -8,7 +8,7 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 1. Firefox / Chrome mit MetaMask Erweiterung (inkl. Account)
 2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
 3. Truffle: 
--`$ npm install -g truffle`
+-`$ npm install -g truffle` Verwendete Version npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
 - Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
 4. Bockchain 
  - Lokal: Ganache: https://truffleframework.com/ganache
@@ -17,7 +17,7 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 5. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
 
 **Start**
-6. Ganache öffnen 
+6. Ganache öffnen Version 1.2.2
 7. Open Terminal, wechsel zum Projekt Ordner
  - In Metamask anmelden und ggf. Account von Ganache importieren
  - `$ truffle migrate --reset` (Falls der Ethereum Client nicht gefunden werden kann, in der Datei "Truffle.js" beim Netzwerk "development" den Port auf den Selben wie in Ganache aendern.)
