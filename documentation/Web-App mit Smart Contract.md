@@ -8,7 +8,7 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 1. Firefox / Chrome mit MetaMask Erweiterung (inkl. Account)
 2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
 3. Truffle: 
--`$ npm install -g truffle` Verwendete Version npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
+-`$ npm install -g truffle` Verwendete Version node v.10.13.0, npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
 - Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
 4. Bockchain 
  - Lokal: Ganache: https://truffleframework.com/ganache
