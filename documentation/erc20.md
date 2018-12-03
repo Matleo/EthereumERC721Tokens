@@ -17,7 +17,7 @@ Der entsprechende Solidity-Code befindet sich [hier](/contracts/ERC20Impl.sol).
 - Symbol: Test
 - Name: Test Token
 
-# Token Contract einbinden
+# Diesen Token Contract benutzen
 Um mit dem Token Contract zu interagieren können wir ihn entweder mit einem Wallet wie Metamask verbinden oder direkt über das Interface der Remix IDE 
 auf dessen Funktionen zugreifen. Zu beachten ist jedoch, dass bei unserer einfachen ERC20 Implementierung initial alle Token dem ersteller des Contracts zugewiesenwerden.
 Dieser Owner kann dann die Token an andere Adressen im Netzwerk versenden. Der ERC20 Standard definiert keine Funktion zum Kauf der Token!
