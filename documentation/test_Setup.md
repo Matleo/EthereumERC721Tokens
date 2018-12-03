@@ -8,16 +8,17 @@ Als Entwicklungsumgebung verwenden wir die Remix IDE, da diese nur geringe Konfi
 Die IDE ermöglicht es einfach Contracts zu validieren, kompilieren und zu deployen ohne weitere Tools einbinden zu müssen.
 
 ## Kompilieren und Deployen
-Um eigene Contracts zu testen, können diese über den Reiter 'Compile' kompiliert werden und stehen uns dann über den Reiter 'Run' zum Deployment zur Verfügung. 
-Unter dem Reiter 'Run' können wir nun alle unsere kompilierten Contracts über einen Web3.js Client deployen.
-Für einfache Tests genügt hierbei die JavaScript VM 'Environment', welche direkt im Browser läuft, jedoch auch eingeschränkter ist als eine der anderen Optionen. 
-Zum Einrichten eines Web3 Provider siehe Abschnitt Metamask. Unter 'Account' wird der Hashcode des Accounts der die Transaktionen zum Deployen und Interagieren mit Contracts eingetragen. 
+Um eigene Contracts zu testen, können diese über den Reiter **Compile** kompiliert werden und stehen uns dann über den Reiter **Run** zum Deployment zur Verfügung. 
+Unter dem Reiter **Run** können wir nun alle unsere kompilierten Contracts über einen Web3.js Client deployen.
+Für einfache Tests genügt hierbei die JavaScript VM _Environment_, welche direkt im Browser läuft, jedoch auch eingeschränkter ist als eine der anderen Optionen. 
+Zum Einrichten eines Web3 Provider siehe Abschnitt [Metamask](./documentation/test_Setup.md#metamask). Unter **Account** wird der Hashcode des Accounts der die Transaktionen zum Deployen und Interagieren mit Contracts eingetragen. 
 'Gas' und 'Value' werden wenn benötigt geändert, hierbei gibt Value die Menge an Ether an die bei der nächsten Transaktion mitgeschickt werden soll. 
-Vor dem Deploy muss noch der zu deployende Contract ausgewählt werden. 
-Achtung: Im Dropdown-Menü werden alle komilierten Contracts aufgelistet, also auch Base/Interface-Contracts. Deployt werden müssen jedoch nur die 'finalen' Contracts, deren Base-Contracts werden automatisch mit deployed.
-Über den Button 'Deploy' kann dann der ausgewählte Contract in die konfigurierte Blockchain deployed werden. 
-Möchte man einen bereits deployten Contract für Tests innerhalb der Remix IDE einbinden, kann die Adresse unter der der Contract erreichbar ist unter 'At Address' eingetragen werden. 
-Bei dieser Methode wird jedoch weiterhin ein kompiliertes Interface des Contracts benötigt! Dieses Interface dient als Basis für die ABI der zu erzeugenden Transaktionen.
+Vor dem Deploy muss noch im Reiter **Run** oberhalb von des **Deploy** Button, der zu deployende Contract ausgewählt werden. 
+Achtung: Im Dropdown-Menü werden alle kompilierte Contracts aufgelistet, also auch Base/Interface-Contracts. Deployt werden müssen jedoch nur die 'finalen' Contracts, deren Base-Contracts werden automatisch mit deployed.
+Über den Button **Deploy** kann dann der ausgewählte Contract in die konfigurierte Blockchain deployed werden.
+
+~~Möchte man einen bereits deployten Contract für Tests innerhalb der Remix IDE einbinden, kann die Adresse unter der der Contract erreichbar ist unter **At Address** eingetragen werden. 
+Bei dieser Methode wird jedoch weiterhin ein kompiliertes Interface des Contracts benötigt! Dieses Interface dient als Basis für die ABI der zu erzeugenden Transaktionen.~~
 
 
 ## Deployte Contracts testen
