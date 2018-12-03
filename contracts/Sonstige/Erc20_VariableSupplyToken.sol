@@ -164,9 +164,10 @@ contract VariableSupplyToken is ERC20Interface, Owned {
     function sell(uint256 amount) public {
         address myAddress = address(this);
         require(myAddress.balance >= amount * sellPrice);      // checks if the contract has enough ether to buy
-        transferFrom(msg.sender, address(0), amount);              // makes the transfers
+        balances[msg.sender] -= amount;                       // makes the transfers
         _totalSupply -= amount;
         msg.sender.transfer(amount * sellPrice);          // sends ether to the seller.
+		emit Transfer(msg.sender, address(0),amount);
     }
 
 
