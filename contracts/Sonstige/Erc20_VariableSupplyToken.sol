@@ -1,63 +1,8 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
-// ----------------------------------------------------------------------------
-// 'TEST' 'Test Token' token contract
-//
-// Symbol      : TEST
-// Name        : Test Token
-// Total supply: 1,000,000.000000000000000000
-// Decimals    : 18
-// ----------------------------------------------------------------------------
+import "./Library_SafeMath.sol";
+import "./Interface_ERC20.sol";
 
-
-// ----------------------------------------------------------------------------
-// Safe maths
-// ----------------------------------------------------------------------------
-library SafeMath {
-    function add(uint a, uint b) internal pure returns (uint c) {
-        c = a + b;
-        require(c >= a);
-    }
-    function sub(uint a, uint b) internal pure returns (uint c) {
-        require(b <= a);
-        c = a - b;
-    }
-    function mul(uint a, uint b) internal pure returns (uint c) {
-        c = a * b;
-        require(a == 0 || c / a == b);
-    }
-    function div(uint a, uint b) internal pure returns (uint c) {
-        require(b > 0);
-        c = a / b;
-    }
-}
-
-
-// ----------------------------------------------------------------------------
-// ERC Token Standard #20 Interface
-// https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
-// ----------------------------------------------------------------------------
-contract ERC20Interface {
-    function totalSupply() public constant returns (uint);
-    function balanceOf(address tokenOwner) public constant returns (uint balance);
-    function allowance(address tokenOwner, address spender) public constant returns (uint remaining);
-    function transfer(address to, uint tokens) public returns (bool success);
-    function approve(address spender, uint tokens) public returns (bool success);
-    function transferFrom(address from, address to, uint tokens) public returns (bool success);
-
-    event Transfer(address indexed from, address indexed to, uint tokens);
-    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
-}
-
-
-// ----------------------------------------------------------------------------
-// Contract function to receive approval and execute function in one call
-//
-// Borrowed from MiniMeToken
-// ----------------------------------------------------------------------------
-contract ApproveAndCallFallBack {
-    function receiveApproval(address from, uint256 tokens, address token, bytes data) public;
-}
 
 
 // ----------------------------------------------------------------------------
@@ -114,8 +59,8 @@ contract VariableSupplyToken is ERC20Interface, Owned {
     // Constructor
     // ------------------------------------------------------------------------
     constructor() public {
-        symbol = "TEST";
-        name = "Test Token";
+        symbol = "VST";
+        name = "Variable Supply Token";
         decimals = 18;
     }
 
@@ -191,18 +136,6 @@ contract VariableSupplyToken is ERC20Interface, Owned {
     }
 
 
-    // ------------------------------------------------------------------------
-    // Token owner can approve for `spender` to transferFrom(...) `tokens`
-    // from the token owner's account. The `spender` contract function
-    // `receiveApproval(...)` is then executed
-    // ------------------------------------------------------------------------
-    function approveAndCall(address spender, uint tokens, bytes data) public returns (bool success) {
-        allowed[msg.sender][spender] = tokens;
-        emit Approval(msg.sender, spender, tokens);
-        ApproveAndCallFallBack(spender).receiveApproval(msg.sender, tokens, this, data);
-        return true;
-    }
-
 
 	/// @notice Allow users to buy tokens for `newBuyPrice` eth and sell tokens for `newSellPrice` eth
     /// @param newSellPrice Price the users can sell to the contract
@@ -215,10 +148,10 @@ contract VariableSupplyToken is ERC20Interface, Owned {
     /// @notice Buy tokens from contract by sending ether
 	function buy() payable public {
 		uint amount = msg.value / buyPrice;
-		require(balanceOf[msg.sender] + amount >= balanceOf[msg.sender]); //check for overflows
-		balanceOf[msg.sender] += amount;        // create coins on the fly and
+		require(balances[msg.sender] + amount >= balances[msg.sender]); //check for overflows
+		balances[msg.sender] += amount;        // create coins on the fly and
 		_totalSupply += amount;
-		emit Transfer(0, msg.sender, amount);
+		emit Transfer(address(0), msg.sender, amount);
 
 		//send leftover ether back
 		uint leftOver = msg.value % buyPrice;
@@ -229,9 +162,9 @@ contract VariableSupplyToken is ERC20Interface, Owned {
     /// @notice Sell `amount` tokens to contract
     /// @param amount amount of tokens to be sold
     function sell(uint256 amount) public {
-        address myAddress = this;
+        address myAddress = address(this);
         require(myAddress.balance >= amount * sellPrice);      // checks if the contract has enough ether to buy
-        transfer(msg.sender, 0, amount);              // makes the transfers
+        transferFrom(msg.sender, address(0), amount);              // makes the transfers
         _totalSupply -= amount;
         msg.sender.transfer(amount * sellPrice);          // sends ether to the seller.
     }

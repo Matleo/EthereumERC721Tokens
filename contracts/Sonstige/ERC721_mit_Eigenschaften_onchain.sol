@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./ERC721_basic.sol";
 
@@ -10,7 +10,7 @@ contract ERC721_mit_Eigenschaften_onchain is ERC721_basic {
     
     mapping(uint256 => Human) allHumans;
     
-    function create_token(address _to, uint256 _tokenId, string _humanName, uint256 _humanGroesse) external {
+    function create_token(address _to, uint256 _tokenId, string calldata _humanName, uint256 _humanGroesse) external {
         super.create_token(_to, _tokenId);
         
         Human storage newHuman = allHumans[_tokenId];
@@ -18,12 +18,12 @@ contract ERC721_mit_Eigenschaften_onchain is ERC721_basic {
         newHuman.groesse = _humanGroesse;
     }   
     
-    function getHuman(uint256 _tokenId) public view returns (string, uint256) {
+    function getHuman(uint256 _tokenId) public view returns (string memory, uint256) {
         Human memory theHuman = allHumans[_tokenId];
         return (theHuman.name, theHuman.groesse);
     }
     
-    function setHuman(uint256 _tokenId, string _humanName, uint256 _humanGroesse) public canTransfer(_tokenId){
+    function setHuman(uint256 _tokenId, string memory _humanName, uint256 _humanGroesse) public canTransfer(_tokenId){
         Human storage theHuman = allHumans[_tokenId];
         theHuman.name = _humanName;
         theHuman.groesse = _humanGroesse;

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./Interface_ERC165.sol";
 import "./Interface_ERC721.sol";
@@ -46,7 +46,7 @@ contract ERC721_basic is ERC721, ERC165 {
 
       
     //------------Transfer & Allowance------------
-    function approve(address _to, uint256 _tokenId) public {
+    function approve(address _to, uint256 _tokenId) public payable {
         address owner = tokenOwner[_tokenId];
         require(_to != owner);
         require(msg.sender == owner || isApprovedForAll(owner, msg.sender));
@@ -80,7 +80,7 @@ contract ERC721_basic is ERC721, ERC165 {
         _;
     }
     
-    function transferFrom(address _from, address _to, uint256 _tokenId) public canTransfer(_tokenId) {
+    function transferFrom(address _from, address _to, uint256 _tokenId) public canTransfer(_tokenId) payable {
         require(_from != address(0));
         require(_to != address(0));
         _clearApproval(_from, _tokenId);
@@ -114,7 +114,7 @@ contract ERC721_basic is ERC721, ERC165 {
     }
     
     //safe Transfer:
-    function _safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes _data) internal {
+    function _safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory _data) internal {
         require(checkAndCallSafeTransfer(_from, _to, _tokenId, _data)); 
         transferFrom(_from, _to, _tokenId);
     }
@@ -123,11 +123,11 @@ contract ERC721_basic is ERC721, ERC165 {
         _safeTransferFrom(_from, _to, _tokenId, ""); 
     }
     
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes _data) external payable canTransfer(_tokenId) {
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes calldata _data) external payable canTransfer(_tokenId) {
         _safeTransferFrom(_from, _to, _tokenId, _data); 
     }
 
-    function checkAndCallSafeTransfer(address _from, address _to, uint256 _tokenId, bytes _data) internal returns (bool) {
+    function checkAndCallSafeTransfer(address _from, address _to, uint256 _tokenId, bytes memory _data) internal returns (bool) {
         if (!isContract(_to)) {
           return false; 
         }
