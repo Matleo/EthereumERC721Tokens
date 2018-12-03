@@ -137,11 +137,12 @@ In unserer bisherigen Implementierung wurden beim Deployment des Contracts, also
     }
 
     function sell(uint256 amount) public {
-        address myAddress = this;
+        address myAddress = address(this);
         require(myAddress.balance >= amount * sellPrice);      // checks if the contract has enough ether to buy
-        _transfer(msg.sender, 0, amount);              // makes the transfers
-        totalSupply -= amount;
+        balances[msg.sender] -= amount;                       // makes the transfers
+        _totalSupply -= amount;
         msg.sender.transfer(amount * sellPrice);          // sends ether to the seller.
+		emit Transfer(msg.sender, address(0),amount);
     }
     
 Dem `constructor` wurden der Parameter `initialSupply` entfernt, und dementsprechend werden auch initial keine Token erstellt und nicht dem Owner zugewiesen. Stattdessen wird in der `buy` Methode direkt der Kontostand (`balanceOf`) des Käufers erhöht und so Tokens quasi on-the-fly beim Kauf erzeugt. Ebenfalls muss die lokale Variable `totalSupply` in der `buy` und `sell` Methode aktualisiert werden, anstatt sie initial beim Erzeugen des Contracts im `constructor` zu setzen.
