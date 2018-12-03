@@ -28,7 +28,7 @@ Dieser Owner kann dann die Token an andere Adressen im Netzwerk versenden. Der E
     Tokens->Add Token->Insert Token Contract Address->Add
 2. Remix IDE:
 
-    Der Contract kann auch direkt über ein Remix Deployment angesprochen werden.
+    Der Contract kann auch direkt über ein Remix Deployment angesprochen werden. 
     Hierzu muss der Solidity-Code kompiliert und über das Feld 'At Address' eingebunden werden.
     Um Token zu erhalten muss eine bestehende Addresse mit Token angefragt werden.
     Hierzu werden Token über die Funktion 'transfer()' von der anfragenden Adresse an eine beliebige andere Adresse übermittelt.
@@ -37,7 +37,7 @@ Dieser Owner kann dann die Token an andere Adressen im Netzwerk versenden. Der E
 Der Contract [Variable Supply Token](../contracts/Sonstige/Erc20_VariableSupplyToken.sol) implementiert eine Variante eines ERC20 Tokens, bei der Tokens erst beim Kauf erzeugt werden. Er bietet (anders als unsere Standardimplementierung) eine Möglichkeit, Tokens selber zu erwerben.
 
 Hierzu muss:
-1. Remix geöffnet und der Source Code kompiliert werden
+1. Remix geöffnet und der Source Code kompiliert werden. (Stellen sie sicher, dass sie die passenden [Interfaces](../contracts/Interfaces) und [Libraries](../contracts/Libraries) in Solidity geöffnet haben)
 2. Über den "Run" Tab, der Contract "VariableSupplyToken" ausgewählt und über den Button "At Adress" dem Remix GUI bekannt gemacht werden. Der Contract wurde auf der Ropston Testchain unter der Adresse "0xfaa900afb4ec63f949fa46fc0a0fa621034cce71" deployed.
 3. Die "buy" Methode ausgeführt werden. Die Anzahl Tokens, welche gekauft werden, wird implizit durch die übergebene Menge Ether festgelegt. In der oben rechten Ecke befindet sich ein Feld, in dem "value" an die Transaktion übergeben werden kann. Übergeben sie hier z.B. 200 Wei, werden sie 2 Tokenskaufen (da der Kaufpreis initial 100 Wei beträgt).
 
