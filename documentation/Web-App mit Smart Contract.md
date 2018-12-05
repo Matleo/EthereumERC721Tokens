@@ -4,33 +4,36 @@ Es wird versucht eine dezentrale Webapplikation aufzubauen, welche mit dem Frame
 Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein Hash erzeugt. Der Zugriff erfolgt über den Hash. Im Gegensatz zum normalen DB-Ansatz wird nicht gespeichert wo die Daten liegen, sondern es wird per Hash angegeben welche Datei man möchte. IPFS entscheidet dann wo diese Datei herkommt bzw. tatsächlich gespeichert ist (Content-addressed vs. location-addressed).
 
 ## Aufbau des Systemumgebung
-**Voraussetzungen:**
+
 1. Firefox / Chrome mit MetaMask Erweiterung (inkl. Account)
-2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
+2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.
+    - (`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
 3. Truffle: 
--`$ npm install -g truffle` Verwendete Version node v.10.13.0, npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
+    `$ npm install -g truffle` Verwendete Version node v.10.13.0, npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
 4. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
-5. Bockchain 
+5. Bockchain Lokal oder Extern
+
+---
 
 **Lokal mit Ganache**
-Ganache: https://truffleframework.com/ganache
-6. Ganache öffnen Version 1.2.2
-7. Open Terminal, wechsel zum Projekt Ordner
- - In Metamask anmelden und ggf. Account von Ganache importieren
- - `$ truffle migrate --reset` (Falls der Ethereum Client nicht gefunden werden kann, in der Datei "Truffle.js" beim Netzwerk "development" den Port auf den Selben wie in Ganache aendern.)
 
+6. Ganache öffnen (Verwendete Version 1.2.2) https://truffleframework.com/ganache
+7. Open Terminal, wechsel zum Projekt Ordner
+    - In Metamask anmelden und ggf. Account von Ganache importieren
+    - `$ truffle migrate --reset` (Falls der Ethereum Client nicht gefunden werden kann, in der Datei "Truffle.js" beim Netzwerk "development" den Port auf den Selben wie in Ganache aendern.)
  
 **Extern mit Ropsten**
-6. Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
--  Ropsten mit Infura: https://infura.io/
-(Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-7. Die Datei "truffle.js" im Projektordner anpassen. Hierzu wird der Infura API Key, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
- [Netzwerkeinstellung](documentation/Web-App%20mit%20Smart%20Contract.md#netzwerkeinstellungen-f%C3%BCr-truffle)
- - Open Terminal, wechsel zum Projekt Ordner 
- - In Metamask anmelden und ggf. Account von Ganache importieren
- - Im Terminal `$ truffle migrate --network ropsten` ausführen
 
+6. Um mit der Ropsten-Blockchain zu kommunizieren, folgenden Befahl ausführen: `$ npm install truffle-hdwallet-provider --save`
+    Ropsten mit Infura: https://infura.io/ (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
+7. Die Datei **truffle.js** im Projektordner anpassen. Hierzu wird der API Key von Infura, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
+[Netzwerkeinstellung](documentation/Web-App%20mit%20Smart%20Contract.md#netzwerkeinstellungen-f%C3%BCr-truffle)
+    - In Metamask anmelden und ggf. Account von Ganache importieren
+    - Terminal öffnen und zum Projekt Ordner navigieren und  `$ truffle migrate --network ropsten` ausführen
+
+---
 8. Server starten `$ npm run dev`, run the Front End Application. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
+
 
 ## Smart Contract
 Der Smart Contract stellt einfache Funktionen bereit um einen Token mit einem bestimmten Pfad und einer bestimmten Beschreibung zu erstellen und diese auf der Blockchain zu speichern.
