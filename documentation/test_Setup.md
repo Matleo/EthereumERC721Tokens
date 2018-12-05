@@ -18,18 +18,18 @@ Achtung: Im Dropdown-Menü werden alle kompilierte Contracts aufgelistet, also a
 Über den Button **Deploy** kann dann der ausgewählte Contract in die konfigurierte Blockchain deployed werden.
 
 
-#Einbinden eines deployden Contracts
+# Einbinden eines deployten Contracts
 Im Folgenden wird erläutert, wie ein bereits deployter Contract zum Testen in der IDE Remix aufgerufen wird. Bei dieser Methode wird jedoch weiterhin ein kompiliertes Interface des Contracts benötigt! Es muss die Adresse, als auch das Interface des Contracts bekannt sein. Dieses Interface dient als Basis für die ABI der zu erzeugenden Transaktionen.
 
 Hierzu den Code bzw. das Interface Fragment des Contracts in Remix einfügen, die passende compiler Version auswählen und **Start to compile** drücken. Nun in den Reiter **Run** wechseln und bei **At Address** die Adresse des Contracts eintragen und bestätigen. _Weiter geht es im nächsten Abschnitt_
 
 
-## Deployte Contracts testen
+## Deployte Contracts testen / in Remix verwenden
 Nach dem Einbinden/Deployen eines Contracts ist dessen Schnittstelle, im rechten Bildschirmbereich, unter **Deployed Contracts** verfügbar, neben dem Namen des Contracts ist auch dessen Adresse angezeigt. 
 Nach einem Klick auf den Namen des Contracts werden dessen Methoden mit Feldern für die benötigten Übergabeparameter aufgelistet.
-Hierbei kann wird zwischen zwei Arten von Methoden unterschieden, solchen die den Zustand des Contracts ändern und den Publish einer Transaktion erfordern und solchen die den aktuellen Zustand nur lesen, sogenannte **calls**. 
+Hierbei wird zwischen zwei Arten von Methoden unterschieden. Solchen die den Zustand des Contracts ändern und eine Transaktion erfordern und solchen die den aktuellen Zustand nur lesen, sogenannte **calls**. 
 Methoden die eine Transaktion generieren werden in Rot angezeigt, alle die über einen einfachen Call aufgerufen werden sind blau.
-Ein weiterer wesentlicher Unterschied bezieht sich auf den Rückgabewert. Bei einem Call ist dieser sofort zur Verfügung, bei Transaktionen hingegen kann dieser nicht übergeben werden.
+Ein weiterer wesentlicher Unterschied zwischen Transaktionen und Calls bezieht sich auf den Rückgabewert. Bei einem Call kann ein Rückgabewert übergeben werden, was bei einer Transaktion nicht möglich ist.
 Hier kommt das Konzept von Events zur Kommunikation mit Clients ins Spiel. Bei einer Contract zu Contract Kommunikation werden Rückgabewerte wie gewohnt zurückgegeben!
 -> Transaktionen werden über die konfigurierte Environment und Account ausgeführt, hierzu gehört auch das Deployment.
 
