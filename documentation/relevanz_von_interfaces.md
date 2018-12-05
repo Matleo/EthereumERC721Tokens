@@ -135,3 +135,9 @@ Zunächst sieht es etwas merkwürdig aus, dass nur der plain Text der Methodensi
         	//do stuff
         }
  	}
+ 	
+ 	
+##### Klassen- und Sequenzdiagramm für den ERC165
+-[Klassendiagramm](documentation/Bilder/Klassendiagramm_ERC165.png)
+
+-[Sequenzdiagramm](documentation/Bilder/Sequenzdiagramm_ERC165.png)
