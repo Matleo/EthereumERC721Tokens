@@ -9,14 +9,18 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
 3. Truffle: 
 -`$ npm install -g truffle` Verwendete Version node v.10.13.0, npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
-- Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
 4. Bockchain 
- - Lokal: Ganache: https://truffleframework.com/ganache
- - Extern: Ropsten mit Infura: https://infura.io/
- (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-5. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
+**Extern mit Ropsten**
+Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
+Ropsten mit Infura: https://infura.io/
+(Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
+Die Datei "truffle.js" im Projektordner wurde wie folgt angepasst [Netzwerkeinstellung](documentation/Web-App%20mit%20Smart%20Contract.md#netzwerkeinstellungen-f%C3%BCr-truffle).
+Hierzu wurde der Infura API Key, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
 
-**Start**
+**Lokal mit Ganache**
+Ganache: https://truffleframework.com/ganache
+
+5. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
 6. Ganache öffnen Version 1.2.2
 7. Open Terminal, wechsel zum Projekt Ordner
  - In Metamask anmelden und ggf. Account von Ganache importieren
