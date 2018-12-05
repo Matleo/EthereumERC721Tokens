@@ -9,24 +9,28 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 2. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.(`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
 3. Truffle: 
 -`$ npm install -g truffle` Verwendete Version node v.10.13.0, npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
-4. Bockchain 
-**Extern mit Ropsten**
-Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
-Ropsten mit Infura: https://infura.io/
-(Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-Die Datei "truffle.js" im Projektordner wurde wie folgt angepasst [Netzwerkeinstellung](documentation/Web-App%20mit%20Smart%20Contract.md#netzwerkeinstellungen-f%C3%BCr-truffle).
-Hierzu wurde der Infura API Key, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
+4. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
+5. Bockchain 
 
 **Lokal mit Ganache**
 Ganache: https://truffleframework.com/ganache
-
-5. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
 6. Ganache öffnen Version 1.2.2
 7. Open Terminal, wechsel zum Projekt Ordner
  - In Metamask anmelden und ggf. Account von Ganache importieren
  - `$ truffle migrate --reset` (Falls der Ethereum Client nicht gefunden werden kann, in der Datei "Truffle.js" beim Netzwerk "development" den Port auf den Selben wie in Ganache aendern.)
- - Server starten `$ npm run dev`, run the Front End Application
-8. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
+
+ 
+**Extern mit Ropsten**
+6. Um mit der Ropsten-Blockchain zu kommunizieren: `$ npm install truffle-hdwallet-provider --save`
+-  Ropsten mit Infura: https://infura.io/
+(Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
+7. Die Datei "truffle.js" im Projektordner anpassen. Hierzu wird der Infura API Key, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
+ [Netzwerkeinstellung](documentation/Web-App%20mit%20Smart%20Contract.md#netzwerkeinstellungen-f%C3%BCr-truffle)
+ - Open Terminal, wechsel zum Projekt Ordner 
+ - In Metamask anmelden und ggf. Account von Ganache importieren
+ - Im Terminal `$ truffle migrate --network ropsten` ausführen
+
+8. Server starten `$ npm run dev`, run the Front End Application. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
 
 ## Smart Contract
 Der Smart Contract stellt einfache Funktionen bereit um einen Token mit einem bestimmten Pfad und einer bestimmten Beschreibung zu erstellen und diese auf der Blockchain zu speichern.
