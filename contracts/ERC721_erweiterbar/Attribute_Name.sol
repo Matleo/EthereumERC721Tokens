@@ -6,10 +6,10 @@ contract Attribute_Name is IAttribute {
     
     mapping(uint256 => string) allNames;
     
-    function get(uint256 _tokenId) external view returns (string){
+    function get(uint256 _tokenId) external view returns (string memory){
         return allNames[_tokenId];
     }
-    function set(uint256 _tokenId, string _value) external{
+    function set(uint256 _tokenId, string calldata _value) external{
         allNames[_tokenId] = _value;
     }
 }

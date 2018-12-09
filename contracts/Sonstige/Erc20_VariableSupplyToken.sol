@@ -147,15 +147,19 @@ contract VariableSupplyToken is ERC20Interface, Owned {
     
     /// @notice Buy tokens from contract by sending ether
 	function buy() payable public {
-		uint amount = msg.value / buyPrice;
-		require(balances[msg.sender] + amount >= balances[msg.sender]); //check for overflows
-		balances[msg.sender] += amount;        // create coins on the fly and
+		_buy(msg.sender,msg.value);
+	}
+	
+	function _buy(address payable buyer, uint256 value) internal {
+	    uint amount = value / buyPrice;
+		require(balances[buyer] + amount >= balances[buyer]); //check for overflows
+		balances[buyer] += amount;        // create coins on the fly and
 		_totalSupply += amount;
-		emit Transfer(address(0), msg.sender, amount);
+		emit Transfer(address(0), buyer, amount);
 
 		//send leftover ether back
-		uint leftOver = msg.value % buyPrice;
-		msg.sender.transfer(leftOver);
+		uint leftOver = value % buyPrice;
+		buyer.transfer(leftOver);
 	}
 
 
@@ -164,9 +168,9 @@ contract VariableSupplyToken is ERC20Interface, Owned {
     function sell(uint256 amount) public {
         address myAddress = address(this);
         require(myAddress.balance >= amount * sellPrice);      // checks if the contract has enough ether to buy
-        balances[msg.sender] -= amount;                       // makes the transfers
+        balances[msg.sender] -= amount;                        // makes the transfers
         _totalSupply -= amount;
-        msg.sender.transfer(amount * sellPrice);          // sends ether to the seller.
+        msg.sender.transfer(amount * sellPrice);               // sends ether to the seller.
 		emit Transfer(msg.sender, address(0),amount);
     }
 
@@ -176,5 +180,10 @@ contract VariableSupplyToken is ERC20Interface, Owned {
     // ------------------------------------------------------------------------
     function transferAnyERC20Token(address tokenAddress, uint tokens) public onlyOwner returns (bool success) {
         return ERC20Interface(tokenAddress).transfer(owner, tokens);
+    }
+    
+    //fallback function. If Anybode sends ether to this account, he will implicitly buy coins
+    function() external payable { 
+        _buy(msg.sender, msg.value);
     }
 }
