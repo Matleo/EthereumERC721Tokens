@@ -33,13 +33,30 @@ Dieser Owner kann dann die Token an andere Adressen im Netzwerk versenden. Der E
     Um Token zu erhalten muss eine bestehende Addresse mit Token angefragt werden.
     Hierzu werden Token über die Funktion 'transfer()' von der anfragenden Adresse an eine beliebige andere Adresse übermittelt.
 
-### Zusatz: Variable Supply Token (mit buy Methode)
+## Zusatz: Variable Supply Token (mit buy Methode)
 Der Contract [Variable Supply Token](../contracts/Sonstige/Erc20_VariableSupplyToken.sol) implementiert eine Variante eines ERC20 Tokens, bei der Tokens erst beim Kauf erzeugt werden. Er bietet (anders als unsere Standardimplementierung) eine Möglichkeit, Tokens selber zu erwerben.
 
 Hierzu muss:
 1. Remix geöffnet und der Source Code kompiliert werden. (Stellen sie sicher, dass sie die passenden [Interfaces](../contracts/Interfaces) und [Libraries](../contracts/Libraries) in Solidity geöffnet haben)
-2. Über den "Run" Tab, der Contract "VariableSupplyToken" ausgewählt und über den Button "At Adress" dem Remix GUI bekannt gemacht werden. Der Contract wurde auf der Ropston Testchain unter der Adresse "0xfaa900afb4ec63f949fa46fc0a0fa621034cce71" deployed.
+2. Über den "Run" Tab, der Contract "VariableSupplyToken" ausgewählt und über den Button "At Adress" dem Remix GUI bekannt gemacht werden. Der Contract wurde auf der Ropston Testchain unter der Adresse "0x3f788adfdf732e8ecd57a098885c13f3c614d88f" deployed.
 3. Die "buy" Methode ausgeführt werden. Die Anzahl Tokens, welche gekauft werden, wird implizit durch die übergebene Menge Ether festgelegt. In der oben rechten Ecke befindet sich ein Feld, in dem "value" an die Transaktion übergeben werden kann. Übergeben sie hier z.B. 200 Wei, werden sie 2 Tokenskaufen (da der Kaufpreis initial 100 Wei beträgt).
+
+### Über Meta Mask kaufen
+Da das Standard ERC20 Interface keine `buy` Methode vorgibt, ist auch im Metamask GUI kein Element vorgesehen, mit dem man ERC20 Tokens kaufen kann. Dennoch kann man diese Möglichkeit schaffen.
+
+In Solidity gibt es eine so genannte `Fallback` Funktion, welche immer dann aufgerufen wird, wenn versucht wird eine Funktion auf dem Contract aufzurufen , welche nicht existiert. Außerdem wird diese Funktion aufgerufen, wenn einem Contract Ether geschickt wird (ohne eine Funktion aufzurufen).
+Wenn man also diese Fallback Funktion dahingehend entwirft, dass sie die `buy` Methode aufruft, erschafft man die Möglichkeit über das reine Senden von Ether an den Contract, Tokens zu kaufen.
+Die Fallback Funktion sieht folgendermaßen aus:
+
+    function() external payable { 
+        _buy(msg.sender, msg.value);
+    }
+    
+Das Vorgehen um z.B. unser `VariableSupplyToken` über MetaMask zu kaufen, sieht nun folgendermaßen aus:
+1. Den Token auf der Adresse `0x3f788adfdf732e8ecd57a098885c13f3c614d88f` in das MetaMask Interface hinzufügen (Über die Option "Token hinzufügen"->"Custom Token" im Menü)
+2. Ether an die Adresse senden.
+3. Beim Senden von 0.1 Ether, kaufen Sie 0.001 VariableSupplyToken. Diese Anzahl wird Ihnen nun im MetaMask GUI angezeigt. 
+
 
 
 # Implementierung
@@ -124,6 +141,7 @@ Nachdem in der `buy` Methode die Anzahl gekaufter Token ermittelt wurde, wird di
 Nach dem nun abgeschlossenen Kauf, wird in dieser Methode das überflüssige ether an den Käufer zurück gesendet. Beispielsweise könnte es der Fall sein, dass der `buyPrice` 100 beträgt und ein Käufer für 550 wei (Bruchteil eines ether; Einheit in `msg.value`) Tokens kaufen möchte. In dem Fall würden ihm 5 Token gutgeschrieben und die restlichen 50 wei rückerstattet werden.
 
 In der `sell` Methode wird ebenfalls die bereits definierte Methode `_transfer` aufgerufen, um Token vom Verkäufer an den Besitzer des Contracts zu übertragen, nachdem sichergestellt wurde, dass der Contract derzeit genügend ether zur Verfügung hat um den Verkäufer auszuzahlen. Anschließend wird der entsprechende Betrag an wei an den Verkäufer `msg.sender` versendet.
+
 
 ## Token Erzeugung on-the-fly
 In unserer bisherigen Implementierung wurden beim Deployment des Contracts, also beim Aufrufen des Construktors, initial x Token erzeugt und der gesamte Bestand an Token dem Besitzer des Contracts zugewiesen. Wir haben uns gefragt, ob man nicht auch eine andere Methodik wählen kann und Token erst beim Kauf erstellen und direkt dem Käufer zuweisen kann. Dieses Ziel ist zu erreichen durch Änderungen am `constructor`, der `buy` sowie der `sell` Methode:
