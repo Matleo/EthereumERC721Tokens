@@ -53,7 +53,7 @@ das Interface muss zuvor im Contract Code bekannt gemacht werden. Da es derzeit 
 über die Blockchain zu beziehen, verbleibt nur das testen und überprüfen der veröffentlichten Dokumentation. Das verteilen einer Solidity Library
 mit den einzubindenden Interfaces ist zwar technisch möglich, jedoch unüblich.
 
-Diese Umgang mit Interfaces bietet jedoch auch einen gewissen Vorteile, die Unabhängigkeit von der technischer Umsetzung.
+Dieser Umgang mit Interfaces bietet jedoch auch gewisse Vorteile, zum einen die Unabhängigkeit von der technischer Umsetzung.
 Aufgrund der verteilten Struktur der Smart Contracts müssen diese nicht notwendigerweise in Solidity geschrieben werden. Eine einheitliche API ist
 hier also nicht gegeben. So behält der Entwickler die Freiheit wie er einen Contract ansprechen möchte.
 
@@ -135,3 +135,9 @@ Zunächst sieht es etwas merkwürdig aus, dass nur der plain Text der Methodensi
         	//do stuff
         }
  	}
+ 	
+ 	
+##### Klassen- und Sequenzdiagramm für den ERC165
+-[Klassendiagramm](documentation/Bilder/Klassendiagramm_ERC165.png)
+
+-[Sequenzdiagramm](documentation/Bilder/Sequenzdiagramm_ERC165.png)
