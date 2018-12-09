@@ -137,7 +137,43 @@ Zunächst sieht es etwas merkwürdig aus, dass nur der plain Text der Methodensi
  	}
  	
  	
-##### Klassen- und Sequenzdiagramm für den ERC165
--[Klassendiagramm](documentation/Bilder/Klassendiagramm_ERC165.png)
+Der Ablauf eines anfragenden, externen Contracts an einen ERC721-implementierenden Contract ist im folgenden veranschaulicht, als 
 
--[Sequenzdiagramm](documentation/Bilder/Sequenzdiagramm_ERC165.png)
+- Klassendiagramm
+
+![Klassendiagramm](documentation/Bilder/Klassendiagramm_ERC165.png)
+
+- Sequenzdiagramm:
+
+![Sequenzdiagramm](documentation/Bilder/Sequenzdiagramm_ERC165.png)
+
+##### Speziell auf ERC165 Implementierung prüfen
+Technisch gesehen ist es nicht sinnvoll das ERC165 zu nutzen, um einen Contract zu überprüfen, ob er ERC165 implementiert (so wie es hier getan wird). Um auf einem Contract die Methode `supportsInterface` aufzurufen, müssen wir annehmen, dass dieser das ERC165 Interface implementiert.
+Das Problem entsteht dadurch, dass wenn ein Contract das ERC165 Interface nicht implementiert, wir aber annehmen, dass er es tut und die Methode `supportsinterface` dort aufrufen, dann wird unsere Methode eine Exception auslösen, welche in Solidity nicht gefangen werden kann. Also würde unsere Methode nicht erfolgreich ausgeführt werden.
+
+Dieses Problem kann gelöst werden, indem statt dem Aufruf der Methode in Solidity, ein äquivalenter Assembler Aufruf definiert wird, welcher allerdings bei einem Fehler nicht abbricht, sondern diesen Fehler als Boolean-Variable zurück gibt. 
+So können wir also anstatt direkt die Methode `supportsInterface` mit dem ERC165 Methodenselektor aufzurufen, einen Assembler Aufruf mit dem Selektor ausführen, und bei einem Fehlschlag (also einem Nicht-Implementieren des ERC165 Interfaces des aufgerufenen Contracts) bricht unsere Methode nicht ab, sondern wir können den Rückgabewert des Assembler Aufrufs darauf überprüfen, ob der Aufruf erfolgreich war.
+Der Assembler Aufruf könnte ungefähr folgendermaßen aussehen:
+    
+    function noThrowCall(address _contract, bytes4 _interfaceId) pure internal returns (uint256 success, uint256 result) {
+        bytes4 erc165ID = ERC165ID;
+
+        assembly {
+                let x := mload(0x40)               // Find empty storage location using "free memory pointer"
+                mstore(x, erc165ID)                // Place signature at begining of empty storage
+                mstore(add(x, 0x04), _interfaceId) // Place first argument directly next to signature
+
+                success := staticcall(
+                                    30000,         // 30k gas
+                                    _contract,     // To addr
+                                    x,             // Inputs are stored at location x
+                                    0x20,          // Inputs are 32 bytes long
+                                    x,             // Store output over input (saves space)
+                                    0x20)          // Outputs are 32 bytes long
+
+                result := mload(x)                 // Load the result
+        }
+    }
+
+
+Quelle: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md#how-to-detect-if-a-contract-implements-erc-165
