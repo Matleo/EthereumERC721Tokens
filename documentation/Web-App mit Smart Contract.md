@@ -114,7 +114,9 @@ module.exports = {
 - Netzwerk `development` ist mit dem Port der lokalen Blockchain verbunden.
 - Netzwerk `ropsten` wird über den hdwalletprovider aufgerufen, dem der Infura Key und die Meta Mask identifikation übergeben werden.
 
-[Grafik der Kommunikation](documentation/Bilder/Technologiestack_Webapp_Blockchain.png)
+Technologiestacks beim deployen des Contracts:
+
+![Grafik](documentation/Bilder/Technologiestack_Webapp_Blockchain.png) 
 
 ---
 
