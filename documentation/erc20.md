@@ -11,7 +11,7 @@ Aufgrund dieser Eigenschaft eignen sich fungible Tokens sehr gut als Kryptowähr
 ## Deployment
 Unsere Implementierung ist an folgenden Blog Eintrag angelehnt: [https://ethereum.org/token](https://ethereum.org/token)
 Eine simple ERC20 Implementierung ist unter der Adresse '0x941a3ff30f764cabac1b88271b0abc84ffaad5cc' zu Testzwecken deployed.
-Der entsprechende Solidity-Code befindet sich [hier](/contracts/ERC20Impl.sol).
+Der entsprechende Solidity-Code befindet sich [hier](/contracts/Token_Impl/ERC20Impl.sol).
 
 - Adresse: 0x941a3ff30f764cabac1b88271b0abc84ffaad5cc
 - Symbol: Test
@@ -34,7 +34,7 @@ Dieser Owner kann dann die Token an andere Adressen im Netzwerk versenden. Der E
     Hierzu werden Token über die Funktion 'transfer()' von der anfragenden Adresse an eine beliebige andere Adresse übermittelt.
 
 ## Zusatz: Variable Supply Token (mit buy Methode)
-Der Contract [Variable Supply Token](../contracts/Sonstige/Erc20_VariableSupplyToken.sol) implementiert eine Variante eines ERC20 Tokens, bei der Tokens erst beim Kauf erzeugt werden. Er bietet (anders als unsere Standardimplementierung) eine Möglichkeit, Tokens selber zu erwerben.
+Der Contract [Variable Supply Token](/contracts/Token_Impl/Erc20_VariableSupplyToken.sol) implementiert eine Variante eines ERC20 Tokens, bei der Tokens erst beim Kauf erzeugt werden. Er bietet (anders als unsere Standardimplementierung) eine Möglichkeit, Tokens selber zu erwerben.
 
 Hierzu muss:
 1. Remix geöffnet und der Source Code kompiliert werden. (Stellen sie sicher, dass sie die passenden [Interfaces](../contracts/Interfaces) und [Libraries](../contracts/Libraries) in Solidity geöffnet haben)
