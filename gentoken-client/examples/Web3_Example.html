@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web3Example</title>
+</head>
+<body>
+
+<textarea rows="4" cols="50" id="board" disabled style="width: 1500px; height: 1000px;">
+At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+</textarea>
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/web3_1.0.min.js"></script>
+<script src="../Contracts_Bytecode/contractsByteCodeObject.js"></script>
+<script>
+
+    var board;
+    var web3 = new Web3();
+    web3.setProvider(Web3.givenProvider );
+    var abi = contracts.variableSupplyToken.abi;
+    var byteCode = contracts.variableSupplyToken.byteCode.object;
+    var accountAddress = "0x5Afd91398E7118e15c2fC1e295b6C0bA1456602D";
+    var text = "";
+       $(document).ready(function(){
+
+
+
+           var myContract = new web3.eth.Contract(abi);
+           myContract.options.address = accountAddress;
+           myContract.deploy({
+           data: byteCode
+       }).send({
+          from: accountAddress,
+          gas: 1744733,
+       }) .then(function(newContractInstance){
+
+           text+="Contract Deployed with Contract Adress " + newContractInstance.options.address + "\n";
+           $(board).text(text);
+           myContract = newContractInstance;
+
+           var buyFunc = function(newContractInstance){
+
+               console.log("execute")
+               buy(newContractInstance, balanceOf.bind(this,newContractInstance, function(){}));
+
+           }.bind(this,newContractInstance);
+
+           balanceOf.call(this, newContractInstance, buyFunc);
+
+            console.log(newContractInstance.options.address) // instance with the new contract address
+       });
+
+
+        board = $("#board");
+
+
+       text ="Set Websocket Provider with: givenProvider -> web3 finds Metamask\n";
+       text +="Fill variables abi, byteCode with the Values of the VariableSupplyToken contract defined in the global contract object. The contract object is defined in contractByteCodeObject.js\n";
+       text += "Set AccountAddress to: " + accountAddress + "\n";
+       text += "Create a new web3.eth.contract\n";
+       text += "Start execute deploy Method set Field data:'byteCode' as param \n";
+       text += "Start send method set Fields, gas: 1744733, from: "+ accountAddress +" as params\n";
+       text += "Waiting for transaction confirmation! Accepting it in Metamask... \n"
+       $(board).text(text);
+
+
+
+    });
+
+       function balanceOf(contract, callback ) {
+           console.log("start", contract, contract.options.address);
+           console.log(this);
+           text += "Calling balanceOf( "+ accountAddress +" ) on contract with address " + contract.options.address + "\n";
+           $("#board").text(text);
+
+           contract.methods.balanceOf(accountAddress).call({ from: contract.options.address },function (error,result) {
+                console.log("test")
+             text += "The balance of The Tokenowner '"+ accountAddress +"' is:" + result +"\n";
+               console.log(error,result);
+               $("#board").text(text);
+               callback();
+           });
+
+       }
+
+
+       function buy(contract, callback ) {
+           text += "Sending Transaction to execute VariableSupplyToken Buy Method from address " + accountAddress + " with 1500000 gas and value of 1500000 \n ";
+           text += "Waiting for transaction confirmation! Accepting it in Metamask...";
+           $("#board").text(text);
+           contract.methods.buy().send({from: accountAddress, gas: 1500000, value:1500000 }).on('confirmation', console.log("confirm")).then(function () {
+
+                   console.log("isConfirmed")
+                   text += "Transaction successful\n";
+                   $("#board").text(text);
+                   callback();
+               }.bind(this)
+           )}
+
+
+</script>
+</html>

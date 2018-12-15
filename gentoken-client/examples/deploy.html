@@ -25,9 +25,9 @@
 
 </form>
 </body>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/web3_1.0.min.js"></script>
-<script src="Contracts_Bytecode/contractsByteCodeObject.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/web3_1.0.min.js"></script>
+<script src="../Contracts_Bytecode/contractsByteCodeObject.js"></script>
 <script>
 
     var web3 = new Web3(Web3.givenProvider ||"ws://localhost:7546");
@@ -70,6 +70,7 @@
 
         newContract.options.address = params.deploymentAdress;
 
+        console.log(newContract)
        newContract.deploy({
 
            data:contracts[params.contract].byteCode.object
