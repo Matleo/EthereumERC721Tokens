@@ -2,7 +2,7 @@
 
 Bitte trag hier eure Ideen zu Anwendungsfällen für unseren Token, sowie fachliche Anforderungen an die DApp/ den JS-Client ein.
 
-## Use Case
+## Use Case (Context der Anwendung. Welches Problem löst unsere DApp/Für was wird der Token verwendet.)
 - ...
 
 ## Fachliche Anforderungen
