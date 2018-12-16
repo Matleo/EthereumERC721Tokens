@@ -1,7 +1,7 @@
 # GenToken Database
 
 
-##Allgemein 
+## Allgemein 
 
 Als Alternative zur Speicherung von erweiterbaren Tokeneigenschaften in der Blockchain, dass in Ethereum mitunter schwierig und teuer ist, wollten wir uns mit einer Hybriden Form beschäftigen, um deren Vor- und Nachteile genauer zu beleuchten.
 Unserer Ansatz, dabei ist die Tokenerzeugung und Adminstration weiterhin der Blockchain zu überlassen während die zugehörigen Tokeneigenschaften in einer Datenbank hinterlegt werden.
@@ -9,7 +9,7 @@ Unserer Ansatz, dabei ist die Tokenerzeugung und Adminstration weiterhin der Blo
 Um möglichst einfach und schnell eine Datenbank für unser Projekt aufzusetzten haben wir uns für eine MySQL Datenbank entschieden die wir mittels Spring und Hibernate als Restful Service erreichbar gemacht haben.  
 
 
-##Dependencies
+## Dependencies
 
 In unserer Gentoken Database haben wir folgende Technologien verwendet:
 
@@ -20,7 +20,7 @@ In unserer Gentoken Database haben wir folgende Technologien verwendet:
 - alle weiteren Dependencies und verwendete Plugins sind der Maven [pom.xml](./pom.xml) zu entnehmen.
 
 
-##Guides
+## Guides
 
  Der Großteil der von uns vorgenommenen Schritte sind bereits Spring Guides beschrieben und wurden lediglich auf unser Schema abgeändert.
  
@@ -41,6 +41,6 @@ Zuletzt bauten wir eine Javascript API für unser Service der mit unserer Datenb
 
 ## Location
 
-unser Service ist aktuell [hier](http://math2i.bounceme.net:8080/database/) erreichbar.
+unser Service ist aktuell [hier](http://math2i.bounceme.net:8080/Database/) erreichbar.
 Eine Beispielseite des Gentoken-Clients der unsere Javascript API nutzt finden sie [hier](http://localhost/Gentokens/gentoken-client/examples/Database.html) 
 
