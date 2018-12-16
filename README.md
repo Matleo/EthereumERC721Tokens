@@ -18,4 +18,4 @@ This project was realized as students project from the HTWG Konstanz. We are try
 ###Projects
 
 1. [GenToken-Client](./gentoken-client/readme.md)
-2. [GenToken-Database-Service](./gentoken-database/readme.md);
+2. [GenToken-Database-Service](./gentoken-database/readme.md)
