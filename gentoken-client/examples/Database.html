@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database</title>
+</head>
+<body>
+<select id="methodSelector">
+    <option value="GetToken">GetToken</option>
+    <option value="GetAllTokens" selected>GetAllTokens</option>
+    <option value="createOrUpdateToken">createOrUpdateToken</option>
+    <option value="deleteToken">deleteToken</option>
+</select>
+<input type="text" placeholder="token_id" id="token_id">
+<input type="text" placeholder="hash" id="hash">
+<input type="text" placeholder="name" id="name">
+<button onclick="request()">execute</button>
+
+<textarea id="responseBoard" placeholder="response will stand here" disabled style="width: 1500px; height: 1000px">
+
+</textarea>
+
+
+
+
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/DatabaseSimpleToken.js"></script>
+<script src="../js/SimpleToken.js"></script>
+<script src="../js/Database.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+
+    var exampleToken = new SimpleToken(3,"testHash", "TestHuman");
+
+
+
+
+
+
+
+
+    });
+
+
+    function request() {
+
+
+        var selector = $("#methodSelector").val();
+        var simpleToken = new SimpleToken();
+
+        switch (selector) {
+            case "GetToken":
+                simpleToken.setTokenId(parseInt($("#token_id").val()));
+                simpleTokenDatabase.getToken(simpleToken.token_id).then( function (response) {
+                  $("#responseBoard").text(JSON.stringify(response,null,2));
+                });
+                break;
+            case "GetAllTokens":
+
+                simpleTokenDatabase.getAllTokens().then(function (response) {
+                    $("#responseBoard").text(JSON.stringify(response,null,2));
+                });
+                break;
+            case "createOrUpdateToken":
+                simpleToken.setTokenId(parseInt($("#token_id").val()));
+                simpleToken.setName($("#name").val());
+                simpleToken.setHash($("#hash").val());
+                simpleTokenDatabase.setToken(simpleToken).then(function (response) {
+                    $("#responseBoard").text(JSON.stringify(response,null,2));
+                });
+                break;
+            case "deleteToken":
+                simpleToken.setTokenId(parseInt($("#token_id").val()));
+                simpleTokenDatabase.deleteToken(simpleToken).then(function (response) {
+                    $("#responseBoard").text(JSON.stringify(response,null,2));
+                });
+
+
+                break;
+        }
+    }
+
+</script>
+</html>
