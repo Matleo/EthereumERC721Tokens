@@ -23,8 +23,6 @@
 
 </form>
 
-<p>BalanceOf: <span id="tokenAnzahl">undefined execute BalanceOf Method</span> </p>
-
 
 
 
@@ -78,6 +76,7 @@
 
         choosenContract.methods.balanceOf(params.fromAdress ).call({from:  params.contractAdress },function (error,result) {
             console.log(error,result);
+			$("#tokenCounter").text(result);
         });
         //choosenContract.myFunction.getData()
     }
@@ -113,7 +112,7 @@
 
         var method = document.createElement("div");
 
-        $(method).append("<span>balanceOf: </span>").append("<span id='TokenCounter'> undefined execute BalanceOf Method </span>").append("<button onclick='balance(this)'>execute</button>");
+        $(method).append("<span>balanceOf: </span>").append("<span id='tokenCounter'> undefined execute BalanceOf Method </span>").append("<button onclick='balance(this)'>execute</button>");
 
         $("#methods").append(method);
 
