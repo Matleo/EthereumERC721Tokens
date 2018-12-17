@@ -16,6 +16,7 @@
 - Approval/Entfernen des Approval für den Versand von Token
 - Entfernen von eigenen Tokens
 - Auflisten der Tokens nach gewissen Eigenschaften/Suchfunktionalität
+- Listen darauf, wenn anderer Client ein Token erstellt hat.
 
 ## Technische Anforderungen
 
