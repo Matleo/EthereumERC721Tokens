@@ -1,5 +1,5 @@
 const simpleTokenDatabase = {
-    getToken: function (token_id) {
+    getSimpleToken: function (token_id) {
 
         return databaseRequest("","GET","json", "application/x-www-form-urlencoded; charset=UTF-8", "token_id="+token_id).then(function (req) {
             return req;
@@ -9,7 +9,7 @@ const simpleTokenDatabase = {
 
 
     },
-    getAllTokens: function () {
+    getAllSimpleTokens: function () {
 
     return databaseRequest("all","GET","json","application/x-www-form-urlencoded; charset=UTF-8" ).then(function (req) {
            return req;
@@ -17,7 +17,7 @@ const simpleTokenDatabase = {
         return error;
     });
     },
-    setToken: function (simpleToken) {
+    createOrUpdateSimpleToken: function (simpleToken) {
 
       return  databaseRequest("","POST","json","application/json",JSON.stringify(simpleToken)).then(function (response) {
            return response;
@@ -26,18 +26,7 @@ const simpleTokenDatabase = {
         })
 
     },
-    updateToken: function () {
-
-        return  databaseRequest("","POST","json","application/json",JSON.stringify(simpleToken)).then(function (response) {
-            return response;
-        }).catch(function (error) {
-            return error;
-        })
-
-
-
-    },
-    deleteToken: function (simpleToken) {
+    deleteSimpleToken: function (simpleToken) {
 
         return  databaseRequest("","DELETE","json","application/json",JSON.stringify(simpleToken)).then(function (response) {
             return response;

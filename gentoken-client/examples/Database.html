@@ -54,13 +54,13 @@
         switch (selector) {
             case "GetToken":
                 simpleToken.setTokenId(parseInt($("#token_id").val()));
-                simpleTokenDatabase.getToken(simpleToken.token_id).then( function (response) {
+                simpleTokenDatabase.getSimpleToken(simpleToken.token_id).then( function (response) {
                   $("#responseBoard").text(JSON.stringify(response,null,2));
                 });
                 break;
             case "GetAllTokens":
 
-                simpleTokenDatabase.getAllTokens().then(function (response) {
+                simpleTokenDatabase.getAllSimpleTokens().then(function (response) {
                     $("#responseBoard").text(JSON.stringify(response,null,2));
                 });
                 break;
@@ -68,17 +68,15 @@
                 simpleToken.setTokenId(parseInt($("#token_id").val()));
                 simpleToken.setName($("#name").val());
                 simpleToken.setHash($("#hash").val());
-                simpleTokenDatabase.setToken(simpleToken).then(function (response) {
+                simpleTokenDatabase.createOrUpdateSimpleToken(simpleToken).then(function (response) {
                     $("#responseBoard").text(JSON.stringify(response,null,2));
                 });
                 break;
             case "deleteToken":
                 simpleToken.setTokenId(parseInt($("#token_id").val()));
-                simpleTokenDatabase.deleteToken(simpleToken).then(function (response) {
+                simpleTokenDatabase.deleteSimpleToken(simpleToken).then(function (response) {
                     $("#responseBoard").text(JSON.stringify(response,null,2));
                 });
-
-
                 break;
         }
     }
