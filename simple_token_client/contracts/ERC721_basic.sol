@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.4.24;
 
 import "./Interfaces/Interface_ERC165.sol";
 import "./Interfaces/Interface_ERC721.sol";
@@ -130,7 +130,7 @@ contract ERC721_basic is ERC721, ERC165 {
         _safeTransferFrom(_from, _to, _tokenId, ""); 
     }
     
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes calldata _data) external payable canTransfer(_tokenId) {
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes /*calldata*/ _data) external payable canTransfer(_tokenId) {
         _safeTransferFrom(_from, _to, _tokenId, _data); 
     }
 

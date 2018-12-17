@@ -2,7 +2,7 @@
 
 Bitte trag hier eure Ideen zu Anwendungsfällen für unseren Token, sowie fachliche Anforderungen an die DApp/ den JS-Client ein.
 
-## Use Case
+## Use Case (Context der Anwendung. Welches Problem löst unsere DApp/Für was wird der Token verwendet.)
 - ...
 - Browser Game -> Kampfsystem, Random Lootsystem z.B. Waffen, Kobination der Random Waffen zu neuen Random Waffen. 
 Ich habe auf meinem Server eine Open Source Version  des frühehren Browsergames [Ogame](http://math2i.bounceme.net/2Moon/) am laufen.
