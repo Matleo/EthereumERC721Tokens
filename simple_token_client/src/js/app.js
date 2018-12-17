@@ -34,6 +34,7 @@ App = {
   },
 
   // Listen for events emitted from the contract
+  //TODO: Currently no effective implementation!
   listenForEvents: function() {
     App.contracts.ERC721_basic.deployed().then(function(instance) {
       // Restart Chrome if you are unable to receive this event
@@ -75,11 +76,7 @@ App = {
       var tokenRESULT = $("#tokenResults");
       tokenRESULT.empty();
 
-      //Verbindung zu index.html
-      var tokenSELECT = $('#tokenSelect');
-      tokenSELECT.empty();
-
-      // Anzahl der der Tokens vom aktuellen User
+      // Anzahl der Tokens vom aktuellen User
       // Mapping Adresse auf Anzahl
       tokenInstance.ownedTokensCount(App.account).then(function (tokenCount) {
       
@@ -87,6 +84,7 @@ App = {
 
         // Über die vorhanden Einträge aus ownedTokens Mapping iterieren
         tokenInstance.ownedTokens(App.account, i).then(function(token) {
+        //TODO: Pull Token data from Server/IPFS
         var tokenTemplate = "<tr><td>" + token + "<td></tr>"
         tokenRESULT.append(tokenTemplate); 
         });
