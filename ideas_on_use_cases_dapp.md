@@ -26,3 +26,4 @@
     - JQUERY / SVG / p5.js für Animationen
     - React für Single Page Applikation
     - Web3.js(+ Metamask) zur Kommunikation mit dem Smart Contract
+    - => Vorerst keine dependencies. Nur JQuery, kein React, kein Truffle.
