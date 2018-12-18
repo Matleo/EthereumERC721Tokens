@@ -1,5 +1,5 @@
 ## Einleitung
-Dieses Teilprojekt, welches im nächsten Absatz beschrieben ist, wurde wegen verschiedenen Gründen eingestellt. Da im laufe der Entwicklung festegestellt worde, dass die Entwicklung auch recht einfach ohne Truffel framework möglich ist, welches hier zum Einsatz kam. Truffel hat eine große Menge an Dependencies und weiterer Nachteile.
+Dieses Teilprojekt, welches im nächsten Absatz beschrieben ist, **wurde wegen verschiedenen Gründen eingestellt**. Da im laufe der Entwicklung festegestellt worde, dass die Entwicklung auch recht einfach ohne Truffel framework möglich ist, welches hier zum Einsatz kam. Truffel hat eine große Menge an Dependencies und weiterer Nachteile.
 
 Es wird versucht eine dezentrale Webapplikation aufzubauen, welche mit dem Framework Truffle und einer Blockchain interagiert. Das Ziel ist es in der Blockchain Daten zu speichern, die dann auf eine externe Quelle verweisen. Somit kann ein Teil der Daten in der Blockchain gespeichert werden und die Ressourcen intensiven Erweiterungen extern. Hierzu gibt es zwei Ansätze, zum einen das Speichern einer Quelle zu einer Datenbank oder die Daten in IPFS zu hinterlegen und den erhaltenen Hash zu speichern.
 
@@ -28,9 +28,10 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
  
 **Extern mit Ropsten**
 
-6. Um mit der Ropsten-Blockchain zu kommunizieren, folgenden Befahl ausführen: `$ npm install truffle-hdwallet-provider --save`
+6. In Projektordner die *Truffel.js* Datei öffnen und die auskommentierte Abschnitte einkommentieren
+7. Um mit der Ropsten-Blockchain zu kommunizieren, folgenden Befahl ausführen: `$ npm install truffle-hdwallet-provider --save`
     Ropsten mit Infura: https://infura.io/ (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-7. Die Datei **truffle.js** im Projektordner anpassen. Hierzu wird der API Key von Infura, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
+8. Die Datei **truffle.js** im Projektordner anpassen. Hierzu wird der API Key von Infura, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
 [Netzwerkeinstellung](documentation/simple_token_client.md#netzwerkeinstellungen-f%C3%BCr-truffle)
     - In Metamask anmelden und ggf. Account von Ganache importieren
     - Terminal öffnen und zum Projekt Ordner navigieren und  `$ truffle migrate --network ropsten` ausführen
