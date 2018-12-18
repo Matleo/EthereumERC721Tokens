@@ -1,4 +1,6 @@
 ## Einleitung
+Dieses Teilprojekt, welches im nächsten Absatz beschrieben ist, **wurde wegen verschiedenen Gründen eingestellt**. Da im laufe der Entwicklung festegestellt worde, dass die Entwicklung auch recht einfach ohne Truffel framework möglich ist, welches hier zum Einsatz kam. Truffel hat eine große Menge an Dependencies und weiterer Nachteile.
+
 Es wird versucht eine dezentrale Webapplikation aufzubauen, welche mit dem Framework Truffle und einer Blockchain interagiert. Das Ziel ist es in der Blockchain Daten zu speichern, die dann auf eine externe Quelle verweisen. Somit kann ein Teil der Daten in der Blockchain gespeichert werden und die Ressourcen intensiven Erweiterungen extern. Hierzu gibt es zwei Ansätze, zum einen das Speichern einer Quelle zu einer Datenbank oder die Daten in IPFS zu hinterlegen und den erhaltenen Hash zu speichern.
 
 Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein Hash erzeugt. Der Zugriff erfolgt über den Hash. Im Gegensatz zum normalen DB-Ansatz wird nicht gespeichert wo die Daten liegen, sondern es wird per Hash angegeben welche Datei man möchte. IPFS entscheidet dann wo diese Datei herkommt bzw. tatsächlich gespeichert ist (Content-addressed vs. location-addressed).
@@ -6,7 +8,7 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 ## Aufbau des Systemumgebung
 
 1. Firefox / Chrome mit MetaMask Erweiterung (inkl. Account)
-2. Git-Projekt clonen [Projekt](./contracts/Sonstige/Webapp mit Blockchain)
+2. Git-Projekt clonen [Projekt](./) --> gelöscht da das Teilprojekt verworfen wurde!
 3. Bei Windows: NPM: node-gyp dependencies müssen installiert sein.
     - (`$ npm install --global --production windows-build-tools`, `$ npm install --global node-gyp`) 
 4. Truffle: 
@@ -26,10 +28,11 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
  
 **Extern mit Ropsten**
 
-6. Um mit der Ropsten-Blockchain zu kommunizieren, folgenden Befahl ausführen: `$ npm install truffle-hdwallet-provider --save`
+6. In Projektordner die *Truffel.js* Datei öffnen und die auskommentierte Abschnitte einkommentieren
+7. Um mit der Ropsten-Blockchain zu kommunizieren, folgenden Befahl ausführen: `$ npm install truffle-hdwallet-provider --save`
     Ropsten mit Infura: https://infura.io/ (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
-7. Die Datei **truffle.js** im Projektordner anpassen. Hierzu wird der API Key von Infura, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
-[Netzwerkeinstellung](documentation/Web-App%20mit%20Smart%20Contract.md#netzwerkeinstellungen-f%C3%BCr-truffle)
+8. Die Datei **truffle.js** im Projektordner anpassen. Hierzu wird der API Key von Infura, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
+[Netzwerkeinstellung](documentation/simple_token_client.md#netzwerkeinstellungen-f%C3%BCr-truffle)
     - In Metamask anmelden und ggf. Account von Ganache importieren
     - Terminal öffnen und zum Projekt Ordner navigieren und  `$ truffle migrate --network ropsten` ausführen
 
@@ -88,9 +91,11 @@ Im Contract werden zu jedem Eintrag eine fortlaufende ID, der Speicherort und ei
 ## Netzwerkeinstellungen für Truffle
 Wenn verschiedene Blockchains angesprochen werden sollen, kann das realisiert werden indem die truffle.js im Projektordner angepasst wird. Im folgenden haben wir die Blockchain von Ropsten hinzugefügt.
 
+!!!Anmekung nach Abruch des Teilprojekts:
+Um den Code local zu testen mit relativ wenigen dependencies, einfach in der Truffel.js (der folgende Codeabschnitt) Datei die ersten drei Variablen und den ropsten Eintrag unter "networks:" entfernen.
+
 ```
 var HDWalletProvider = require("truffle-hdwallet-provider");
-
 var infura_apikey = "XXXXXX";
 var mnemonic = "twelve words you can find 
            in metamask/settings/reveal seed words";

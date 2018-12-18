@@ -1,13 +1,10 @@
 # Ideensammlung zu fachlichen Anwendungsfällen für unsere DApp
 
-Bitte trag hier eure Ideen zu Anwendungsfällen für unseren Token, sowie fachliche Anforderungen an die DApp/ den JS-Client ein.
-
 ## Use Case (Context der Anwendung. Welches Problem löst unsere DApp/Für was wird der Token verwendet.)
-- ...
-- Browser Game -> Kampfsystem, Random Lootsystem z.B. Waffen, Kobination der Random Waffen zu neuen Random Waffen. 
-Ich habe auf meinem Server eine Open Source Version  des frühehren Browsergames [Ogame](http://math2i.bounceme.net/2Moon/) am laufen.
-Das Projekt [2Moon](https://github.com/jkroepke/2Moons) ist quasi schon ein komplettes Open Source Browsergame geschrieben in PHP 
-das wir auf auf unser Spiel anpassen können. Geht eventuell schneller wie bei 0 zu beginnen.
+- Client stellt ein Fischaquarium dar. 
+- ERC721 Tokens repräsentieren die einzelnen Fische. 
+- Eigenschaften dieser Fische sind erstmal in einer DB hinterlegt. 
+- Die Fische verschiedener Clients sollen miteinander interagieren können (z.b. tauschen oder gegeneinander kämpfen)
 
 
 ## Fachliche Anforderungen
@@ -18,9 +15,16 @@ das wir auf auf unser Spiel anpassen können. Geht eventuell schneller wie bei 0
 - Versenden von Tokens
 - Approval/Entfernen des Approval für den Versand von Token
 - Entfernen von eigenen Tokens
-- Auflisten der TOkens nach gewissen Eigenschaften/Suchfunktionalität
+- Auflisten der Tokens nach gewissen Eigenschaften/Suchfunktionalität
+- Listen darauf, wenn anderer Client ein Token erstellt hat. -> Die Anzahl aller Tokens in der GUI hochzählen.
 
 ## Technische Anforderungen
 
-- Sprache/Technologien? Java/Spring?, NodeJS/Angular? PHP?
-- 
+- Rich Javascript Client (Single Page Applikation) zur Interaktion mit Blockchain und Datenspeicher
+- Kein funktionelles Backend (Backend kapselt nur Datenbankverbindung). Wird später vollständig durch IPFS ersetzt (Client und Backend)
+- Ein Smart Contracts zur Besitzverwaltung der Tokens
+- Libraries / Framework Ideen:
+    - JQUERY / SVG / p5.js für Animationen
+    - React für Single Page Applikation
+    - Web3.js(+ Metamask) zur Kommunikation mit dem Smart Contract
+    - => Vorerst keine dependencies. Nur JQuery, kein React, kein Truffle.
