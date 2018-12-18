@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Aqua</title>
+<style rel="jquery.svg.css"></style>
 </head>
 <body>
 
@@ -17,6 +18,8 @@
                 d="M -1500,297 H 0 l -2.2460938,-746.25 c -160.5185962,-57.67258 -175.8943262,-0.44039 -263.8414962,-0.66059 -115.91486,49.24251 -171.35352,-104.11021 -211.67314,2.58468 l -96.7575,-0.53706 c -34.26878,-0.19022 -89.70423,-75.97567 -102.80635,-0.57065 -32.26976,-0.17911 -64.53952,-0.35823 -96.80928,-0.53735 l -117.8591,-39.72874 c -58.46971,-0.32455 -98.79656,-52.05385 -133.07574,38.33589 -80.6278,51.12506 -100.7794,-0.55939 -151.1691,-0.83909 -116.9184,44.95993 -197.5511,-76.38966 -214.6838,-1.19163 L -1500,-453 Z"
                 style="opacity:0.7;fill:#003dff;fill-opacity:1;stroke-width:0.30499101" />
     </g>
+
+    <div id="jqueryPane"></div>
 </svg>
 
 
@@ -25,7 +28,8 @@
 <!--<object type="image/svg+xml" width="1500" height="1000" data="Vectorgraphics/Aquarium.svg"></object> -->
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery.svg.min.js"></script>
+<script src="js/jquery.svg.js"></script>
+<script src="js/jquery.svganim.js"></script>
 <script src="js/Svg.js"></script>
 <style>
 
@@ -36,11 +40,12 @@
 <script>
 
     var aqua = document.getElementById("aqua");
+    var jqueryPane =  $("#jqueryPane").svg({settings:{height: 3000, width:4500}});
 $(document).ready(function () {
 
 
-   append("Vectorgraphics/Schwanz/Form1.svg", 1200,500, animation);
-   append("Vectorgraphics/Kopf/Form1.svg",1200,500, animation);
+   append("Vectorgraphics/Schwanz/Form1.svg", 1200,500);
+   append("Vectorgraphics/Kopf/Form1.svg",1200,500);
 
    append("Vectorgraphics/Schwanz/Form3.svg", 100,600);
    append("Vectorgraphics/Kopf/Form1.svg", 100,600);
@@ -59,6 +64,7 @@ $(document).ready(function () {
 
     });
 
+jqueryTest();
 
 });
 
@@ -77,7 +83,7 @@ function append(path, posX, posY,animation, manipulationCallback) {
 
         $(aqua).append(x);
 
-        if( typeof (animation) == 'function'){
+        if( animation != null && typeof (animation) == 'function'){
             animation(x, posX, posY);
         }
 
@@ -86,36 +92,58 @@ function append(path, posX, posY,animation, manipulationCallback) {
     })
 }
 
-function animation(element,posX,posY) {
+function appendWithJquery(path,svg, group, posX, posY){
 
-        console.log(element,posX,posY)
+        var g = group;
+        var pX = posX;
+        var pY = posY;
+    SVG.svgLoader(path).then(function (value,x,pX,pY) {
+        console.log(group)
+        var paths = value.getElementsByTagName("path");
 
-        var moveLeft = function(element, posX, posY){
-
-          //drehen
-            $(element).animate({
-                transform: "translate("+(posX + 200)+"," + posX +")"
-
-            },4000, moveRight.bind(this,element,posX, posY));
-
+        for (var i = 0; i < paths.length; i++) {
+            var x = svg.add(group, paths[i]);
+            //svg.configure({viewBox: '0 0 100 100'}, true);
         }
-
-        var moveRight = function(element, posX, posY){
-
-            //drehen
-            $(element).animate({
-                transform: "translate("+(posX - 200)+"," + posX +")"
-
-            },4000, moveLeft.bind(this,element,posX,posY));
-
-        }
-
-        moveLeft(element,posX,posY);
+           svg.configure(group,{transform: "translate("+posX+ "," +posY + ")"});
+        $(group).animate({  svgTransform: "translate("+ (posX +500)+"," + posY +")"},3000)
+            .animate({ svgTransform: "translate("+ (posX -500)+"," + posY +") scale(-1,1)"},3000)
 
 
+
+    });
 
 
 }
+
+function jqueryTest() {
+
+    var svg = jqueryPane.svg('get');
+
+    var x =svg.load("Vectorgraphics/Aquarium.svg", {addTo: false, changeSize: false});
+
+    var group = svg.group();
+
+    console.log(group)
+    appendWithJquery("Vectorgraphics/Schwanz/Form1.svg", svg,group,1200,500 );
+    appendWithJquery("Vectorgraphics/Kopf/Form1.svg",svg, group,1200,500);
+
+
+
+
+
+    }
+
+
+
+//  var x =svg.load("Vectorgraphics/Schwanz/Form1.svg", {addTo: true, changeSize: false});
+  //  console.log(x);
+
+ // var x =  svg.add(aqua);
+ // console.log(x)
+  //$(x).animate({svgTransform: 'rotate(60, 100, 75)'},5000)
+   // console.log(svg)
+
 
 
 </script>
