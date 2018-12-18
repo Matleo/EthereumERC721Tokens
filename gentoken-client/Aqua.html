@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aqua</title>
+</head>
+<body>
+
+
+<svg id="aqua"  viewBox="0 0 1500 1000"  height="3779.5276" width="5669.2915">
+    <g
+            transform="translate(0,703)"
+            id="layer1">
+        <path
+                transform="scale(-1,1)"
+                id="rect3713"
+                d="M -1500,297 H 0 l -2.2460938,-746.25 c -160.5185962,-57.67258 -175.8943262,-0.44039 -263.8414962,-0.66059 -115.91486,49.24251 -171.35352,-104.11021 -211.67314,2.58468 l -96.7575,-0.53706 c -34.26878,-0.19022 -89.70423,-75.97567 -102.80635,-0.57065 -32.26976,-0.17911 -64.53952,-0.35823 -96.80928,-0.53735 l -117.8591,-39.72874 c -58.46971,-0.32455 -98.79656,-52.05385 -133.07574,38.33589 -80.6278,51.12506 -100.7794,-0.55939 -151.1691,-0.83909 -116.9184,44.95993 -197.5511,-76.38966 -214.6838,-1.19163 L -1500,-453 Z"
+                style="opacity:0.7;fill:#003dff;fill-opacity:1;stroke-width:0.30499101" />
+    </g>
+</svg>
+
+
+
+
+<!--<object type="image/svg+xml" width="1500" height="1000" data="Vectorgraphics/Aquarium.svg"></object> -->
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.svg.min.js"></script>
+<script src="js/Svg.js"></script>
+<style>
+
+
+
+</style>
+
+<script>
+
+    var aqua = document.getElementById("aqua");
+$(document).ready(function () {
+
+
+   append("Vectorgraphics/Schwanz/Form1.svg", 1200,500, animation);
+   append("Vectorgraphics/Kopf/Form1.svg",1200,500, animation);
+
+   append("Vectorgraphics/Schwanz/Form3.svg", 100,600);
+   append("Vectorgraphics/Kopf/Form1.svg", 100,600);
+
+    append("Vectorgraphics/Schwanz/Form2.svg",800,300, function (element) {
+
+        var x = element.getAttribute("transform");
+        element.setAttribute("transform", x + "scale(-1,1)");
+
+
+    });
+    append("Vectorgraphics/Kopf/Form2.svg",800,300,function (element) {
+
+        var x = element.getAttribute("transform");
+        element.setAttribute("transform", x + "scale(-1,1)");
+
+    });
+
+
+});
+
+function append(path, posX, posY,animation, manipulationCallback) {
+    SVG.svgLoader(path).then(function (value) {
+
+        var x = value.getElementsByTagName("g")[0];
+
+
+        x.setAttribute("transform", "translate("+posX+","+posY+")");
+
+
+        if( typeof (manipulationCallback) == 'function'){
+            manipulationCallback(x);
+        }
+
+        $(aqua).append(x);
+
+        if( typeof (animation) == 'function'){
+            animation(x, posX, posY);
+        }
+
+
+
+    })
+}
+
+function animation(element,posX,posY) {
+
+        console.log(element,posX,posY)
+
+        var moveLeft = function(element, posX, posY){
+
+          //drehen
+            $(element).animate({
+                transform: "translate("+(posX + 200)+"," + posX +")"
+
+            },4000, moveRight.bind(this,element,posX, posY));
+
+        }
+
+        var moveRight = function(element, posX, posY){
+
+            //drehen
+            $(element).animate({
+                transform: "translate("+(posX - 200)+"," + posX +")"
+
+            },4000, moveLeft.bind(this,element,posX,posY));
+
+        }
+
+        moveLeft(element,posX,posY);
+
+
+
+
+}
+
+
+</script>
+</html>
