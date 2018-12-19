@@ -15,7 +15,7 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
     `$ npm install -g truffle` Verwendete Version node v.10.13.0, npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
  - (4.1 um Solidity v0.5.0 zu verwenden `$npm install -g truffle@beta` und um dependencies zu laden `$npm install` ausführen.)
 
-5. Bockchain Lokal oder Extern
+5. Bockchain Lokal oder Extern -siehe
 
 ---
 
@@ -91,8 +91,6 @@ Im Contract werden zu jedem Eintrag eine fortlaufende ID, der Speicherort und ei
 ## Netzwerkeinstellungen für Truffle
 Wenn verschiedene Blockchains angesprochen werden sollen, kann das realisiert werden indem die truffle.js im Projektordner angepasst wird. Im folgenden haben wir die Blockchain von Ropsten hinzugefügt.
 
-!!!Anmekung nach Abruch des Teilprojekts:
-Um den Code local zu testen mit relativ wenigen dependencies, einfach in der Truffel.js (der folgende Codeabschnitt) Datei die ersten drei Variablen und den ropsten Eintrag unter "networks:" entfernen.
 
 ```
 var HDWalletProvider = require("truffle-hdwallet-provider");
