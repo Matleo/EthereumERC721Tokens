@@ -32,7 +32,7 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 7. Um mit der Ropsten-Blockchain zu kommunizieren, folgenden Befahl ausführen: `$ npm install truffle-hdwallet-provider --save`
     Ropsten mit Infura: https://infura.io/ (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
 8. Die Datei **truffle.js** im Projektordner anpassen. Hierzu wird der API Key von Infura, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
-[Netzwerkeinstellung](documentation/simple_token_client.md#netzwerkeinstellungen-f%C3%BCr-truffle)
+[Netzwerkeinstellung](#netzwerkeinstellungen-f%C3%BCr-truffle)
     - In Metamask anmelden und ggf. Account von Ganache importieren
     - Terminal öffnen und zum Projekt Ordner navigieren und  `$ truffle migrate --network ropsten` ausführen
 
