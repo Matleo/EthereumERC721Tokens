@@ -63,9 +63,9 @@ Hierzu wird in Remix im Reiter 'Run' unter Environment 'Inject Web3' ausgewählt
 Nun können wir unsere Contracts in das ausgewählte Testnetzwerk über unseren neuen Account deployen.
 
 ### Ganache Account in MetaMask hinzufügen
-Hierzu Ganache öffnen und einen der sechs Accounts aussuchen und rechts auf das Schlüssesymbol klicken. Den angezeigten Private Key kopieren und nun zu MetaMask Plugin im Browser wechselen. Dort oben rechts auf das Menü klicken und dort auf "Acount Importieren" klicken. Den Private Key einfügen und importieren klicken. Nun ist der Account hinzugefügt ggf. muss im mittleren Menü oben das Netzwerk Localhost geändert werden. (Standard in Ganache ist der Port 8545 eingestellt, diesen einfach in Ganche unter Einstellungen auf den Port 7545 ändern.)
+Hierzu Ganache öffnen und einen der 10 Accounts aussuchen und rechts auf das Schlüssesymbol klicken. Den angezeigten Private Key kopieren und nun zu MetaMask Plugin im Browser wechseln. Oben rechts auf das Menü und auf "Acount Importieren" klicken. Den Private Key einfügen und importieren auswählen. Nun ist der Account hinzugefügt, ggf. muss im mittleren Menü oben das Netzwerk auf Localhost geändert werden. (Standard in Ganache ist der Port 8545 eingestellt, diesen einfach in Ganche unter Einstellungen auf den Port 7545 ändern, da dieser Port als Standard in Meta Mask benutzt wird)
 
-## Eigene Tokens hinzufügen
+### Eigene Tokens hinzufügen
 Um eigene Tokens hinzuzufügen wird in MetaMask auf _"Add Token"_ geklickt und dann kann die Adresse des Token-Contract eintragen werden. 
 Die restlichen Felder werden automatisch ausgefüllt. Nun auf _"Add"_ klicken und die Tokens sind unter dem Reiter _"Tokens"_ sichtbar.
 Wenn auf den erstellten Token geklickt wird, öffnet sich die Webseite  _"Ropsten Etherscan"_ auf der, der Holder des Contracts, die Contract Adresse und die jeweiligen Transaktionen zu sehen sind.

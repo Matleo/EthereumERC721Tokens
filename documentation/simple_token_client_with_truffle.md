@@ -15,15 +15,15 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
     `$ npm install -g truffle` Verwendete Version node v.10.13.0, npm v.6.4.1, Truffle v4.1.14, Solidity v0.4.24
  - (4.1 um Solidity v0.5.0 zu verwenden `$npm install -g truffle@beta` und um dependencies zu laden `$npm install` ausführen.)
 
-5. Bockchain Lokal oder Extern
+5. Bockchain Lokal oder Extern -siehe
 
 ---
 
 **Lokal mit Ganache**
 
 6. Ganache öffnen (Verwendete Version 1.2.2) https://truffleframework.com/ganache
-7. Open Terminal, wechsel zum Projekt Ordner
-    - In Metamask anmelden und ggf. Account von Ganache importieren
+7. In Metamask anmelden und ggf. Account von Ganache importieren
+8. Open Terminal, wechsel zum Projekt Ordner
     - `$ truffle migrate --reset` (Falls der Ethereum Client nicht gefunden werden kann, in der Datei "Truffle.js" beim Netzwerk "development" den Port auf den Selben wie in Ganache aendern.)
  
 **Extern mit Ropsten**
@@ -32,12 +32,12 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 7. Um mit der Ropsten-Blockchain zu kommunizieren, folgenden Befahl ausführen: `$ npm install truffle-hdwallet-provider --save`
     Ropsten mit Infura: https://infura.io/ (Infura stellt eine Schnittstelle zwischen der Blockchain und dem WebServer, hierzu wird ein Infura Account benötigt und die Zugangsdaten von MetaMask)
 8. Die Datei **truffle.js** im Projektordner anpassen. Hierzu wird der API Key von Infura, mnemonic hinzugefügt und module.exports um den Eintrag Ropsten erweitert.
-[Netzwerkeinstellung](documentation/simple_token_client.md#netzwerkeinstellungen-f%C3%BCr-truffle)
+[Netzwerkeinstellung](#netzwerkeinstellungen-f%C3%BCr-truffle)
     - In Metamask anmelden und ggf. Account von Ganache importieren
     - Terminal öffnen und zum Projekt Ordner navigieren und  `$ truffle migrate --network ropsten` ausführen
 
 ---
-8. Server starten `$ npm run dev`, run the Front End Application. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
+9. Server starten `$ npm run dev`, run the Front End Application. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
 
 
 ## Smart Contract
@@ -91,8 +91,6 @@ Im Contract werden zu jedem Eintrag eine fortlaufende ID, der Speicherort und ei
 ## Netzwerkeinstellungen für Truffle
 Wenn verschiedene Blockchains angesprochen werden sollen, kann das realisiert werden indem die truffle.js im Projektordner angepasst wird. Im folgenden haben wir die Blockchain von Ropsten hinzugefügt.
 
-!!!Anmekung nach Abruch des Teilprojekts:
-Um den Code local zu testen mit relativ wenigen dependencies, einfach in der Truffel.js (der folgende Codeabschnitt) Datei die ersten drei Variablen und den ropsten Eintrag unter "networks:" entfernen.
 
 ```
 var HDWalletProvider = require("truffle-hdwallet-provider");
