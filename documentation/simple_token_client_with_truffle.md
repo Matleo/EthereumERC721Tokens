@@ -22,8 +22,8 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
 **Lokal mit Ganache**
 
 6. Ganache öffnen (Verwendete Version 1.2.2) https://truffleframework.com/ganache
-7. Open Terminal, wechsel zum Projekt Ordner
-    - In Metamask anmelden und ggf. Account von Ganache importieren
+7. In Metamask anmelden und ggf. Account von Ganache importieren
+8. Open Terminal, wechsel zum Projekt Ordner
     - `$ truffle migrate --reset` (Falls der Ethereum Client nicht gefunden werden kann, in der Datei "Truffle.js" beim Netzwerk "development" den Port auf den Selben wie in Ganache aendern.)
  
 **Extern mit Ropsten**
@@ -37,7 +37,7 @@ Exkurs: IPFS ist eine dezentrale DB, hierbei wird beim Speichern von Dateien ein
     - Terminal öffnen und zum Projekt Ordner navigieren und  `$ truffle migrate --network ropsten` ausführen
 
 ---
-8. Server starten `$ npm run dev`, run the Front End Application. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
+9. Server starten `$ npm run dev`, run the Front End Application. Dann müsste sich der Browser öffnen und die Webseite sollte angezeigt werden, ggf. den Browser öffnen der auch Meta Mask als Plugin besitzt.
 
 
 ## Smart Contract
