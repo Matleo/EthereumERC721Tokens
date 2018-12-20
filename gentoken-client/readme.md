@@ -113,8 +113,8 @@ Ein Komplettes Codbeispiel dieser Dokumentation finden Sie [hier](examples/Web3_
 
 Neben dem Codebeispiel haben wir noch weitere Beispielseiten erzeugt, und auf einem Webserver deployed:
 
-- [Web3_Example](http://math2i.bounceme.net/gentoken-client/examples/Web3_Example.html)
-- [buyTokens](http://math2i.bounceme.net/gentoken-client/examples/buyTokens.html)
-- [Deploy Contract](http://math2i.bounceme.net/gentoken-client/examples/deploy.html)
-- [subscripe new Blockchain Blocks](http://math2i.bounceme.net/gentoken-client/examples/deploy.html)
-- [Database](http://math2i.bounceme.net/gentoken-client/examples/Database.html)
+- [Web3_Example](https://math2i.bounceme.net/gentoken-client/examples/Web3_Example.html)
+- [buyTokens](https://math2i.bounceme.net/gentoken-client/examples/buyTokens.html)
+- [Deploy Contract](https://math2i.bounceme.net/gentoken-client/examples/deploy.html)
+- [subscripe new Blockchain Blocks](https://math2i.bounceme.net/gentoken-client/examples/deploy.html)
+- [Database](https://math2i.bounceme.net/gentoken-client/examples/Database.html)
