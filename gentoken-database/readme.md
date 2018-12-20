@@ -41,6 +41,6 @@ Zuletzt bauten wir eine Javascript API für unser Service der mit unserer Datenb
 
 ## Location
 
-unser Service ist aktuell [hier](http://math2i.bounceme.net:8080/Database/) erreichbar.
-Eine Beispielseite des Gentoken-Clients der unsere Javascript API nutzt finden sie [hier](http://math2i.bounceme.net/gentoken-client/examples/Database.html) 
+unser Service ist aktuell [hier](https://math2i.bounceme.net:8080/Database/) erreichbar.
+Eine Beispielseite des Gentoken-Clients der unsere Javascript API nutzt finden sie [hier](https://math2i.bounceme.net/gentoken-client/examples/Database.html) 
 
