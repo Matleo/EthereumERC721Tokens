@@ -1,0 +1,32 @@
+<html>
+    <head>
+    <title>Aqua</title>
+    </head>
+    <body>
+        
+        <h1>testrrr</h1>
+    
+    </body>
+    <script src="../js/lib/jquery-3.3.1.min.js"></script>
+    <script src="../js/lib/web3_1.0.min.js"></script>
+    <script src="../js/Contracts_Bytecode/"></script>
+    <script src="../js/AquaTokenContract.js"></script>
+    
+    <script src="../js/lib/jquery.svg.js"></script>
+    <script src="../js/lib/jquery.svgdom.js"></script>
+    <script src="../js/lib/jquery.svganim.js"></script>
+    <script>
+    
+    $(document).ready(function(){
+        
+                    
+      c = new AquaTokenContract();
+       
+        c.init();
+        c.deployContract("abi","destAdress","from","gasPrice",100,"data");
+      
+    });
+    
+    </script>
+    
+</html>
