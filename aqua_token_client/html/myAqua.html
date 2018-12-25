@@ -1,12 +1,161 @@
-<html>
-    <head>
-    <title>Aqua</title>
-    </head>
-    <body>
-        
-        <h1>testrrr</h1>
-    
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../resources/bootstrap-4.2.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/myAqua.css">
+
+    <title>Aqua Token</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <span class="navbar-brand">MyAquaToken</span>
+    </nav>
+    <div class="container h-100">
+      <div class="row">
+        <div class="col-10">
+          ​<picture> 
+            <source srcset="C:\Users\Marius Degen\Downloads\2000px-Tux.svg.png" type="image/svg+xml">
+            <img src="../resources/2000px-Tux.svg.png" class="img-fluid" id="mainImage" alt="...">
+          </picture>
+       </div>
+       <div class="col-2">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createFishModal">Erstellen</button>
+       </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2>Fisch:</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">         
+          <h3>Eigenschaften</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Eigenschaft</th>
+                <th scope="col">Wert</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Name</th>
+                <td>Fred</td>
+              </tr>
+              <tr>
+                <th scope="row">Farbe</th>
+                <td>rot</td>
+              </tr>
+              <tr>
+                <th scope="row">Kopf</th>
+                <td>2</td>
+              </tr>
+              <tr>
+                <th scope="row">Flosse</th>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-2">
+          <div class="row">
+            <div class="col-12">
+              <picture>
+                <source srcset="C:\Users\Marius Degen\Downloads\2000px-Tux.svg.png" type="image/svg+xml">
+                <img src="../resources/2000px-Tux.svg.png" class="img-fluid img-thumbnail fishImage" alt="...">
+              </picture>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mateFishModal">paaren</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Empfänger Adresse" aria-label="Recipient's address" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Versenden</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="createFishModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Neuen Fisch erstellen</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Das Erstellen eines neuen Fisch kostet:</p>
+            <p>Wenn sie bestätigen wird eine Transaktion initialisiert!</p> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+            <button type="button" class="btn btn-primary">Bestätigen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="mateFishModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Partner finden</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h6>TODO: paginierte Liste aller Fische</h2>
+            <ul class="list-unstyled">
+              <li class="media">
+                <img src="../resources/2000px-Tux.svg.png" class="mr-3 fishImage" alt="...">
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Fisch 1</h5>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+              </li>
+              <li class="media my-4">
+                <img src="../resources/2000px-Tux.svg.png" class="mr-3 fishImage" alt="...">
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Fisch 2</h5>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+              </li>
+              <li class="media">
+                <img src="../resources/2000px-Tux.svg.png" class="mr-3 fishImage" alt="...">
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Fisch 3</h5>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+              </li>
+            </ul>
+            <button type="button" class="btn btn-primary">Mehr</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+            <button type="button" class="btn btn-primary">paaren!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="../js/lib/jquery-3.3.1.min.js"></script>
     <script src="../js/lib/web3_1.0.min.js"></script>
     <script src="../js/Contracts_Bytecode/"></script>
@@ -15,18 +164,8 @@
     <script src="../js/lib/jquery.svg.js"></script>
     <script src="../js/lib/jquery.svgdom.js"></script>
     <script src="../js/lib/jquery.svganim.js"></script>
-    <script>
-    
-    $(document).ready(function(){
-        
-                    
-      c = new AquaTokenContract();
-       
-        c.init();
-        c.deployContract("abi","destAdress","from","gasPrice",100,"data");
-      
-    });
-    
-    </script>
-    
+
+    <!-- Bootstrap and Popper js -->
+    <script src="../resources/bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
