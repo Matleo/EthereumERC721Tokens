@@ -50,11 +50,11 @@
               </tr>
               <tr>
                 <th scope="row">Kopf</th>
-                <td>2</td>
+                <td id="kopfValue">2</td>
               </tr>
               <tr>
                 <th scope="row">Flosse</th>
-                <td>1</td>
+                <td id="flosseValue">1</td>
               </tr>
             </tbody>
           </table>
@@ -62,10 +62,11 @@
         <div class="col-2">
           <div class="row">
             <div class="col-12">
-              <picture>
+              <picture id="fishPlaceholder">
                 <source srcset="../resources/2000px-Tux.svg.png" type="image/svg+xml">
                 <img src="../resources/2000px-Tux.svg.png" class="img-fluid img-thumbnail fishImage" alt="...">
               </picture>
+              <div id="fishProfile"></div>
             </div>
           </div>
           <div class="row">
@@ -155,15 +156,15 @@
 
     <script src="../js/lib/jquery-3.3.1.min.js"></script>
     <script src="../js/lib/web3_1.0.min.js"></script>
-    <script src="../js/Contracts_Bytecode/"></script>
-    <script src="../js/AquaTokenContract.js"></script>
-
     <script src="../js/lib/jquery.svg.js"></script>
     <script src="../js/lib/jquery.svgdom.js"></script>
     <script src="../js/lib/jquery.svganim.js"></script>
 
+    <script src="../js/beans/Fish.js"></script>
     <script src="../js/AquaPresentation.js"></script>
     <script src="../js/pages/myAquaPage.js"></script>
+
+    <script src="../js/AquaTokenContract.js"></script>
 
     <!-- Bootstrap and Popper js -->
     <script src="../resources/bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js"></script>

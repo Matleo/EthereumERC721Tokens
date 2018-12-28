@@ -5,5 +5,4 @@ $('#addFish').click(function() {
   insertNewFishToAquarium(head, tail);
 
   $('#createFishModal').modal('hide');
-
 });
