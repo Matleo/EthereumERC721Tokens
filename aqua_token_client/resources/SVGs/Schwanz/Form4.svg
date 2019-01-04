@@ -13,11 +13,11 @@
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
-   id="svg1606"
+   id="svg894"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="Flosse23_spitz.svg">
+   sodipodi:docname="Flosse23_new.svg">
   <defs
-     id="defs1600" />
+     id="defs888" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -25,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.43"
-     inkscape:cx="397.37726"
-     inkscape:cy="890.39088"
+     inkscape:zoom="1.979899"
+     inkscape:cx="237.22332"
+     inkscape:cy="941.99006"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1-5"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="2880"
      inkscape:window-height="1675"
@@ -37,14 +37,14 @@
      inkscape:window-y="-13"
      inkscape:window-maximized="1" />
   <metadata
-     id="metadata1603">
+     id="metadata891">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,20 +54,15 @@
      id="layer1">
     <g
        inkscape:label="Ebene 1"
-       id="layer1-5"
-       transform="matrix(-1.0382362,0,0,1,239.25715,-169.29463)">
-      <g
-         inkscape:label="Ebene 1"
-         id="layer1-1-1"
-         transform="matrix(0.94556903,0,0,1,145.75742,-362.73205)"
-         style="opacity:0.90499998;fill:#6b2411;fill-opacity:1">
-        <path
-           style="opacity:0.7;fill:#6b2411;fill-opacity:1;stroke-width:0.41878441"
-           d="m 88.767961,532.33493 c -6.411606,-0.73009 -29.524256,28.02252 -111.339388,12.31798 v 60.85417 c 66.331998,-21.321 81.964648,6.32829 111.424576,5.87635 -25.546778,-22.89366 -28.852754,-32.41577 -44.144813,-37.43736 16.800244,-5.48345 43.239583,-33.2477 44.059625,-41.61114 z"
-           id="rect4537-0"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="cccccc" />
-      </g>
+       id="layer1-1-1"
+       transform="matrix(-0.91825305,0,0,1,82.630399,-529.61103)"
+       style="opacity:0.90499998;fill:#6b2411;fill-opacity:1">
+      <path
+         style="opacity:0.7;fill:#6b2411;fill-opacity:1;stroke-width:0.41878441"
+         d="m 88.767961,532.33493 c -6.411606,-0.73009 -29.524256,28.02252 -111.339388,12.31798 v 60.85417 c 66.331998,-21.321 81.964648,6.32829 111.424576,5.87635 -25.546778,-22.89366 -28.852754,-32.41577 -44.144813,-37.43736 16.800244,-5.48345 43.239583,-33.2477 44.059625,-41.61114 z"
+         id="rect4537-0"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccc" />
     </g>
   </g>
 </svg>
