@@ -12,18 +12,16 @@
     <title>Aqua Token</title>
   </head>
   <body>
+      <div id="access" class="alert alert-warning" role="alert">This App is only working with Metmask access. Switch to Metmask an allow the access</div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <span class="navbar-brand">MyAquaToken</span>
     </nav>
     <div class="container h-100">
       <div class="row">
-        <div class="col-10">
-          ​<picture> 
-            <source srcset="../resources/2000px-Tux.svg.png" type="image/svg+xml">
-            <img src="../resources/2000px-Tux.svg.png" class="img-fluid" id="mainImage" alt="...">
-          </picture>
+        <div class="col-9 offset-md-1 margin-top-1">
+          <div id="aquarium"></div>
        </div>
-       <div class="col-2">
+       <div class="col-2 margin-top-1">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createFishModal">Erstellen</button>
        </div>
       </div>
@@ -33,7 +31,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-10">         
+        <div class="col-10">
           <h3>Eigenschaften</h3>
           <table class="table">
             <thead>
@@ -53,11 +51,11 @@
               </tr>
               <tr>
                 <th scope="row">Kopf</th>
-                <td>2</td>
+                <td id="kopfValue">2</td>
               </tr>
               <tr>
                 <th scope="row">Flosse</th>
-                <td>1</td>
+                <td id="flosseValue">1</td>
               </tr>
             </tbody>
           </table>
@@ -65,10 +63,11 @@
         <div class="col-2">
           <div class="row">
             <div class="col-12">
-              <picture>
+              <picture id="fishPlaceholder">
                 <source srcset="../resources/2000px-Tux.svg.png" type="image/svg+xml">
                 <img src="../resources/2000px-Tux.svg.png" class="img-fluid img-thumbnail fishImage" alt="...">
               </picture>
+              <div id="fishProfile"></div>
             </div>
           </div>
           <div class="row">
@@ -102,11 +101,11 @@
           </div>
           <div class="modal-body">
             <p>Das Erstellen eines neuen Fisch kostet:</p>
-            <p>Wenn sie bestätigen wird eine Transaktion initialisiert!</p> 
+            <p>Wenn sie bestätigen wird eine Transaktion initialisiert!</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-            <button type="button" class="btn btn-primary">Bestätigen</button>
+            <button id ="addFish" type="button" class="btn btn-primary">Bestätigen</button>
           </div>
         </div>
       </div>
@@ -158,12 +157,19 @@
 
     <script src="../js/lib/jquery-3.3.1.min.js"></script>
     <script src="../js/lib/web3_1.0.min.js"></script>
-    <script src="../js/Contracts_Bytecode/"></script>
-    <script src="../js/AquaTokenContract.js"></script>
-    
     <script src="../js/lib/jquery.svg.js"></script>
     <script src="../js/lib/jquery.svgdom.js"></script>
     <script src="../js/lib/jquery.svganim.js"></script>
+
+
+    <script src="../js/beans/Fish.js"></script>
+    <script src="../js/AquaPresentation.js"></script>
+
+    <script src="../js/FishCreation.js"></script>
+    <script src="../js/pages/myAquaPage.js"></script>
+    <script src="../js/Contracts_Bytecode/Erc721_basic.js"></script>
+    <script src="../js/AquaTokenContract.js"></script>
+  
 
     <!-- Bootstrap and Popper js -->
     <script src="../js/lib/bootstrap.bundle.min.js"></script>
