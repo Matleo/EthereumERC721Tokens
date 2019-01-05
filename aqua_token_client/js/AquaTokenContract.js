@@ -2,50 +2,80 @@ class AquaTokenContract {
     
     
   constructor() {
-   this.web3;
-      
-      
+   this.web3 = window.web3;
+   this.contract;
+   this.contractOptions={};
+   this.sendOptions={};
+   this.account;
+   console.log(this.web3);
+   this.init();   
   }
+
+  init(){
+    console.log(window.web3.currentProvider);
+  this.account = window.web3.currentProvider.selectedAddress;
+  //Looking in a Interval of 100ms if the selected Account in Metmask was changed.
+  setInterval(function(){
+
+    if(this.account !== window.web3.currentProvider.selectedAddress){
+        this.account = window.web3.currentProvider.selectedAddress;
+    }
+
+  },100);
+  }
+
+/* This Method create a Web Contract Object 
+
+
+    contractAddress - String: The address where the contract is deployed. See options.address.
     
-    init(){
-        
-        this.web3 = new Web3(Web3.givenProvider);
-        console.dir(this.web3);
+    data - String: The byte code of the contract. Used when the contract gets deployed.
+    gasPrice - String: The gas price in wei to use for transactions.It is the wei per unit of gas.
+    gasLimit - Number: The maximum gas provided for a transaction (gas limit).
+
+
+
+*/
+
+/*This Method create a web3 Contract Object 
+
+abi - Array: The json interface of the contract.
+optContractAdress- if the contract is already deployed the blockchain the contractadress can set with this parameter.
+*/
+
+    createContract(abi,optContractAdress){
+      this.contract = new web3.eth.Contract(erc721.abi);
+      if(optContractAdress !='null' && typeof(optContractAdress) ==='string')   this.contractOptions.address = optContractAdress;
+      //this.contract.options = this.contractOptions;
     }
     
     /* This Method deploy a Contract */
     
-      
-    deployContract(abi,destAdress,from,gasPrice,gas,data){
+    deployContract(data,gasPrice,gasLimit,value,successCallback ,onfailedCallback){
         
-     
-        ///build contractOptions Object TODO Exceptions if wrong type
-    
-       var buildJSON = function(from,gasPrice,gas,data){
-        var contractOptions = '{ ';
-        
-        if(from !='null' && typeof(from) ==='string')  contractOptions +='"from":\"' +from + '\",';
-        if(gasPrice !='null' && typeof(gasPrice) ==='string') contractOptions +='"gasPrice":\"' + gasPrice +'\",';
-        if(gas !='null' && typeof(gas) ==='number') contractOptions +='"gas":' + gas + ',';
-        if(data !='null' && typeof(data) ==='string') contractOptions +='"data":\"' + data +'\"'; 
-        
-        contractOptions = contractOptions.endsWith(",")? contractOptions.slice(0, contractOptions.length-1): contractOptions;
-        contractOptions +=' }';
-        
-      
-        return JSON.parse(contractOptions);
-        }
-        
-       console.table(buildJSON("from", "gasPrice", 1000, "data"));
-        
-        
-        // this.web3.eth.Contract(abi,destAdress, buildJSON(from, gasPrice, gas, data) );
-        
-        
-        
+        if(data !='null' && typeof(data) ==='string') this.contractOptions.data = data; 
+
+        if(this.account !='null' && typeof(this.account) ==='string') this.sendOptions.from = this.account; 
+       if(gasPrice !='null' && typeof(gasPrice) ==='string') this.sendOptions.gasPrice = gasPrice;
+        if(gasLimit !='null' && typeof(gasLimit) ==='number') this.sendOptions.gas = gasLimit;
+        if(value != 'null' && typeof(value) ==='number') this.sendOptions.value = value;
+
+        console.table(this.contractOptions);
+        console.table(this.sendOptions);
+        console.log(this.contract);
+        this.contract.deploy(this.contractOptions).send(this.sendOptions)
+        .on('error', function(error){
+            console.log(error);
+            onfailedCallback(error);
+        })
+        .then(function(newContractInstance){
+            console.log(newContractInstance);
+            this.contract = newContractInstance;
+            this.contractOptions = newContractInstance.options;
+            successCallback(newContractInstance);
+            console.log(this.contract);
+        }.bind(this));        
     }
-    
-    
   
     /* Define the ContractOptions for deploying a Contract. This Method return a Json in the Syntax of Web3. 
         Parameter:[
@@ -56,10 +86,16 @@ class AquaTokenContract {
         ]
         
         */
-    transaction(){
+    transferFrom(){
     
+     //   this.contract.method(params).send(sendOptions).
         
     }
+
+    createToken(){
+
+    }
+
     
     call(){
         
@@ -67,32 +103,3 @@ class AquaTokenContract {
     }
     
 } 
-
-
-
-var AquaTokenContract2 ={
-    
-    web3: null,
-        
-    init: function(){
-        
-        this.web3 = new Web3(Web3.givenProvider);
-    },
-    
-    deployContract: function(){
-        
-    },
-    
-    transcaction: function(){
-        
-    },
-    
-    call: function(){
-        
-        
-    }
-    
-    
-}
-
-
