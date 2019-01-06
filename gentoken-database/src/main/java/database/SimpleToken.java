@@ -1,4 +1,4 @@
-package hello;
+package database;
 
 import lombok.Data;
 

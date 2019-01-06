@@ -71,13 +71,16 @@ optContractAdress- if the contract is already deployed the blockchain contractad
         gasPrice - String (optional): The gas price in wei to use for this transaction.It is the wei per unit of gas.
         gasLimit - Number (optional): The maximum gas provided for this transaction (gas limit).
         value - ``Number|String|BN|BigNumber``(optional): The value transferred for the transaction in wei.
+
+        return in success case a Promise which include a array  
  
  */
 
    async createToken(gasPrice, gasLimit, value ){
-    var tokenid = bigInt.randBetween("0", "1e52").toString();
+   
     var tokenowner;
     while(tokenowner !="0x0000000000000000000000000000000000000000"){
+        var tokenid = bigInt.randBetween("0", "1e15").toString();
         tokenowner = await  this.contract.methods.ownerOf(tokenid).call({ from: this.account});
     }
 
@@ -121,6 +124,10 @@ optContractAdress- if the contract is already deployed the blockchain contractad
         });
     }
 
+    async balanceOf(tokenowner){
+
+        return this.contract.methods.balanceOf(tokenowner).call({from: this.account});
+    }
 
 
 

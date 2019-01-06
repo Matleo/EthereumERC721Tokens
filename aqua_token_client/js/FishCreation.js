@@ -9,3 +9,20 @@ function createFish(){
   insertFishToAquarium(fish);
 
 }
+
+
+async function FishCreationProcess(){
+
+  //Create Fish Token in Contract
+
+  
+ aquaTokenContract.createToken("1965857",3065857,0).then(function(result){
+  console.log(result)
+  createFish(); //FishCreation.js
+  $('#createFishModal').modal('hide');
+  
+ }).catch(function(error){
+console.log(error)
+ });
+
+}

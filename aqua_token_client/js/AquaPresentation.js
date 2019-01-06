@@ -79,8 +79,8 @@ function insertToSVG(svgID, fish){
   //insert fish to aquarium
   if(svgID =="aquarium"){
     fish.group = svg.group(); //create new group in aquarium
-    appendSVGtoGroup("../../resources/SVGs/Kopf/Form"+fish.headType+".svg", svg, fish.group, fish.posX, fish.posY);
-    appendSVGtoGroup("../../resources/SVGs/Schwanz/Form"+fish.tailType+".svg", svg, fish.group, fish.posX, fish.posY);
+    appendSVGtoGroup("../resources/SVGs/Kopf/Form"+fish.headType+".svg", svg, fish.group, fish.posX, fish.posY);
+    appendSVGtoGroup("../resources/SVGs/Schwanz/Form"+fish.tailType+".svg", svg, fish.group, fish.posX, fish.posY);
 
     //add click listener
     fish.group.addEventListener("click", () => {
@@ -95,8 +95,8 @@ function insertToSVG(svgID, fish){
     $("#fishPlaceholder").remove();
     $("#fishProfile > svg").empty();
     var group = svg.group();//create new group in fishprofile
-    appendSVGtoGroup("../../resources/SVGs/Kopf/Form"+fish.headType+".svg", svg, group, 0, -30);
-    appendSVGtoGroup("../../resources/SVGs/Schwanz/Form"+fish.tailType+".svg", svg, group, 0, -30);
+    appendSVGtoGroup("../resources/SVGs/Kopf/Form"+fish.headType+".svg", svg, group, 0, -30);
+    appendSVGtoGroup("../resources/SVGs/Schwanz/Form"+fish.tailType+".svg", svg, group, 0, -30);
   }
 }
 function appendSVGtoGroup(path, svg, group, posX, posY){
