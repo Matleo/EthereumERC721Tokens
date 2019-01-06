@@ -16,6 +16,15 @@ $('#addFish').click(function () {
 });
 
 
+$('#button-addon2').click(function(){
+
+  transferFish($('#recieverAdress').val()).then(function(result){
+    console.log(result[0],result[1])
+  })
+
+}
+
+
 $(document).ready(async () => {
   $("button").prop("disabled", true);
   // Modern dapp browsers...
@@ -89,6 +98,13 @@ async function createToken() {
   return Promise.resolve([contractResult, databaseResult]);
 };
 
+/* unchecked */
+async function transferFish(recieverAdress){
 
-
+  var contractResult = await aquaTokenContract.transferFrom(recieverAdress,"1965857",3065857,0 );
+  var existingFishToken =  await fishTokenDatabase.getFishToken("Hier Id rein");
+  existingFishToken.ownerAdress(recieverAdress)
+  var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(existingFishToken);
+  return Promise.resolve(databaseResult );
+}
 
