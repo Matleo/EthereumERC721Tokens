@@ -1,7 +1,45 @@
+
+
+var aquaTokenContract;
+
+
 $('#addFish').click(function() {
-  createFish(); //FishCreation.js
-  $('#createFishModal').modal('hide');
+ //create RandomTokenId 
+ aquaTokenContract.createToken("1965857",3065857,0).then(function(result){
+  console.log(result[0],result[1])
+  aquaTokenContract.transferFrom("0x5Afd91398E7118e15c2fC1e295b6C0bA1456602D",result[1],"1965857",3065857,0).then(function(result){
+    console.log(result);
+  });
+  
+  //createFish(); //FishCreation.js
+  //$('#createFishModal').modal('hide');
+  
+ }).catch(function(error){
+console.log(error)
+ });
+
+//send Transaction 
+
+
+/*aquaTokenContract.createToken("123456789","1965857",3065857, function(result){
+
+  console.log("success");
+  console.log(result);
+
+ 
+
+
+    }, function(error){
+  console.log("error");
+  console.log(error)
+  });
+
+  
+
+*/
+ 
 });
+
 
 $(document).ready(async () => {
   $("button").prop("disabled",true);
@@ -12,7 +50,8 @@ $(document).ready(async () => {
           // Request account access if needed
          var x  = await ethereum.enable();
         
-          console.log(x);
+          window.web3.eth.defaultAccount=x[0];
+        
           // Acccounts now exposed
           $("button").prop("disabled",false);
           $("#access").hide();
@@ -39,13 +78,18 @@ $(document).ready(async () => {
   }
   //Neuer Einstiegpunkt der Anwendung
 
-  var aquaTokenContract = new AquaTokenContract();
-  aquaTokenContract.createContract(erc721.abi);
- aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857,0, function(result){
-   console.log("confirmed");
-   console.log(result)
-   
- }, function(error){
-   console.log("error");
-  });
+ aquaTokenContract = new AquaTokenContract();
+//aquaTokenContract.createContract(erc721.abi);
+aquaTokenContract.createContract(erc721.abi,"0xf43925F2878453014350c4E55c7697A48D3E2813");
+
+/*aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
+  console.log( result);
+}).catch(function(error){
+
+  console.log("error" + error)
+});
+  
+*/
+  
+
 });
