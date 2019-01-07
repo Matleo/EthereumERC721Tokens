@@ -1,12 +1,12 @@
-package hello;
+package database;
 
 import lombok.Data;
 
 
 @Data
-public class Action {
+public class Action<T> {
 
 private DatabaseAction databaseAction;
-private SimpleToken simpleToken;
+private T token;
 
 }
