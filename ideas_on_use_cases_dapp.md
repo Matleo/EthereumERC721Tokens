@@ -1,9 +1,11 @@
 # Ideensammlung zu fachlichen Anwendungsfällen für unsere DApp
 
-Bitte trag hier eure Ideen zu Anwendungsfällen für unseren Token, sowie fachliche Anforderungen an die DApp/ den JS-Client ein.
+## Use Case (Context der Anwendung. Welches Problem löst unsere DApp/Für was wird der Token verwendet.)
+- Client stellt ein Fischaquarium dar. 
+- ERC721 Tokens repräsentieren die einzelnen Fische. 
+- Eigenschaften dieser Fische sind erstmal in einer DB hinterlegt. 
+- Die Fische verschiedener Clients sollen miteinander interagieren können (z.b. tauschen oder gegeneinander kämpfen)
 
-## Use Case
-- ...
 
 ## Fachliche Anforderungen
 - Deploy/Anbindung eines bestehenden ERC721 über GUI
@@ -13,4 +15,16 @@ Bitte trag hier eure Ideen zu Anwendungsfällen für unseren Token, sowie fachli
 - Versenden von Tokens
 - Approval/Entfernen des Approval für den Versand von Token
 - Entfernen von eigenen Tokens
-- Auflisten der TOkens nach gewissen Eigenschaften/Suchfunktionalität
+- Auflisten der Tokens nach gewissen Eigenschaften/Suchfunktionalität
+- Listen darauf, wenn anderer Client ein Token erstellt hat. -> Die Anzahl aller Tokens in der GUI hochzählen.
+
+## Technische Anforderungen
+
+- Rich Javascript Client (Single Page Applikation) zur Interaktion mit Blockchain und Datenspeicher
+- Kein funktionelles Backend (Backend kapselt nur Datenbankverbindung). Wird später vollständig durch IPFS ersetzt (Client und Backend)
+- Ein Smart Contracts zur Besitzverwaltung der Tokens
+- Libraries / Framework Ideen:
+    - JQUERY / SVG / p5.js für Animationen
+    - React für Single Page Applikation
+    - Web3.js(+ Metamask) zur Kommunikation mit dem Smart Contract
+    - => Vorerst keine dependencies. Nur JQuery, kein React, kein Truffle.

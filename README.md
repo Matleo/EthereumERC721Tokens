@@ -13,3 +13,9 @@ This project was realized as students project from the HTWG Konstanz. We are try
 5. [Solidity Basics](./documentation/solidity.md)
 6. [Relevanz von Interfaces](./documentation/relevanz_von_interfaces.md)
 7. [Quellverzeichnis](documentation/references.md)
+
+
+###Projects
+
+1. [GenToken-Client](./gentoken-client/readme.md)
+2. [GenToken-Database-Service](./gentoken-database/readme.md)

@@ -1,0 +1,19 @@
+.container {
+	background-color: lightblue;
+}
+#mainImage {
+	max-width:1000px;
+	max-height:600px;
+	width:1000px;
+	height:600px;
+}
+.fishImage{
+	max-width:120px;
+	max-height:100px;
+	width:120px;
+	height:100px;
+}
+
+.margin-top-1{
+	margin-top: 2em;
+}

@@ -41,9 +41,9 @@ MetaMask bietet hier eine einfache Integration in die Webbrowser Firefox und Chr
 
 ## Erste Schritte
 Wir sind auf das Plugin gestoßen als wir uns ein Codebeispiele für den ERC20 angesehen haben ([Webseite](https://steemit.com/ethereum/@maxnachamkin/how-to-create-your-own-ethereum-token-in-an-hour-erc20-verified)). 
-Meta Mask wurde auf dieser Seite empfohlen um einfach Tokens zu erstellen und diese dann mithilfe von Ether zu kaufen bzw. zu verkaufen.
+MetaMask wurde auf dieser Seite empfohlen um einfach Tokens zu erstellen und diese dann mithilfe von Ether zu kaufen bzw. zu verkaufen.
 Als erstes muss das Plugin für den Browser herunterladen werden, wir haben in diesem Fall den Chrome Browser benutzt. MetaMask unterstützt allerdings auch Firefox und Opera. 
-Sobald dann die Erweiterung erfolgreich dem Browser hinzugefügt wurde muss sich in Meta Mask angelemdet werden. Um sich anzumelden muss zuvor noch ein Passwort für den Account angegeben werden. Anschließend werden einem 12 Wörter als Secret vorgelegt, diese sollten sicher notieren werden, da es nur darüber möglich ist den Account zu importieren.
+Sobald dann die Erweiterung erfolgreich dem Browser hinzugefügt wurde muss sich in MetaMask angemeldet werden. Um sich anzumelden muss zuvor noch ein Passwort für den Account angegeben werden. Anschließend werden einem 12 Wörter als Secret vorgelegt, diese sollten sicher notieren werden, da es nur darüber möglich ist den Account zu importieren.
 
 ## Account einrichten
 Sobald die Anmeldung erfolgreich abgeschlossen wurde, kann im Browser im Plugin Bereich auf das "Fuchs" Symbol geklickt werden um MetaMask zu öffnen. Der Account kann nun betrachtet werden. In der oberen rechten Ecke steht das Netzwerk auf dem der Account sich befindet und weiter darunter stehen die Ether die dieser Account besitzt.
@@ -62,8 +62,11 @@ Nachdem der Account mit Ether ausgestattet und mit dem gewünschten Netzwerk ver
 Hierzu wird in Remix im Reiter 'Run' unter Environment 'Inject Web3' ausgewählt. MetaMask wird automatisch im aktuell ausgewählten Netzwerk erkannt und auch der aktuell angemeldete Account wird automatisch in Remix ausgewählt.
 Nun können wir unsere Contracts in das ausgewählte Testnetzwerk über unseren neuen Account deployen.
 
-## Eigene Tokens hinzufügen
-Um eigene Tokens hinzuzufügen wird in Meta Mask auf _"Add Token"_ geklickt und dann kann die Adresse des Token-Contract eintragen werden. 
+### Ganache Account in MetaMask hinzufügen
+Hierzu Ganache öffnen und einen der 10 Accounts aussuchen und rechts auf das Schlüssesymbol klicken. Den angezeigten Private Key kopieren und nun zu MetaMask Plugin im Browser wechseln. Oben rechts auf das Menü und auf "Acount Importieren" klicken. Den Private Key einfügen und importieren auswählen. Nun ist der Account hinzugefügt, ggf. muss im mittleren Menü oben das Netzwerk auf Localhost geändert werden. (Standard in Ganache ist der Port 8545 eingestellt, diesen einfach in Ganche unter Einstellungen auf den Port 7545 ändern, da dieser Port als Standard in Meta Mask benutzt wird)
+
+### Eigene Tokens hinzufügen
+Um eigene Tokens hinzuzufügen wird in MetaMask auf _"Add Token"_ geklickt und dann kann die Adresse des Token-Contract eintragen werden. 
 Die restlichen Felder werden automatisch ausgefüllt. Nun auf _"Add"_ klicken und die Tokens sind unter dem Reiter _"Tokens"_ sichtbar.
 Wenn auf den erstellten Token geklickt wird, öffnet sich die Webseite  _"Ropsten Etherscan"_ auf der, der Holder des Contracts, die Contract Adresse und die jeweiligen Transaktionen zu sehen sind.
 
