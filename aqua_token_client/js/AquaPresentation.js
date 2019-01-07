@@ -1,3 +1,5 @@
+//This component is responsible for managing the aquarium svg
+
 //initialize aquarium svg
 $("#aquarium").svg({settings:{height: 400, width:800}});
 $("#fishProfile").svg({settings:{height: 100, width:100}});

@@ -1,21 +1,20 @@
+//This component is responsible for triggering actions on the GUI (some kind of 'controller')
 var aquaTokenContract;
 
 
 $('#addFish').click(function () {
-
+  $('#createFishModal').modal('hide');
   //FishCreation.js
   createFish().then(function (result) {
-    $('#createFishModal').modal('hide');
+    //TODO
   });
 });
 
 
-$('#button-addon2').click(function(){
+$('#button-addon2').click(function() {
+  AquaTokenContract.transferFrom(recieverAdress,"1965857",3065857,0 ).then(result => {
 
-  transferFish($('#recieverAdress').val()).then(function(result){
-    console.log(result[0],result[1])
   });
-
 });
 
 
@@ -56,34 +55,22 @@ $(document).ready(async () => {
   
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
-  aquaTokenContract.createContract(erc721.abi, "0xCa75F775Dc60b6366Ec917f1a13b8E6aC3545D9A");
+  aquaTokenContract.createContract(erc721.abi, "0xb07b601097e9366a9a04b64ae868bd85a37781b6");
   
   /* ExampleCode for deploying a Contract */
-  /*aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
-	console.log( result);
-    }).catch(function(error){
+  /*
+  aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
+	  console.log( result);
+  }).catch(function(error){
     console.log("error" + error)
-    });
-   */
+  });
+  */
    
-   //Read all Tokens of current User (TODO: Add Database)
-   aquaTokenContract.allOwnedTokens().then(function(result){
-	   for(i in result){
-		   var tokenID = result[i];
-		   insertRandomFish();
-	   }
-   });
+  //Read all Tokens of current User (TODO: Add Database)
+  aquaTokenContract.allOwnedTokens().then(function(result){
+    for(i in result){
+      var tokenID = result[i];
+      insertRandomFish();
+    } 
+  });
 });
-
-
-
-/* unchecked */
-async function transferFish(recieverAdress){
-
-  var contractResult = await aquaTokenContract.transferFrom(recieverAdress,"1965857",3065857,0 );
-  var existingFishToken =  await fishTokenDatabase.getFishToken("Hier Id rein");
-  existingFishToken.ownerAdress(recieverAdress)
-  var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(existingFishToken);
-  return Promise.resolve(databaseResult );
-}
-
