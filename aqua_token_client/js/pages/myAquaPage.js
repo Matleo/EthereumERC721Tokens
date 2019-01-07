@@ -20,9 +20,9 @@ $('#button-addon2').click(function(){
 
   transferFish($('#recieverAdress').val()).then(function(result){
     console.log(result[0],result[1])
-  })
+  });
 
-}
+});
 
 
 $(document).ready(async () => {
