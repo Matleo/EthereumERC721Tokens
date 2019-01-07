@@ -16,7 +16,7 @@
    version="1.1"
    id="svg5112"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="Kopf21_Orange.svg">
+   sodipodi:docname="Form4.svg">
   <defs
      id="defs5106">
     <linearGradient
@@ -48,9 +48,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="349.53798"
-     inkscape:cy="97.772562"
+     inkscape:zoom="2.6"
+     inkscape:cx="376.2929"
+     inkscape:cy="156.95892"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -69,7 +69,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -82,8 +82,8 @@
        id="g830"
        transform="matrix(0.99714314,0,0,1,0.54859439,2e-5)">
       <path
-         style="opacity:0.85;fill:#a14d00;fill-opacity:1;stroke:none;stroke-width:1.10114563;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 99.999997,216.99998 c 0,0 46.212883,-8.77353 59.829513,-9.37939 10.92597,-0.48598 17.12678,1.38725 23.45634,6.64215 9.28021,7.70456 16.08138,15.3977 16.71415,32.68967 -0.62689,13.52741 -4.7194,22.41852 -10.83968,29.91529 C 178.87225,289.46954 164.20951,298.19026 150,296.86751 134.8548,295.45767 99.999997,277.85415 99.999997,277.85415 Z"
+         style="opacity:1;fill:#a14d00;fill-opacity:1;stroke:none;stroke-width:1.10114563;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 99.736338,216.9999 c 0,0 46.476542,-8.77345 60.093172,-9.37931 10.92597,-0.48598 17.12678,1.38725 23.45634,6.64215 9.28021,7.70456 16.08138,15.3977 16.71415,32.68967 -0.62689,13.52741 -4.7194,22.41852 -10.83968,29.91529 C 178.87225,289.46954 164.20951,298.19026 150,296.86751 134.8548,295.45767 99.736338,277.85398 99.736338,277.85398 Z"
          id="rect5139-6"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="csacascc" />
