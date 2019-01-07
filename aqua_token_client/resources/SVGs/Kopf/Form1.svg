@@ -11,7 +11,7 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="200mm"
    height="100mm"
-   viewBox="0 0 199.99999 100"
+   viewBox="0 0 200 100"
    version="1.1"
    id="svg5137"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
@@ -55,7 +55,7 @@
      id="layer1"
      transform="translate(0,-196.99998)">
     <path
-       style="opacity:0.7;fill:#000000;fill-opacity:1;stroke-width:1.10118127"
+       style="opacity:1;fill:#474444;fill-opacity:1;stroke-width:1.10118127"
        d="m 100,216.99998 c 0,0 36.38337,-19.35686 50,-19.96272 10.92597,-0.48598 27.41468,3.74116 37.29047,14.95762 7.39829,8.40267 12.07676,17.66556 12.70953,34.95753 -0.62689,13.52741 -4.7194,22.41852 -10.83968,29.91529 -10.28807,12.60184 -24.95081,21.32256 -39.16032,19.99981 -15.1452,-1.40984 -50,-19.86753 -50,-19.86753 z"
        id="rect5139"
        inkscape:connector-curvature="0"

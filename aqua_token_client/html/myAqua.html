@@ -16,8 +16,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <span class="navbar-brand">MyAquaToken</span>
     </nav>
-    <div class="container h-100">
-      <div class="row">
+	<div id="loader">
+		<div class="row justify-content-center mt-5"> <div class="loader" ></div></div>
+		<div class="row justify-content-center mt-3"> <p>Waiting for Meta Mask login to unleash the fishes!</p> </div>
+	</div>
+    <div class="container h-100" id="content">
+      <div class="row" id="topcontent">
         <div class="col-9 offset-md-1 margin-top-1">
           <div id="aquarium"></div>
        </div>
@@ -27,13 +31,12 @@
       </div>
       <div class="row">
         <div class="col">
-          <h2>Fisch:</h2>
+          <h2 class="mt-4" >Der Fisch besitzt folgende Eigenschaften:</h2>
         </div>
       </div>
       <div class="row">
-        <div class="col-10">
-          <h4>Eigenschaften</h3>
-          <table class="table">
+        <div class="col-10">          
+          <table class="table mt-3">
             <thead>
               <tr>
                 <th scope="col">Eigenschaft</th>
@@ -84,7 +87,7 @@
         </div>
       </div>
     </div>
-
+	</div>
     <!-- Modal -->
     <div class="modal fade" id="createFishModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -105,7 +108,7 @@
           </div>
         </div>
       </div>
-    </div>
+
 
     <div class="modal fade" id="mateFishModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">

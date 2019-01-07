@@ -20,6 +20,10 @@ $('#button-addon2').click(function() {
 
 $(document).ready(async () => {
   $("button").prop("disabled", true);
+   var loader = $("#loader");
+   var content = $("#content");
+   loader.show();
+   content.hide();
   // Modern dapp browsers...
   if (window.ethereum) {
     window.web3 = new Web3(ethereum);
@@ -52,7 +56,8 @@ $(document).ready(async () => {
   else {
     console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
   }
-  
+  loader.hide();
+  content.show();
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
   aquaTokenContract.createContract(erc721.abi, "0xb07b601097e9366a9a04b64ae868bd85a37781b6");
