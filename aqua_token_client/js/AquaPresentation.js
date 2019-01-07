@@ -86,6 +86,7 @@ function insertToSVG(svgID, fish){
     fish.group.addEventListener("click", () => {
       $("#flosseValue").html(fish.tailType);
       $("#kopfValue").html(fish.headType);
+      $("#nameValue").html(fish.name);
       insertToSVG("fishProfile", fish);
     });
 

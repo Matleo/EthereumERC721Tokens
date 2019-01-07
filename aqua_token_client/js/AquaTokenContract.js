@@ -77,10 +77,11 @@ optContractAdress- if the contract is already deployed the blockchain contractad
  */
 
    async createToken(gasPrice, gasLimit, value ){
-   
+
     var tokenowner;
     while(tokenowner !="0x0000000000000000000000000000000000000000"){
         var tokenid = bigInt.randBetween("0", "1e15").toString();
+		
         tokenowner = await  this.contract.methods.ownerOf(tokenid).call({ from: this.account});
     }
 
@@ -89,6 +90,7 @@ optContractAdress- if the contract is already deployed the blockchain contractad
        sendOptions.gasPrice = gasPrice;
        sendOptions.gasLimit = gasLimit;
        //this.sendOptions.value = value;
+	  
       return this.contract.methods.create_token(this.account,tokenid).send(sendOptions).on('error', function(error){
         return Promise.reject(error);
        }).then(function(result){
@@ -127,6 +129,11 @@ optContractAdress- if the contract is already deployed the blockchain contractad
     async balanceOf(tokenowner){
 
         return this.contract.methods.balanceOf(tokenowner).call({from: this.account});
+    }
+	
+	async allOwnedTokens(){
+
+        return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
     }
 
 

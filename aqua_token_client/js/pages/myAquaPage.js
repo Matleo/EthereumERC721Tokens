@@ -1,17 +1,11 @@
-
-
 var aquaTokenContract;
 
 
 $('#addFish').click(function () {
 
-  createToken().then(function (result) {
-
-    console.table(result[0]);
-    console.table(result[1]);
-    createFish(); //FishCreation.js
+  //FishCreation.js
+  createFish().then(function (result) {
     $('#createFishModal').modal('hide');
-
   });
 });
 
@@ -59,44 +53,29 @@ $(document).ready(async () => {
   else {
     console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
   }
+  
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
-  //aquaTokenContract.createContract(erc721.abi);
-  aquaTokenContract.createContract(erc721.abi, "0xf43925F2878453014350c4E55c7697A48D3E2813");
-
-  /* ExampleCode for deploying a Contract
-  aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
-    console.log( result);
+  aquaTokenContract.createContract(erc721.abi, "0xCa75F775Dc60b6366Ec917f1a13b8E6aC3545D9A");
+  
+  /* ExampleCode for deploying a Contract */
+  /*aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
+	console.log( result);
     }).catch(function(error){
     console.log("error" + error)
     });
-    
-  */
-
+   */
+   
+   //Read all Tokens of current User (TODO: Add Database)
+   aquaTokenContract.allOwnedTokens().then(function(result){
+	   for(i in result){
+		   var tokenID = result[i];
+		   insertRandomFish();
+	   }
+   });
 });
 
 
-
-/*Should moved in a seperater Helper Script or in FishCreation */
-
-async function createToken() {
-
-  var contractResult = await aquaTokenContract.createToken("1965857", 3065857, 0);
-
-  //TODO Generate FishToken with Values 
-  console.log(contractResult[1]);
-  console.log(parseInt(contractResult[1]));
-  var fishToken = new FishToken(parseInt(contractResult[1]), "Anton", 2.9, "Form1.svg", "Form3.svg", aquaTokenContract.account);
-  console.log(fishToken);
-  var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
-  /* aquaTokenContract.transferFrom("0x5Afd91398E7118e15c2fC1e295b6C0bA1456602D",result[1],"1965857",3065857,0).then(function(result){
-    console.log(result);});  
-     }).catch(function(error){
-      console.log(error)
-     });
-    */
-  return Promise.resolve([contractResult, databaseResult]);
-};
 
 /* unchecked */
 async function transferFish(recieverAdress){
