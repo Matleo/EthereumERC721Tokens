@@ -1,21 +1,19 @@
 async function createFish(){
 	
-  var contractResult = await aquaTokenContract.createToken("1965857", 3065857, 0);
+  var contractResult = await aquaTokenContract.createToken("9000000000",3065857, 0);
 
   
    var fish = insertRandomFish();
    //TODO Generate FishToken with Values 
-   var fishToken = new FishToken(parseInt(contractResult[1]), fish.name, fish.speed, fish.headType.toString(), fish.tailType.toString(), aquaTokenContract.account);
-   //var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
-   /* aquaTokenContract.transferFrom("0x5Afd91398E7118e15c2fC1e295b6C0bA1456602D",result[1],"1965857",3065857,0).then(function(result){
-    console.log(result);});  
+   var fishToken = new FishToken(parseInt(contractResult[1]), fish.name, fish.speed, fish.headType.toString(), fish.tailType.toString());
+   var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
+    /*aquaTokenContract.transferFrom("0x5Afd91398E7118e15c2fC1e295b6C0bA1456602D",result[1],"1965857",28000000,0).then(function(result){
+    console.log(result);
      }).catch(function(error){
       console.log(error)
      });
-    */
-	
   
-  
+   */
   return Promise.resolve([contractResult]);
 }
 

@@ -29,7 +29,7 @@ async function databaseRequest(path,method,dataType, contentType,params) {
 
 
         $.ajax({
-            url: "http://localhost:8080/fishToken/" + path,
+            url: "https://math2i.bounceme.net:8080/database/fishToken/" + path,
             method: method,
             dataType: dataType,
             contentType: contentType,
