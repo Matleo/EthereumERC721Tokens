@@ -27,7 +27,7 @@ function insertRandomFish(){
   var randY = Math.round(Math.random()*200);
   var randSpeed = Math.random()*6 + 1;
   
-  var fish = new Fish(headType, tailType, randX, randY, randSpeed, "Anton"+randSpeed);
+  var fish = new Fish(headType, tailType, randX, randY, randSpeed, "Anton");
   insertFishToAquarium(fish);
   
   return fish;
