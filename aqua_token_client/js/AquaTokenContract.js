@@ -78,8 +78,8 @@ class AquaTokenContract {
 
     var sendOptions = {};
     sendOptions.from = this.account; 
-    sendOptions.gasPrice = gasPrice;
-    sendOptions.gasLimit = gasLimit;
+    //sendOptions.gasPrice = gasPrice;
+    //sendOptions.gasLimit = gasLimit;
     //this.sendOptions.value = value;
 
     return this.contract.methods.create_token(this.account, tokenid)

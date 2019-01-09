@@ -86,15 +86,19 @@ public class FishTokenController {
         return action;
     }
 
-    
-    @CrossOrigin(origins ="*")
+
+    @CrossOrigin(origins = "*")
     @GetMapping(path="/owner", produces = MediaType.APPLICATION_JSON_VALUE )
-    public @ResponseBody Iterable<FishToken> getTokensByOwner(@RequestParam Iterable<Long> token_ids) {
+    public @ResponseBody Iterable<FishToken> getTokensByOwner(@RequestParam String token_ids) {
+
+        String[] string_ids = token_ids.split(",");
+        Set<Long> ids  = new HashSet<Long>();
+        for(int i=0; i< string_ids.length; i++){
+
+         ids.add(Long.parseLong(string_ids[i]));
+        }
     	
-    	
-    	return fishTokenRepository.findAllById(token_ids);
-   
-    	
+    	return fishTokenRepository.findAllById(ids);
     }
 
 

@@ -7,7 +7,6 @@ class FishToken {
     this.speed = speed;
     this.headType = headType;
     this.tailType = tailType;
-    this.ownerAdress = ownerAdress;
     }
     getTokenId(){
         return this.token_Id;
@@ -24,9 +23,6 @@ class FishToken {
     getTailType(){
         return this.tailType;
     }
-    getOwnerAdress(){
-        return this.ownerAdress;
-    }
     setTokenId(token_Id){
         this.token_Id = token_Id;
     }
@@ -41,9 +37,6 @@ class FishToken {
     }
     setTailType(tailType){
         this.tailType = tailType;
-    }
-    setOwnerAdress(ownerAdress){
-        this.ownerAdress = ownerAdress;
     }
 
 }

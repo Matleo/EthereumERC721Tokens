@@ -12,7 +12,7 @@ $('#addFish').click(function () {
 
 
 $('#button-addon2').click(function() {
-  AquaTokenContract.transferFrom(recieverAdress,"1965857",3065857,0 ).then(result => {
+  AquaTokenContract.transferFrom(recieverAdress,306587,0 ).then(result => {
 
   });
 });
@@ -60,7 +60,7 @@ $(document).ready(async () => {
   content.show();
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
-  aquaTokenContract.createContract(erc721.abi, "0xb07b601097e9366a9a04b64ae868bd85a37781b6");
+  aquaTokenContract.createContract(erc721.abi, "0xb61c70a8766ebb9594a47ba75406499181ade617");
   
   /* ExampleCode for deploying a Contract */
   /*
