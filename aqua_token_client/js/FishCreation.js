@@ -71,3 +71,8 @@ function readAllFishes(){
 
 
 }
+
+function pairFishes(){
+  console.log(fishArray[fishCount]);
+ 
+}

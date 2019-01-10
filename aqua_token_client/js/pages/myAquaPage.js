@@ -1,5 +1,39 @@
-//This component is responsible for triggering actions on the GUI (some kind of 'controller')
 var aquaTokenContract;
+var fishCount = 0;
+var fishArray;
+
+
+$("#mateFishModal").on("shown.bs.modal", function(){
+  fishTokenDatabase.getAllFishTokens().then(function(result){
+  fishCount =0;
+  fishArray = result;
+  pairView();
+
+ 
+    $("#goLeft").click(function(){
+      fishCount< 0 ? fishCount-- :  fishCount = result.length-1;
+      pairView(result);
+    });
+
+    $("#goRight").click(function(){
+      fishCount < result.length? fishCount++: fishCount = 0;
+      pairView(result);
+    });
+
+    $("#pair").click(function(){
+      pairFishes(fishArray);
+    });
+
+  });
+});
+
+$("#mateFishModal").on("hide.bs.modal", function(){
+$("#goRight").unbind("click");
+$("#goLeft").unbind("click");
+});
+
+
+//This component is responsible for triggering actions on the GUI (some kind of 'controller')
 
 
 $('#addFish').click(function () {
@@ -9,13 +43,6 @@ $('#addFish').click(function () {
     //TODO
   }).catch(function(error){
     console.log(error);
-  });
-});
-
-
-$('#button-addon2').click(function() {
-  AquaTokenContract.transferFrom(recieverAdress,306587,0 ).then(result => {
-
   });
 });
 
@@ -80,3 +107,24 @@ $(document).ready(async () => {
   //Read all Tokens of current User (TODO: Add Database)
 
 });
+
+function pairView(){
+  $("#name").text(fishArray[fishCount].name);
+
+  $("#propertyTable").empty();
+    $("#propertyTable").append("<tr>");
+    $("#propertyTable").append("<td> tokenid: </td>");
+    $("#propertyTable").append("<td>" + fishArray[fishCount].token_id +"</td>" );
+    $("#propertyTable").append("</tr>");
+
+    $("#propertyTable").append("<tr>");
+    $("#propertyTable").append("<td> Kopf: </td>");
+    $("#propertyTable").append("<td>" + fishArray[fishCount].headType +"</td>" );
+    $("#propertyTable").append("</tr>");
+    
+    $("#propertyTable").append("<tr>");
+    $("#propertyTable").append("<td> Flosse: </td>");
+    $("#propertyTable").append("<td>" + fishArray[fishCount].tailType +"</td>" );
+    $("#propertyTable").append("</tr>");
+
+}
