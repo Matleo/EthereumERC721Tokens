@@ -12,12 +12,16 @@ class AquaTokenContract {
 
   init() {
     this.account = this.web3.currentProvider.selectedAddress; 
+
+    console.log(this.account);
+    console.log(this.web3.currentProvider.selectedAddress)
     //Looking in a Interval of 100ms if the selected Account in Metmask was changed. Set the Default Account which is ever used as sender.
     setInterval(function() {
       if(this.account!== this.web3.currentProvider.selectedAddress) {
-          this.account = this.web3.currentProvider.selectedAddress;
+        console.log("change");
+        window.location.reload();
       }
-    }, 100);
+    }.bind(this), 100);
   }
 
 
@@ -85,7 +89,20 @@ class AquaTokenContract {
     return this.contract.methods.create_token(this.account, tokenid)
       .send(sendOptions)
       .on('error', function(error) {
+        console.log(error);
         return Promise.reject(error);
+      })
+      .on('receipt',function(result){
+        console.log("receipt");
+        console.log(result)
+      })
+      .on("transactionHash", function(result){
+        console.log("transactionHash")
+        console.log(result);
+      })
+      .on("confirmation", function(result){
+        console.log("confirmation");
+        console.log(result);
       })
       .then(function(result) {
         console.log(tokenid, tokenowner)

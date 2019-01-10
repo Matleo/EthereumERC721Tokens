@@ -7,6 +7,8 @@ $('#addFish').click(function () {
   //FishCreation.js
   createFish().then(function (result) {
     //TODO
+  }).catch(function(error){
+    console.log(error);
   });
 });
 
@@ -60,8 +62,12 @@ $(document).ready(async () => {
   content.show();
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
-  aquaTokenContract.createContract(erc721.abi, "0xb61c70a8766ebb9594a47ba75406499181ade617");
-  
+  //0x063fb337363d3d329d87ea030351a4af3fd44e9e
+  //0x447A1eab2061a06bF82B039c275Dbfaa8d6Fa927
+  aquaTokenContract.createContract(erc721.abi, "0x063fb337363d3d329d87ea030351a4af3fd44e9e");
+  console.log(nameList.length);
+
+  readAllFishes();
   /* ExampleCode for deploying a Contract */
   /*
   aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
@@ -72,10 +78,5 @@ $(document).ready(async () => {
   */
    
   //Read all Tokens of current User (TODO: Add Database)
-  aquaTokenContract.allOwnedTokens().then(function(result){
-    for(i in result){
-      var tokenID = result[i];
-      insertRandomFish();
-    } 
-  });
+
 });
