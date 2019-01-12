@@ -9,7 +9,7 @@ $("#mateFishModal").on("shown.bs.modal", function(){
   fishArray = result;
   pairView();
 
- 
+
     $("#goLeft").click(function(){
       fishCount< 0 ? fishCount-- :  fishCount = result.length-1;
       pairView(result);
@@ -91,10 +91,9 @@ $(document).ready(async () => {
   aquaTokenContract = new AquaTokenContract();
   //0x063fb337363d3d329d87ea030351a4af3fd44e9e
   //0x447A1eab2061a06bF82B039c275Dbfaa8d6Fa927
-  aquaTokenContract.createContract(erc721.abi, "0x063fb337363d3d329d87ea030351a4af3fd44e9e");
-  console.log(nameList.length);
+  aquaTokenContract.createContract(erc721.abi, "0xffd39fbf691c62e8f4b7e70a9e09898bc9b7ae7c");
 
-  readAllFishes();
+  readAllFishes(); //FishCreation.js
   /* ExampleCode for deploying a Contract */
   /*
   aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
@@ -103,7 +102,7 @@ $(document).ready(async () => {
     console.log("error" + error)
   });
   */
-   
+
   //Read all Tokens of current User (TODO: Add Database)
 
 });
@@ -121,7 +120,7 @@ function pairView(){
     $("#propertyTable").append("<td> Kopf: </td>");
     $("#propertyTable").append("<td>" + fishArray[fishCount].headType +"</td>" );
     $("#propertyTable").append("</tr>");
-    
+
     $("#propertyTable").append("<tr>");
     $("#propertyTable").append("<td> Flosse: </td>");
     $("#propertyTable").append("<td>" + fishArray[fishCount].tailType +"</td>" );
