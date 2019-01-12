@@ -27,11 +27,7 @@ function draw(){
 
     var randX = Math.floor(Math.random() * 50);
     var randY = Math.floor(Math.random() * 25);
-
-    /*var pos = fish.group.transform.baseVal.getItem(0);
-    var posX = pos.matrix.e;
-    var posY = pos.matrix.f;
-    */
+    
     var posX = fish.posX;
     var posY = fish.posY;
 

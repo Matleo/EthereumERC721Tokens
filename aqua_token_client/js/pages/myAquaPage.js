@@ -34,8 +34,6 @@ $("#goLeft").unbind("click");
 
 
 //This component is responsible for triggering actions on the GUI (some kind of 'controller')
-
-
 $('#addFish').click(function () {
   $('#createFishModal').modal('hide');
   //FishCreation.js
@@ -87,23 +85,19 @@ $(document).ready(async () => {
   }
   loader.hide();
   content.show();
+
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
   //0x063fb337363d3d329d87ea030351a4af3fd44e9e
   //0x447A1eab2061a06bF82B039c275Dbfaa8d6Fa927
-  aquaTokenContract.createContract(erc721.abi, "0xffd39fbf691c62e8f4b7e70a9e09898bc9b7ae7c");
+  aquaTokenContract.createContract(erc721.abi, "0xdcad179ccc4d7b4b07aa4bd96797f68a217418de");
 
+  //Get all owned Fishes of current User:
   readAllFishes(); //FishCreation.js
-  /* ExampleCode for deploying a Contract */
-  /*
-  aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
-	  console.log( result);
-  }).catch(function(error){
-    console.log("error" + error)
-  });
-  */
 
-  //Read all Tokens of current User (TODO: Add Database)
+
+  //TODO @Jannis: listen to event of NewbornFish
+  aquaTokenContract.contract.events.NewbornFish({}, function(error, event){ console.log(event.returnValues); })
 
 });
 

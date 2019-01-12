@@ -7,7 +7,7 @@ async function createFish() {
   //TODO Generate FishToken with Values
   var headType = Math.floor(Math.random() * 4) + 1;
   var tailType = Math.floor(Math.random() * 4) + 1;
-  var randSpeed = Math.random() * 6 + 1;
+  var randSpeed = Math.random() * 5 + 1;
   var name = nameList[Math.floor(Math.random() * 9505) + 1];
   var fishToken = new FishToken(parseInt(contractResult[1]), name, randSpeed, headType.toString(), tailType.toString());
   var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
@@ -41,20 +41,14 @@ insertFishToAquarium(fish);
 }
 
 function readAllFishes(){
-
-
   aquaTokenContract.allOwnedTokens().then(function(result){
-
-
     if(result.length ==0 ){
       return;
     }
-
-  var token_ids_String="";
-  for(i in result){
-  token_ids_String+= result[i] +",";
-
-}
+    var token_ids_String="";
+    for(i in result){
+    token_ids_String+= result[i] +",";
+  }
 
   token_ids_String = token_ids_String.substr(0, token_ids_String.length-1);
   fishTokenDatabase.getFishTokensByIds(token_ids_String).then(function(result){
