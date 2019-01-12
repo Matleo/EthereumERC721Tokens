@@ -89,8 +89,8 @@ $(document).ready(async () => {
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
   //0x063fb337363d3d329d87ea030351a4af3fd44e9e
-  //0x447A1eab2061a06bF82B039c275Dbfaa8d6Fa927
-  aquaTokenContract.createContract(erc721.abi, "0xdcad179ccc4d7b4b07aa4bd96797f68a217418de");
+  //0xf43925f2878453014350c4e55c7697a48d3e2813
+  aquaTokenContract.createContract(erc721.abi, "0x063fb337363d3d329d87ea030351a4af3fd44e9e");
 
   //Get all owned Fishes of current User:
   readAllFishes(); //FishCreation.js

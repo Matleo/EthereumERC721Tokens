@@ -1,8 +1,8 @@
 async function createFish() {
-
+  console.log( "CREATE FISH ");
   var contractResult = await aquaTokenContract.createToken("9000000000", 3065857, 0);
-
-
+  
+  console.log ( contractResult );
   //var fish = insertRandomFish();
   //TODO Generate FishToken with Values
   var headType = Math.floor(Math.random() * 4) + 1;
