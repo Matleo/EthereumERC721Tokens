@@ -27,7 +27,7 @@ function draw(){
 
     var randX = Math.floor(Math.random() * 50);
     var randY = Math.floor(Math.random() * 25);
-    
+
     var posX = fish.posX;
     var posY = fish.posY;
 
@@ -98,6 +98,7 @@ function insertToSVG(svgID, fish){
       $("#flosseValue").html(fish.tailType);
       $("#kopfValue").html(fish.headType);
       $("#nameValue").html(fish.name);
+      $("#speedValue").html(fish.speed.toFixed(2));
       insertToSVG("fishProfile", fish);
     });
 
