@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../resources/bootstrap-4.2.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/myAqua.css">
 
     <title>Aqua Token</title>
@@ -35,7 +36,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-10">          
+        <div class="col-10">
           <table class="table mt-3">
             <thead>
               <tr>
@@ -56,6 +57,10 @@
                 <th scope="row">Flosse</th>
                 <td id="flosseValue"></td>
               </tr>
+              <tr>
+                <th scope="row">Geschwindigkeit</th>
+                <td id="speedValue"></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -71,7 +76,7 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mateFishModal">paaren</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" id="openPair" data-target="#mateFishModal">paaren</button>
             </div>
           </div>
         </div>
@@ -108,7 +113,7 @@
           </div>
         </div>
       </div>
-
+    </div>
 
     <div class="modal fade" id="mateFishModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -120,35 +125,33 @@
             </button>
           </div>
           <div class="modal-body">
-            <h6>TODO: paginierte Liste aller Fische</h2>
             <ul class="list-unstyled">
               <li class="media">
                 <img src="../resources/placeholder.png" class="mr-3 fishImage" alt="...">
                 <div class="media-body">
-                  <h5 class="mt-0 mb-1">Fisch 1</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </li>
-              <li class="media my-4">
-                <img src="../resources/placeholder.png" class="mr-3 fishImage" alt="...">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">Fisch 2</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </li>
-              <li class="media">
-                <img src="../resources/placeholder.png" class="mr-3 fishImage" alt="...">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">Fisch 3</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                  <h5 class="mt-0 mb-1" id="name">test</h5>
+                  <table class="table" >
+                    <thead>
+                      <th>Eigenschaft</th>
+                      <th>Wert</th>
+                    </thead>
+                    <tbody id="propertyTable">
+
+
+                    </tbody>
+
+                  </table>
                 </div>
               </li>
             </ul>
-            <button type="button" class="btn btn-primary">Mehr</button>
+           <div>
+            <button class="fa fa-chevron-left" id="goLeft" aria-hidden="true"></i>
+            <button class="fa fa-chevron-right pull-right" id="goRight" aria-hidden="true"></i>
+           </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-            <button type="button" class="btn btn-primary">paaren!</button>
+            <button type="button" class="btn btn-primary" id="pair">paaren!</button>
           </div>
         </div>
       </div>
@@ -166,12 +169,13 @@
     <script src="../js/AquaPresentation.js"></script>
     <script src="../js/DatabaseProvider.js"></script>
     <script src="../js/beans/Action.js"></script>
+    <script src="../resources/namensList.js"></script>
     <script src="../js/beans/FishToken.js"></script>
     <script src="../js/FishCreation.js"></script>
     <script src="../js/pages/myAquaPage.js"></script>
     <script src="../js/Contracts_Bytecode/aqua_token_contract.js"></script>
     <script src="../js/AquaTokenContract.js"></script>
-  
+
 
     <!-- Bootstrap and Popper js -->
     <script src="../resources/bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js"></script>

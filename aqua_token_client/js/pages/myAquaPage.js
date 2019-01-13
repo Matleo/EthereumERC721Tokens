@@ -1,19 +1,46 @@
-//This component is responsible for triggering actions on the GUI (some kind of 'controller')
 var aquaTokenContract;
+var fishCount = 0;
+var fishArray;
 
 
+$("#mateFishModal").on("shown.bs.modal", function(){
+  fishTokenDatabase.getAllFishTokens().then(function(result){
+  fishCount =0;
+  fishArray = result;
+  pairView();
+
+
+    $("#goLeft").click(function(){
+      fishCount< 0 ? fishCount-- :  fishCount = result.length-1;
+      pairView(result);
+    });
+
+    $("#goRight").click(function(){
+      fishCount < result.length? fishCount++: fishCount = 0;
+      pairView(result);
+    });
+
+    $("#pair").click(function(){
+      pairFishes(fishArray);
+    });
+
+  });
+});
+
+$("#mateFishModal").on("hide.bs.modal", function(){
+$("#goRight").unbind("click");
+$("#goLeft").unbind("click");
+});
+
+
+//This component is responsible for triggering actions on the GUI (some kind of 'controller')
 $('#addFish').click(function () {
   $('#createFishModal').modal('hide');
   //FishCreation.js
   createFish().then(function (result) {
     //TODO
-  });
-});
-
-
-$('#button-addon2').click(function() {
-  AquaTokenContract.transferFrom(recieverAdress,306587,0 ).then(result => {
-
+  }).catch(function(error){
+    console.log(error);
   });
 });
 
@@ -58,24 +85,39 @@ $(document).ready(async () => {
   }
   loader.hide();
   content.show();
+
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
-  aquaTokenContract.createContract(erc721.abi, "0xb61c70a8766ebb9594a47ba75406499181ade617");
-  
-  /* ExampleCode for deploying a Contract */
-  /*
-  aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
-	  console.log( result);
-  }).catch(function(error){
-    console.log("error" + error)
-  });
-  */
-   
-  //Read all Tokens of current User (TODO: Add Database)
-  aquaTokenContract.allOwnedTokens().then(function(result){
-    for(i in result){
-      var tokenID = result[i];
-      insertRandomFish();
-    } 
-  });
+  //0x063fb337363d3d329d87ea030351a4af3fd44e9e
+  //0x447A1eab2061a06bF82B039c275Dbfaa8d6Fa927
+  aquaTokenContract.createContract(erc721.abi, "0xdcad179ccc4d7b4b07aa4bd96797f68a217418de");
+
+  //Get all owned Fishes of current User:
+  readAllFishes(); //FishCreation.js
+
+
+  //TODO @Jannis: listen to event of NewbornFish
+  aquaTokenContract.contract.events.NewbornFish({}, function(error, event){ console.log(event.returnValues); })
+
 });
+
+function pairView(){
+  $("#name").text(fishArray[fishCount].name);
+
+  $("#propertyTable").empty();
+    $("#propertyTable").append("<tr>");
+    $("#propertyTable").append("<td> tokenid: </td>");
+    $("#propertyTable").append("<td>" + fishArray[fishCount].token_id +"</td>" );
+    $("#propertyTable").append("</tr>");
+
+    $("#propertyTable").append("<tr>");
+    $("#propertyTable").append("<td> Kopf: </td>");
+    $("#propertyTable").append("<td>" + fishArray[fishCount].headType +"</td>" );
+    $("#propertyTable").append("</tr>");
+
+    $("#propertyTable").append("<tr>");
+    $("#propertyTable").append("<td> Flosse: </td>");
+    $("#propertyTable").append("<td>" + fishArray[fishCount].tailType +"</td>" );
+    $("#propertyTable").append("</tr>");
+
+}

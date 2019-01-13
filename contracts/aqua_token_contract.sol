@@ -5,7 +5,7 @@ import "./Interface_ERC721.sol";
 import "./Interface_ERC721TokenReceiver.sol";
 import "./Library_SafeMath.sol";
 
-contract ERC721_basic is ERC721, ERC165 {
+contract aqua_token_contract is ERC721, ERC165 {
     using SafeMath for uint256;
     
     uint256[] internal allTokens;
@@ -17,11 +17,12 @@ contract ERC721_basic is ERC721, ERC165 {
     mapping (uint256 => address) internal tokenApprovals; //for single NFT approval
     mapping (address => mapping (address => bool)) internal operatorApprovals; //to give approval for all my NFT
 
+    uint256 matingPrice = 1000; //in wei
 
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
-
+    event NewbornFish(uint256 indexed id, uint256 kopf, uint256 schwanz, uint256 speed);
     
     //------------Token Creation:------------
     function create_token(address _to, uint256 _tokenId) public {
@@ -174,6 +175,26 @@ contract ERC721_basic is ERC721, ERC165 {
     
     function allOwnedTokens(address _address) external view returns (uint256[] memory) {
         return ownedTokens[_address];
+    }
+    
+    function getMatingPrice() external view returns(uint256){
+        return matingPrice;
+    }
+    
+    //Paarung
+    function mateFish(uint256 id1, uint256 kopf1, uint256 schwanz1, uint256 speed1, uint256 id2, uint256 kopf2, uint256 schwanz2, uint256 speed2 ) external payable {
+        require(msg.value >= matingPrice); //check if he payed enough
+        
+        //TODO: check if hash saved for ids equals hash(kopf,schwanz,speed)
+        uint256 tokenId = allTokens.length +1;
+        create_token(msg.sender, tokenId);
+        uint256 newSpeed = (speed1 + speed2)/2 + random() - 100;
+        emit NewbornFish(tokenId, kopf1, schwanz2, newSpeed);
+        
+        //TODO: hash the properties and save the hash to id
+    }
+    function random() private view returns (uint8) {
+        return uint8(uint256(keccak256(abi.encode(block.timestamp)))%201);
     }
     
 }

@@ -19,7 +19,7 @@ function insertFishToAquarium(fish){
 
 //Animation:
 var interval = 1500;
-setInterval(function() { draw() }, interval); //call draw() each interval
+setInterval(function() { draw() }, interval*1,1); //call draw() each interval
 
 function draw(){
   for (var i = 0; i < allFish.length; i++) {
@@ -28,9 +28,8 @@ function draw(){
     var randX = Math.floor(Math.random() * 50);
     var randY = Math.floor(Math.random() * 25);
 
-    var pos = fish.group.transform.baseVal.getItem(0);
-    var posX = pos.matrix.e;
-    var posY = pos.matrix.f;
+    var posX = fish.posX;
+    var posY = fish.posY;
 
     //get horizontal direction
     if(fish.direction[0] == "r"){
@@ -46,30 +45,40 @@ function draw(){
       var newY = posY - randY*fish.speed;
     }
 
-    if(newX < 85) {
-      newX = 85;
-      fish.direction[0] = "r";
+    var newDirection0 = ""
+    var newDirection1 = ""
+    if(newX < 90) {
+      newX = 90;
+      newDirection0 = "r";
     }
-    if(newX > 725) {
-      newX = 725;
-      fish.direction[0] = "l";
+    if(newX > 710) {
+      newX = 710;
+      newDirection0 = "l";
     }
 
-    if(newY < -50) {
-      newY = -50;
-      fish.direction[1] = "u";
+    if(newY < -70) {
+      newY = -70;
+      newDirection1 = "u";
     }
     if(newY > 260) {
       newY = 260;
-      fish.direction[1] = "o";
+      newDirection1 = "o";
     }
 
-    //scale(-1,1) if swimming to the left
+    //swim to new position (turn fish depending on direction)
     if(fish.direction[0] =="l"){
       $(fish.group).animate({  svgTransform: "translate("+ newX +"," + newY +"), scale(-0.4,0.4)"}, interval);
     }else{
       $(fish.group).animate({  svgTransform: "translate("+ newX +"," + newY +"), scale(0.4)"}, interval);
     }
+
+    //update position on fish
+    fish.posX = newX;
+    fish.posY = newY;
+
+    //maybe set new direction
+    if (newDirection0 != "") fish.direction[0] = newDirection0;
+    if (newDirection1 != "") fish.direction[1] = newDirection1;
 
   }
 }
@@ -89,6 +98,7 @@ function insertToSVG(svgID, fish){
       $("#flosseValue").html(fish.tailType);
       $("#kopfValue").html(fish.headType);
       $("#nameValue").html(fish.name);
+      $("#speedValue").html(fish.speed.toFixed(2));
       insertToSVG("fishProfile", fish);
     });
 
