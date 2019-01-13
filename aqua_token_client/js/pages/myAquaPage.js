@@ -2,13 +2,13 @@ var aquaTokenContract;
 var fishCount = 0;
 var fishArray;
 var mateFishforbidden = true;
-$("#mateFishModal").on("show.bs.modal", function(){
- 
-  if(selectedFish == null){
+$("#mateFishModal").on("show.bs.modal", function () {
+
+  if (selectedFish == null) {
     console.log("huhu")
-   
+
     alert("please Select a fish first");
-      mateFishforbidden = true;
+    mateFishforbidden = true;
     //throw new Error("no fish selected");
   }
   else {
@@ -16,58 +16,49 @@ $("#mateFishModal").on("show.bs.modal", function(){
   }
 });
 
-$("#mateFishModal").on("shown.bs.modal", function(){
+$("#mateFishModal").on("shown.bs.modal", function () {
 
-  if(mateFishforbidden){
+  if (mateFishforbidden) {
     $('#mateFishModal').modal('hide');
     return;
   }
 
-  else{
+  else {
 
-  
-
-  fishTokenDatabase.getAllFishTokens().then(function(result){
-  fishCount =0;
-  fishArray = result;
-  pairView();
+    fishTokenDatabase.getAllFishTokens().then(function (result) {
+      fishCount = 0;
+      fishArray = result;
+      pairView();
 
 
-    $("#goLeft").click(function(){
-      fishCount< 0 ? fishCount-- :  fishCount = result.length-1;
-      pairView(result);
-    });
+      $("#goLeft").click(function () {
+        fishCount < 0 ? fishCount-- : fishCount = result.length - 1;
+        pairView(result);
+      });
 
-    $("#goRight").click(function(){
-      fishCount < result.length? fishCount++: fishCount = 0;
-      pairView(result);
-    });
+      $("#goRight").click(function () {
+        fishCount < result.length ? fishCount++ : fishCount = 0;
+        pairView(result);
+      });
 
-    $("#pair").click(function(){
-      pairFishes(fishArray).then(result => {
+      $("#pair").click(function () {
+        pairFishes(fishArray).then(result => {
 
-        $('#mateFishModal').modal('hide');
-      }). catch( error => {
-        $('#mateFishModal').modal('hide');
+          $('#mateFishModal').modal('hide');
+        }).catch(error => {
+          $('#mateFishModal').modal('hide');
+        });
+
       });
 
     });
-
-  });
-}
+  }
 
 });
 
-
-
-
-
-
-$("#mateFishModal").on("hide.bs.modal", function(){
-$("#goRight").unbind("click");
-$("#goLeft").unbind("click");
-
-
+$("#mateFishModal").on("hide.bs.modal", function () {
+  $("#goRight").unbind("click");
+  $("#goLeft").unbind("click");
 });
 
 
@@ -77,24 +68,24 @@ $('#addFish').click(function () {
   //FishCreation.js
   createFish().then(function (result) {
     //TODO
-  }).catch(function(error){
+  }).catch(function (error) {
     console.log(error);
   });
 });
 
-$("#button-addon2").click(async function(){
+$("#button-addon2").click(async function () {
 
- await aquaTokenContract.transferFrom($("#toAdress").val(), selectedFish.token_Id );
+  await aquaTokenContract.transferFrom($("#toAdress").val(), selectedFish.token_Id);
   //Todo Remove fish from Aqua
 });
 
 
 $(document).ready(async () => {
   $("button").prop("disabled", true);
-   var loader = $("#loader");
-   var content = $("#content");
-   loader.show();
-   content.hide();
+  var loader = $("#loader");
+  var content = $("#content");
+  loader.show();
+  content.hide();
   // Modern dapp browsers...
   if (window.ethereum) {
     window.web3 = new Web3(ethereum);
@@ -133,9 +124,9 @@ $(document).ready(async () => {
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
 
-//0xf43925f2878453014350c4e55c7697a48d3e2813
-  aquaTokenContract.createContract("0xdbe8d01ce2251425b15658adebf8cf093bb7df47");
- 
+  //0xf43925f2878453014350c4e55c7697a48d3e2813
+  aquaTokenContract.createContract("0x291a22492350a6ec22c998b0068ed1d2a1cb417f");
+
 
   //Get all owned Fishes of current User:
   readAllFishes(); //FishCreation.js
@@ -146,23 +137,23 @@ $(document).ready(async () => {
 
 });
 
-function pairView(){
+function pairView() {
   $("#name").text(fishArray[fishCount].name);
 
   $("#propertyTable").empty();
-    $("#propertyTable").append("<tr>");
-    $("#propertyTable").append("<td> tokenid: </td>");
-    $("#propertyTable").append("<td>" + fishArray[fishCount].token_Id +"</td>" );
-    $("#propertyTable").append("</tr>");
+  $("#propertyTable").append("<tr>");
+  $("#propertyTable").append("<td> tokenid: </td>");
+  $("#propertyTable").append("<td>" + fishArray[fishCount].token_Id + "</td>");
+  $("#propertyTable").append("</tr>");
 
-    $("#propertyTable").append("<tr>");
-    $("#propertyTable").append("<td> Kopf: </td>");
-    $("#propertyTable").append("<td>" + fishArray[fishCount].headType +"</td>" );
-    $("#propertyTable").append("</tr>");
+  $("#propertyTable").append("<tr>");
+  $("#propertyTable").append("<td> Kopf: </td>");
+  $("#propertyTable").append("<td>" + fishArray[fishCount].headType + "</td>");
+  $("#propertyTable").append("</tr>");
 
-    $("#propertyTable").append("<tr>");
-    $("#propertyTable").append("<td> Flosse: </td>");
-    $("#propertyTable").append("<td>" + fishArray[fishCount].tailType +"</td>" );
-    $("#propertyTable").append("</tr>");
+  $("#propertyTable").append("<tr>");
+  $("#propertyTable").append("<td> Flosse: </td>");
+  $("#propertyTable").append("<td>" + fishArray[fishCount].tailType + "</td>");
+  $("#propertyTable").append("</tr>");
 
 }

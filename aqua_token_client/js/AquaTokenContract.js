@@ -75,14 +75,14 @@ class AquaTokenContract {
   */
   async createToken(gasPrice, gasLimit, value ) {
     var tokenowner;
-    while(tokenowner != "0x0000000000000000000000000000000000000000") {
-      var tokenid = bigInt.randBetween("0", "1e15").toString();
-      tokenowner = await this.contract.methods.ownerOf(tokenid).call({from: this.account});
-    }
+    // while(tokenowner != "0x0000000000000000000000000000000000000000") {
+    //   //var tokenid = bigInt.randBetween("0", "1e15").toString();
+    //   tokenowner = await this.contract.methods.ownerOf("tokenid").call({from: this.account});
+    // }
 
     var sendOptions = {};
     sendOptions.from = this.account; 
-    sendOptions.data = this.contract.methods.create_token(this.account,tokenid).encodeABI();
+    sendOptions.data = this.contract.methods.create_token(this.account).encodeABI();
     sendOptions.to = this.contract.options.address;
  
     //sendOptions.gasPrice = gasPrice;
@@ -91,7 +91,7 @@ class AquaTokenContract {
 
     return  this.web3.eth.sendTransaction(sendOptions)
     .then(receipt => {
-      return [receipt,tokenid];
+      return [receipt];
     });
   } 
 
