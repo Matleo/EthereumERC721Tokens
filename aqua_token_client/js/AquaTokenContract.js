@@ -97,12 +97,12 @@ class AquaTokenContract {
         if(error != null){
          reject(error);
         }
-  
+
         else {
           console.log(event.returnValues.id);
            resolve(event.returnValues.id);
         }
-    
+
       });
 
     }.bind(this));
@@ -151,7 +151,7 @@ class AquaTokenContract {
     sendOptions.to = this.contract.options.address;
     sendOptions.value = "1000"
     sendOptions.data = this.contract.methods.mateFish(fish1.token_Id, fish1.headType, fish1.tailType, convertedSpeed1,fish2.token_Id, fish2.headType, fish2.tailType, convertedSpeed2).encodeABI();
- 
+
     this.web3.eth.sendTransaction(sendOptions);
 
     return new Promise(function(resolve,reject){
@@ -179,7 +179,7 @@ class AquaTokenContract {
  
     return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
   }
-  
+
  async getMatePrice(){
 
   return this.contract.methods.getMatePrice().call({from: this.account});

@@ -1,35 +1,34 @@
 
-
 const fishTokenDatabase = {
-    getFishToken:  async function (token_id) {
+    getFishToken: async function (token_id) {
 
-     return databaseRequest("","GET","json", "application/x-www-form-urlencoded; charset=UTF-8", "token_id="+token_id);
+        return databaseRequest("", "GET", "json", "application/x-www-form-urlencoded; charset=UTF-8", "token_id=" + token_id);
 
     },
     getAllFishTokens: async function () {
 
-    return databaseRequest("all","GET","json","application/x-www-form-urlencoded; charset=UTF-8" );
+        return databaseRequest("all", "GET", "json", "application/x-www-form-urlencoded; charset=UTF-8");
 
     },
-    createOrUpdateFishToken:  async function (fishToken) {
+    createOrUpdateFishToken: async function (fishToken) {
 
-      return databaseRequest("","POST","json","application/json",JSON.stringify(fishToken));
+        return databaseRequest("", "POST", "json", "application/json", JSON.stringify(fishToken));
 
     },
     deleteFishToken: async function (fishToken) {
 
-        return databaseRequest("","DELETE","json","application/json",JSON.stringify(fishToken));
+        return databaseRequest("", "DELETE", "json", "application/json", JSON.stringify(fishToken));
     },
     /* token_ids as String splitet with ";" Example token_ids=123,1234*/
-    getFishTokensByIds: async function(token_ids){
-        return databaseRequest("owner","GET","json", "application/x-www-form-urlencoded; charset=UTF-8", "token_ids="+ token_ids);
+    getFishTokensByIds: async function (token_ids) {
+        return databaseRequest("owner", "GET", "json", "application/x-www-form-urlencoded; charset=UTF-8", "token_ids=" + token_ids);
     }
 }
 
 
-async function databaseRequest(path,method,dataType, contentType,params) {
+async function databaseRequest(path, method, dataType, contentType, params) {
 
-    return  new Promise(function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
 
 
         $.ajax({
