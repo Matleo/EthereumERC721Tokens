@@ -1,21 +1,20 @@
-
 class AquaTokenContract {
-       
+
   constructor() {
     this.web3 = new Web3(window.web3.currentProvider);
     this.contract;
     this.contractOptions = {};
     this.account;
     this.tokens = [];
-    this.init();   
+    this.init();
   }
 
 
   init() {
-    this.account = this.web3.currentProvider.selectedAddress; 
+    this.account = this.web3.currentProvider.selectedAddress;
     //Looking in a Interval of 100ms if the selected Account in Metmask was changed. Set the Default Account which is ever used as sender.
-    setInterval(function() {
-      if(this.account!== this.web3.currentProvider.selectedAddress) {
+    setInterval(function () {
+      if (this.account !== this.web3.currentProvider.selectedAddress) {
         console.log("change");
         window.location.reload();
       }
@@ -31,7 +30,7 @@ class AquaTokenContract {
   createContract(optContractAdress) {
     console.log(aqua_token_contract.abi)
     this.contract = new web3.eth.Contract(aqua_token_contract.abi);
-    if(optContractAdress !='null' && typeof(optContractAdress) ==='string') this.contract.options.address = optContractAdress;
+    if (optContractAdress != 'null' && typeof (optContractAdress) === 'string') this.contract.options.address = optContractAdress;
   }
 
 
@@ -44,25 +43,25 @@ class AquaTokenContract {
   async deployContract(data, gasPrice, gasLimit) {
     console.dir(this.account)
 
-    var sendOptions={};
+    var sendOptions = {};
     this.contract.options.from = this.account;
     sendOptions.to = this.contract.options.address;
-    if(data !='null' && typeof(data) ==='string') this.contract.options.data = data; 
-    if(gasPrice !='null' && typeof(gasPrice) ==='string') sendOptions.gasPrice = gasPrice;
-    if(gasLimit !='null' && typeof(gasLimit) ==='number') sendOptions.gas = gasLimit;
+    if (data != 'null' && typeof (data) === 'string') this.contract.options.data = data;
+    if (gasPrice != 'null' && typeof (gasPrice) === 'string') sendOptions.gasPrice = gasPrice;
+    if (gasLimit != 'null' && typeof (gasLimit) === 'number') sendOptions.gas = gasLimit;
 
     return this.contract.deploy(this.contractOptions)
       .send(sendOptions)
-      .on('error', function(error) {
+      .on('error', function (error) {
         return Promise.reject(error);
       })
-      .then(function(newContractInstance) {
+      .then(function (newContractInstance) {
         this.contract = newContractInstance;
         return Promise.resolve(newContractInstance);
-      });        
+      });
   }
-  
-      
+
+
   /* 
     This method create a new Token (Random Tokenid) and check if the token already has a owner in the Contract.
     If not the Method create a new Token with the current Account as owner.
@@ -73,7 +72,7 @@ class AquaTokenContract {
 
     return in success case a Promise which include a array  
   */
-  async createToken(gasPrice, gasLimit, value ) {
+  async createToken(gasPrice, gasLimit, value) {
     var tokenowner;
     // while(tokenowner != "0x0000000000000000000000000000000000000000") {
     //   //var tokenid = bigInt.randBetween("0", "1e15").toString();
@@ -81,19 +80,19 @@ class AquaTokenContract {
     // }
 
     var sendOptions = {};
-    sendOptions.from = this.account; 
+    sendOptions.from = this.account;
     sendOptions.data = this.contract.methods.create_token(this.account).encodeABI();
     sendOptions.to = this.contract.options.address;
- 
+
     //sendOptions.gasPrice = gasPrice;
     //sendOptions.gasLimit = gasLimit;
     //this.sendOptions.value = value;
 
-    return  this.web3.eth.sendTransaction(sendOptions)
-    .then(receipt => {
-      return [receipt];
-    });
-  } 
+    return this.web3.eth.sendTransaction(sendOptions)
+      .then(receipt => {
+        return [receipt];
+      });
+  }
 
 
   /* 
@@ -106,67 +105,66 @@ class AquaTokenContract {
   */
 
   async transferFrom(_to, tokenid, gasPrice, gasLimit, value) {
-    var sendOptions={};
+    var sendOptions = {};
     sendOptions.from = this.account;
     sendOptions.to = this.contract.options.address;
-    sendOptions.data = this.contract.methods.transferFrom(this.account,_to,tokenid).encodeABI();
+    sendOptions.data = this.contract.methods.transferFrom(this.account, _to, tokenid).encodeABI();
 
-    
-  //  if(gasPrice !='null' && typeof(gasPrice) ==='string') sendOptions.gasPrice = gasPrice;
-  //  if(gasLimit !='null' && typeof(gasLimit) ==='number') sendOptions.gas = gasLimit;
-  //  if(value !='null' && typeof(value) ==='number') sendOptions.value = value;
+    //  if(gasPrice !='null' && typeof(gasPrice) ==='string') sendOptions.gasPrice = gasPrice;
+    //  if(gasLimit !='null' && typeof(gasLimit) ==='number') sendOptions.gas = gasLimit;
+    //  if(value !='null' && typeof(value) ==='number') sendOptions.value = value;
 
     return this.web3.eth.sendTransaction(sendOptions)
-      .on('error', function(error) {
+      .on('error', function (error) {
         return Promise.reject(error);
-      }).then(function(result) {
+      }).then(function (result) {
         return Promise.resolve(result);
-      }); 
+      });
 
-    
+
   }
 
-  async mathFish(fish1,fish2 ){
-  
-   // console.log(fish1,fish2)
-    //Solidtiy doesn't know floating numbers. because this we need to convert the numbers to integers values.
-    var convertedSpeed1 = parseInt(fish1.speed*1000).toString();
-    var convertedSpeed2 = parseInt(fish2.speed* 1000).toString();
+  async mathFish(fish1, fish2) {
 
-    var sendOptions ={ };
+    // console.log(fish1,fish2)
+    //Solidtiy doesn't know floating numbers. because this we need to convert the numbers to integers values.
+    var convertedSpeed1 = parseInt(fish1.speed * 1000).toString();
+    var convertedSpeed2 = parseInt(fish2.speed * 1000).toString();
+
+    var sendOptions = {};
     sendOptions.from = this.account;
     sendOptions.to = this.contract.options.address;
     sendOptions.value = "1000"
-    sendOptions.data = this.contract.methods.mateFish(fish1.token_Id, fish1.headType, fish1.tailType, convertedSpeed1,fish2.token_Id, fish2.headType, fish2.tailType, convertedSpeed2).encodeABI();
- 
+    sendOptions.data = this.contract.methods.mateFish(fish1.token_Id, fish1.headType, fish1.tailType, convertedSpeed1, fish2.token_Id, fish2.headType, fish2.tailType, convertedSpeed2).encodeABI();
+
     console.log(this.contract.events)
 
     this.web3.eth.sendTransaction(sendOptions);
 
-    return new Promise(function(resolve,reject){
+    return new Promise(function (resolve, reject) {
 
-      this.contract.once("NewbornFish",function(error,event){
+      this.contract.once("NewbornFish", function (error, event) {
 
-        if(error != null){
-         reject(error);
+        if (error != null) {
+          reject(error);
         }
-  
+
         else {
-           resolve(event.returnValues);
+          resolve(event.returnValues);
         }
-    
+
       });
 
     }.bind(this));
 
   }
-  
+
   async balanceOf(tokenowner) {
-    return this.contract.methods.balanceOf(tokenowner).call({from: this.account});
+    return this.contract.methods.balanceOf(tokenowner).call({ from: this.account });
   }
-	async allOwnedTokens() {
- 
-    return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
+  async allOwnedTokens() {
+
+    return this.contract.methods.allOwnedTokens(this.account).call({ from: this.account });
   }
-  
+
 }
