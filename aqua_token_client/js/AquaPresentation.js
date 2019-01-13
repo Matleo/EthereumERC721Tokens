@@ -1,5 +1,5 @@
 //This component is responsible for managing the aquarium svg
-
+var selectedFish= null;
 //initialize aquarium svg
 $("#aquarium").svg({settings:{height: 400, width:800}});
 $("#fishProfile").svg({settings:{height: 100, width:100}});
@@ -95,6 +95,7 @@ function insertToSVG(svgID, fish){
 
     //add click listener
     fish.group.addEventListener("click", () => {
+      selectedFish = fish;
       $("#flosseValue").html(fish.tailType);
       $("#kopfValue").html(fish.headType);
       $("#nameValue").html(fish.name);

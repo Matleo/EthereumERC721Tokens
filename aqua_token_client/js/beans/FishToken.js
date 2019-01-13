@@ -1,7 +1,7 @@
 class FishToken {
 
 
-    constructor(token_Id,name,speed,headType,tailType,ownerAdress){
+    constructor(token_Id,name,speed,headType,tailType){
     this.token_Id = token_Id;
     this.name = name;
     this.speed = speed;

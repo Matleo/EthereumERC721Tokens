@@ -13,9 +13,6 @@ class AquaTokenContract {
 
   init() {
     this.account = this.web3.currentProvider.selectedAddress; 
-
-    console.log(this.account);
-    console.log(this.web3.currentProvider.selectedAddress)
     //Looking in a Interval of 100ms if the selected Account in Metmask was changed. Set the Default Account which is ever used as sender.
     setInterval(function() {
       if(this.account!== this.web3.currentProvider.selectedAddress) {
@@ -31,8 +28,9 @@ class AquaTokenContract {
     abi - Array: The json interface of the contract.
     optContractAdress- if the contract is already deployed the blockchain contractadress can set with this parameter.
   */
-  createContract(abi, optContractAdress) {
-    this.contract = new web3.eth.Contract(erc721.abi);
+  createContract(optContractAdress) {
+    console.log(aqua_token_contract.abi)
+    this.contract = new web3.eth.Contract(aqua_token_contract.abi);
     if(optContractAdress !='null' && typeof(optContractAdress) ==='string') this.contract.options.address = optContractAdress;
   }
 
@@ -111,17 +109,14 @@ class AquaTokenContract {
     var sendOptions={};
     sendOptions.from = this.account;
     sendOptions.to = this.contract.options.address;
+    sendOptions.data = this.contract.methods.transferFrom(this.account,_to,tokenid).encodeABI();
+
     
-    if(gasPrice !='null' && typeof(gasPrice) ==='string') sendOptions.gasPrice = gasPrice;
-    if(gasLimit !='null' && typeof(gasLimit) ==='number') sendOptions.gas = gasLimit;
-    if(value !='null' && typeof(value) ==='number') sendOptions.value = value;
+  //  if(gasPrice !='null' && typeof(gasPrice) ==='string') sendOptions.gasPrice = gasPrice;
+  //  if(gasLimit !='null' && typeof(gasLimit) ==='number') sendOptions.gas = gasLimit;
+  //  if(value !='null' && typeof(value) ==='number') sendOptions.value = value;
 
-    console.log(tokenid)
-
-
-
-    return this.contract.methods.transferFrom(this.account,_to,tokenid)
-      .send(sendOptions)
+    return this.web3.eth.sendTransaction(sendOptions)
       .on('error', function(error) {
         return Promise.reject(error);
       }).then(function(result) {
@@ -130,11 +125,47 @@ class AquaTokenContract {
 
     
   }
+
+  async mathFish(fish1,fish2 ){
+  
+   // console.log(fish1,fish2)
+    //Solidtiy doesn't know floating numbers. because this we need to convert the numbers to integers values.
+    var convertedSpeed1 = parseInt(fish1.speed*1000).toString();
+    var convertedSpeed2 = parseInt(fish2.speed* 1000).toString();
+
+    var sendOptions ={ };
+    sendOptions.from = this.account;
+    sendOptions.to = this.contract.options.address;
+    sendOptions.value = "1000"
+    sendOptions.data = this.contract.methods.mateFish(fish1.token_Id, fish1.headType, fish1.tailType, convertedSpeed1,fish2.token_Id, fish2.headType, fish2.tailType, convertedSpeed2).encodeABI();
+ 
+    console.log(this.contract.events)
+
+    this.web3.eth.sendTransaction(sendOptions);
+
+    return new Promise(function(resolve,reject){
+
+      this.contract.once("NewbornFish",function(error,event){
+
+        if(error != null){
+         reject(error);
+        }
+  
+        else {
+           resolve(event.returnValues);
+        }
+    
+      });
+
+    }.bind(this));
+
+  }
   
   async balanceOf(tokenowner) {
     return this.contract.methods.balanceOf(tokenowner).call({from: this.account});
   }
 	async allOwnedTokens() {
+ 
     return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
   }
   
