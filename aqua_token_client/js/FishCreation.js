@@ -66,6 +66,7 @@ function readAllFishes(){
 
  async function pairFishes(){
   //console.log(selectedFish,fishArray[fishCount]);
+  console.log("test");
  var contractResult = await aquaTokenContract.mathFish(selectedFish, fishArray[fishCount]);
   //convert Speed back to floatingPoint 
   var convertSpeed = Number.parseFloat(contractResult.speed)/1000;
