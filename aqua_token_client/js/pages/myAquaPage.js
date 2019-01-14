@@ -16,6 +16,35 @@ $("#mateFishModal").on("show.bs.modal", function(){
   }
 });
 
+$("#createFishModal").on("shown.bs.modal", function(){
+	aquaTokenContract.getMakingPrice().then(function (result) {
+
+    var text = "Das Erstellen eines neuen Fisch kostet:"
+	var etherPrice = Number.parseFloat(result) / 1000000000000000000;
+	console.log(etherPrice);
+	$("#makingPrice").text(text + " " + etherPrice + " ether!");
+	
+	//This component is responsible for triggering actions on the GUI (some kind of 'controller')
+$('#addFish').click(function () {
+  $('#createFishModal').modal('hide');
+  //FishCreation.js
+  createFish().then(function (result) {
+    //TODO
+  }).catch(function(error){
+    console.log(error);
+  });
+});
+	
+  }).catch(function(error){
+    console.log(error);
+  }); 
+	console.log("test");
+});
+$("#createFishModal").on("hidden.bs.modal", function(){
+	console.log("here");
+	$("#addFish").unbind("click");
+});
+
 $("#mateFishModal").on("shown.bs.modal", function(){
 
   if(mateFishforbidden){
@@ -28,7 +57,7 @@ $("#mateFishModal").on("shown.bs.modal", function(){
   
 
   fishTokenDatabase.getAllFishTokens().then(function(result){
-  fishCount =0;
+  fishCount =41;
   fishArray = result;
   pairView();
 
@@ -71,16 +100,7 @@ $("#goLeft").unbind("click");
 });
 
 
-//This component is responsible for triggering actions on the GUI (some kind of 'controller')
-$('#addFish').click(function () {
-  $('#createFishModal').modal('hide');
-  //FishCreation.js
-  createFish().then(function (result) {
-    //TODO
-  }).catch(function(error){
-    console.log(error);
-  });
-});
+
 
 $("#button-addon2").click(async function(){
 
@@ -134,7 +154,7 @@ $(document).ready(async () => {
   aquaTokenContract = new AquaTokenContract();
 
 //0xf43925f2878453014350c4e55c7697a48d3e2813
-  aquaTokenContract.createContract("0x6ad22315bec9a378f78e283f1a4e15a7ab18ca1a");
+  aquaTokenContract.createContract("0x278f543d650addcdcfb81aad837f8a1f9c5f2306");
  
 
   //Get all owned Fishes of current User:

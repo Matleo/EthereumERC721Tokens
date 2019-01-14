@@ -84,7 +84,8 @@ class AquaTokenContract {
     sendOptions.to = this.contract.options.address;
     //sendOptions.gasPrice = gasPrice;
     //sendOptions.gasLimit = gasLimit;
-    //this.sendOptions.value = value;
+	var price = await this.contract.methods.getMakingPrice().call({from: this.account});
+    sendOptions.value = price;
 
     this.web3.eth.sendTransaction(sendOptions);
 
@@ -172,10 +173,16 @@ class AquaTokenContract {
   async balanceOf(tokenowner) {
     return this.contract.methods.balanceOf(tokenowner).call({from: this.account});
   }
-	async allOwnedTokens() {
+  async allOwnedTokens() {
  
     return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
   }
+  
+  async getMakingPrice() {
+ 
+    return this.contract.methods.getMakingPrice().call({from: this.account});
+  }
+
 
 
 
