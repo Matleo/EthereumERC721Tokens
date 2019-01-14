@@ -1,9 +1,9 @@
 pragma solidity ^0.5.0;
 
-import "./Interface_ERC165.sol";
-import "./Interface_ERC721.sol";
-import "./Interface_ERC721TokenReceiver.sol";
-import "./Library_SafeMath.sol";
+import "../Interfaces/Interface_ERC165.sol";
+import "../Interfaces/Interface_ERC721.sol";
+import "../Interfaces/Interface_ERC721TokenReceiver.sol";
+import "../Library/Library_SafeMath.sol";
 
 contract aqua_token_contract is ERC721, ERC165 {
     using SafeMath for uint256;
