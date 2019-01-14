@@ -18,7 +18,7 @@ contract aqua_token_contract is ERC721, ERC165 {
     mapping (uint256 => address) internal tokenApprovals; //for single NFT approval
     mapping (address => mapping (address => bool)) internal operatorApprovals; //to give approval for all my NFT
 
-    uint256 matingPrice = 1000; //in wei
+    uint256 makingPrice = 10000000000000000; //in wei
 
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
@@ -40,8 +40,9 @@ contract aqua_token_contract is ERC721, ERC165 {
     }
     
     //------------Token Creation:------------
-    function create_token(address _to) public returns(uint256){
+    function create_token(address _to) public payable returns(uint256){
         require(_to != address(0));
+        require(msg.value >= makingPrice); //check if he payed enough
         
         uint256 tokenId = _addToken(_to);
         //Save hash of properties
@@ -206,13 +207,13 @@ contract aqua_token_contract is ERC721, ERC165 {
         return ownedTokens[_address];
     }
     
-    function getMatingPrice() external view returns(uint256){
-        return matingPrice;
+    function getMakingPrice() external view returns(uint256){
+        return makingPrice;
     }
     
     //Paarung
-    function mateFish(uint256 id1, uint256 kopf1, uint256 schwanz1, uint256 speed1, uint256 id2, uint256 kopf2, uint256 schwanz2, uint256 speed2 ) external payable {
-        require(msg.value >= matingPrice); //check if he payed enough
+    function makeFish(uint256 id1, uint256 kopf1, uint256 schwanz1, uint256 speed1, uint256 id2, uint256 kopf2, uint256 schwanz2, uint256 speed2 ) external payable {
+        require(msg.value >= makingPrice); //check if he payed enough
         
         //check if hash saved for ids equals hash(kopf,schwanz,speed)
         bytes32 hash1 = keccak256(abi.encodePacked(kopf1, schwanz1, speed1));
