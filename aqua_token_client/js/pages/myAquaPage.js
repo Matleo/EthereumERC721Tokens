@@ -1,9 +1,32 @@
 var aquaTokenContract;
 var fishCount = 0;
 var fishArray;
-
+var mateFishforbidden = true;
+$("#mateFishModal").on("show.bs.modal", function(){
+ 
+  if(selectedFish == null){
+    console.log("huhu")
+   
+    alert("please Select a fish first");
+      mateFishforbidden = true;
+    //throw new Error("no fish selected");
+  }
+  else {
+    mateFishforbidden = false;
+  }
+});
 
 $("#mateFishModal").on("shown.bs.modal", function(){
+
+  if(mateFishforbidden){
+    $('#mateFishModal').modal('hide');
+    return;
+  }
+
+  else{
+
+  
+
   fishTokenDatabase.getAllFishTokens().then(function(result){
   fishCount =0;
   fishArray = result;
@@ -21,15 +44,30 @@ $("#mateFishModal").on("shown.bs.modal", function(){
     });
 
     $("#pair").click(function(){
-      pairFishes(fishArray);
+      pairFishes(fishArray).then(result => {
+
+        $('#mateFishModal').modal('hide');
+      }). catch( error => {
+        $('#mateFishModal').modal('hide');
+      });
+
     });
 
   });
+}
+
 });
+
+
+
+
+
 
 $("#mateFishModal").on("hide.bs.modal", function(){
 $("#goRight").unbind("click");
 $("#goLeft").unbind("click");
+
+
 });
 
 
@@ -42,6 +80,12 @@ $('#addFish').click(function () {
   }).catch(function(error){
     console.log(error);
   });
+});
+
+$("#button-addon2").click(async function(){
+
+ await aquaTokenContract.transferFrom($("#toAdress").val(), selectedFish.token_Id );
+  //Todo Remove fish from Aqua
 });
 
 
@@ -88,16 +132,17 @@ $(document).ready(async () => {
 
   // Startpoint of the init Application
   aquaTokenContract = new AquaTokenContract();
-  //0x063fb337363d3d329d87ea030351a4af3fd44e9e
-  //0x447A1eab2061a06bF82B039c275Dbfaa8d6Fa927
-  aquaTokenContract.createContract(erc721.abi, "0xdcad179ccc4d7b4b07aa4bd96797f68a217418de");
+
+//0xf43925f2878453014350c4e55c7697a48d3e2813
+  aquaTokenContract.createContract("0x5266184c1a10f4c632f4f1bf03b99cf2eeb2a727");
+ 
 
   //Get all owned Fishes of current User:
   readAllFishes(); //FishCreation.js
 
 
   //TODO @Jannis: listen to event of NewbornFish
-  aquaTokenContract.contract.events.NewbornFish({}, function(error, event){ console.log(event.returnValues); })
+  //aquaTokenContract.contract.events.NewbornFish({}, function(error, event){ console.log(event.returnValues); })
 
 });
 
@@ -107,7 +152,7 @@ function pairView(){
   $("#propertyTable").empty();
     $("#propertyTable").append("<tr>");
     $("#propertyTable").append("<td> tokenid: </td>");
-    $("#propertyTable").append("<td>" + fishArray[fishCount].token_id +"</td>" );
+    $("#propertyTable").append("<td>" + fishArray[fishCount].token_Id +"</td>" );
     $("#propertyTable").append("</tr>");
 
     $("#propertyTable").append("<tr>");

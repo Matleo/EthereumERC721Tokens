@@ -1,41 +1,40 @@
 class FishToken {
 
-
-    constructor(token_Id,name,speed,headType,tailType,ownerAdress){
-    this.token_Id = token_Id;
-    this.name = name;
-    this.speed = speed;
-    this.headType = headType;
-    this.tailType = tailType;
+    constructor(token_Id, name, speed, headType, tailType) {
+        this.token_Id = token_Id;
+        this.name = name;
+        this.speed = speed;
+        this.headType = headType;
+        this.tailType = tailType;
     }
-    getTokenId(){
+    getTokenId() {
         return this.token_Id;
     }
-    getName(){
+    getName() {
         return this.name;
     }
-    getSpeed(){
+    getSpeed() {
         return this.speed;
     }
-    getHeadType(){
+    getHeadType() {
         return this.headType;
     }
-    getTailType(){
+    getTailType() {
         return this.tailType;
     }
-    setTokenId(token_Id){
+    setTokenId(token_Id) {
         this.token_Id = token_Id;
     }
-    setName(name){
-        this.name = name;    
+    setName(name) {
+        this.name = name;
     }
-    setSpeed(speed){
+    setSpeed(speed) {
         this.speed = speed;
     }
-    setHeadType(headType){
+    setHeadType(headType) {
         this.headType = headType;
     }
-    setTailType(tailType){
+    setTailType(tailType) {
         this.tailType = tailType;
     }
 

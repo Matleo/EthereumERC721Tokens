@@ -25,12 +25,12 @@ contract aqua_token_contract is ERC721, ERC165 {
     event NewbornFish(uint256 indexed id, uint256 kopf, uint256 schwanz, uint256 speed);
     
     //------------Token Creation:------------
-    function create_token(address _to, uint256 _tokenId) public {
+    function create_token(address _to) public {
         require(_to != address(0));
-        _addTokenTo(_to, _tokenId);
-        emit Transfer(address(0), _to, _tokenId);
-    
-        allTokens.push(_tokenId);
+        _addTokenTo(_to, allTokens.length);
+        emit Transfer(address(0), _to,allTokens.length);
+        allTokens.push(allTokens.length);
+        emit NewbornFish(allTokens.length,0,0,0);
     }   
     
     function _addTokenTo(address _to, uint256 _tokenId) internal {
@@ -187,7 +187,7 @@ contract aqua_token_contract is ERC721, ERC165 {
         
         //TODO: check if hash saved for ids equals hash(kopf,schwanz,speed)
         uint256 tokenId = allTokens.length +1;
-        create_token(msg.sender, tokenId);
+        create_token(msg.sender);
         uint256 newSpeed = (speed1 + speed2)/2 + random() - 100;
         emit NewbornFish(tokenId, kopf1, schwanz2, newSpeed);
         
