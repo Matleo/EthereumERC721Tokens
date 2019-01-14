@@ -13,62 +13,55 @@ $("#mateFishModal").on("show.bs.modal", function () {
 	}
 });
 
-$("#createFishModal").on("shown.bs.modal", function(){
+$("#createFishModal").on("shown.bs.modal", function () {
 	aquaTokenContract.getMakingPrice().then(function (result) {
 
-    var text = "Das Erstellen eines neuen Fisch kostet:"
-	var etherPrice = Number.parseFloat(result) / 1000000000000000000;
-	$("#makingPrice").text(text + " " + etherPrice + " ether!");
+		var text = "Das Erstellen eines neuen Fisch kostet:"
+		var etherPrice = Number.parseFloat(result) / 1000000000000000000;
+		$("#makingPrice").text(text + " " + etherPrice + " ether!");
 
-	//This component is responsible for triggering actions on the GUI (some kind of 'controller')
-$('#addFish').click(function () {
-  $('#createFishModal').modal('hide');
-  //FishCreation.js
-  createFish().then(function (result) {
-    //TODO
-  }).catch(function(error){
-    console.log(error);
-  });
-});
+		//This component is responsible for triggering actions on the GUI (some kind of 'controller')
+		$('#addFish').click(function () {
+			$('#createFishModal').modal('hide');
+			//FishCreation.js
+			createFish().then(function (result) {
+				//TODO
+			}).catch(function (error) {
+				console.log(error);
+			});
+		});
 
-  }).catch(function(error){
-    console.log(error);
-  });
+	}).catch(function (error) {
+		console.log(error);
+	});
 });
-$("#createFishModal").on("hidden.bs.modal", function(){
+$("#createFishModal").on("hidden.bs.modal", function () {
 	$("#addFish").unbind("click");
 });
 
-$("#mateFishModal").on("shown.bs.modal", function(){
+$("#mateFishModal").on("shown.bs.modal", function () {
 
-  if(mateFishforbidden){
-    $('#mateFishModal').modal('hide');
-    return;
-  }
+	if (mateFishforbidden) {
+		$('#mateFishModal').modal('hide');
+		return;
+	} else {
 
-  else{
+		fishTokenDatabase.getAllFishTokens().then(function (result) {
+			fishCount = 41;
+			fishArray = result;
+			pairView();
 
+			$("#goLeft").click(function () {
+				fishCount > 0 ? fishCount-- : fishCount = 0;
+				pairView(result);
+			});
 
-
-  fishTokenDatabase.getAllFishTokens().then(function(result){
-  fishCount =41;
-  fishArray = result;
-  pairView();
-
-
-    $("#goLeft").click(function(){
-      fishCount > 0           ? fishCount-- :  fishCount = 0 ;
-      pairView(result);
-    });
-
-    $("#goRight").click(function(){
-      fishCount < result.length? fishCount++: fishCount = 0;
-      pairView(result);
-    });
-
-  });
-}
-
+			$("#goRight").click(function () {
+				fishCount < result.length ? fishCount++ : fishCount = 0;
+				pairView(result);
+			});
+		});
+	}
 });
 
 
@@ -76,8 +69,6 @@ $("#mateFishModal").on("hide.bs.modal", function () {
 	$("#goRight").unbind("click");
 	$("#goLeft").unbind("click");
 });
-
-
 
 
 $("#button-addon2").click(async function () {
@@ -146,6 +137,7 @@ $(document).ready(async() => {
 		});
 	});
 });
+
 
 function pairView() {
 	$("#name").text(fishArray[fishCount].name);
