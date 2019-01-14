@@ -3,10 +3,10 @@ var fishCount = 0;
 var fishArray;
 var mateFishforbidden = true;
 $("#mateFishModal").on("show.bs.modal", function(){
- 
+
   if(selectedFish == null){
     console.log("huhu")
-   
+
     alert("please Select a fish first");
       mateFishforbidden = true;
     //throw new Error("no fish selected");
@@ -25,7 +25,7 @@ $("#mateFishModal").on("shown.bs.modal", function(){
 
   else{
 
-  
+
 
   fishTokenDatabase.getAllFishTokens().then(function(result){
   fishCount =0;
@@ -43,15 +43,7 @@ $("#mateFishModal").on("shown.bs.modal", function(){
       pairView(result);
     });
 
-    $("#pair").click(function(){
-      pairFishes(fishArray).then(result => {
 
-        $('#mateFishModal').modal('hide');
-      }). catch( error => {
-        $('#mateFishModal').modal('hide');
-      });
-
-    });
 
   });
 }
@@ -134,8 +126,8 @@ $(document).ready(async () => {
   aquaTokenContract = new AquaTokenContract();
 
 //0xf43925f2878453014350c4e55c7697a48d3e2813
-  aquaTokenContract.createContract("0x7bd94db3edb5e3b4358f38b212764a0e79f89251");
- 
+  aquaTokenContract.createContract("0xb3a0a77c3786f113c961e6b9ce3e8d54d9c34cb4");
+
 
   //Get all owned Fishes of current User:
   readAllFishes(); //FishCreation.js
@@ -143,7 +135,17 @@ $(document).ready(async () => {
 
   //TODO @Jannis: listen to event of NewbornFish
   //aquaTokenContract.contract.events.NewbornFish({}, function(error, event){ console.log(event.returnValues); })
+  $("#pair").click(function(){
 
+    console.log("0")
+    pairFishes(fishArray).then(result => {
+
+      $('#mateFishModal').modal('hide');
+    }). catch( error => {
+      $('#mateFishModal').modal('hide');
+    });
+
+  });
 });
 
 function pairView(){
