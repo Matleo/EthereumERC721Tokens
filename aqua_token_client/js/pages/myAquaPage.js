@@ -34,7 +34,7 @@ $("#mateFishModal").on("shown.bs.modal", function(){
 
 
     $("#goLeft").click(function(){
-      fishCount< 0 ? fishCount-- :  fishCount = result.length-1;
+      fishCount > 0           ? fishCount-- :  fishCount = 0 ;
       pairView(result);
     });
 
