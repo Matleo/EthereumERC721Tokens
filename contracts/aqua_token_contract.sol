@@ -30,6 +30,7 @@ contract aqua_token_contract is ERC721, ERC165 {
         _addTokenTo(_to, allTokens.length);
         emit Transfer(address(0), _to,allTokens.length);
         allTokens.push(allTokens.length);
+        emit NewbornFish(allTokens.length,0,0,0);
     }   
     
     function _addTokenTo(address _to, uint256 _tokenId) internal {
