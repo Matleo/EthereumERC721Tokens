@@ -82,17 +82,30 @@ class AquaTokenContract {
 
     var sendOptions = {};
     sendOptions.from = this.account; 
-    sendOptions.data = this.contract.methods.create_token(this.account,tokenid).encodeABI();
+    sendOptions.data = this.contract.methods.create_token(this.account).encodeABI();
     sendOptions.to = this.contract.options.address;
- 
     //sendOptions.gasPrice = gasPrice;
     //sendOptions.gasLimit = gasLimit;
     //this.sendOptions.value = value;
 
-    return  this.web3.eth.sendTransaction(sendOptions)
-    .then(receipt => {
-      return [receipt,tokenid];
-    });
+    this.web3.eth.sendTransaction(sendOptions);
+
+    return new Promise(function(resolve,reject){
+
+      this.contract.once("NewbornFish",function(error,event){
+
+        if(error != null){
+         reject(error);
+        }
+  
+        else {
+          console.log(event.returnValues.id);
+           resolve(event.returnValues.id);
+        }
+    
+      });
+
+    }.bind(this));
   } 
 
 
@@ -111,7 +124,7 @@ class AquaTokenContract {
     sendOptions.to = this.contract.options.address;
     sendOptions.data = this.contract.methods.transferFrom(this.account,_to,tokenid).encodeABI();
 
-    
+
   //  if(gasPrice !='null' && typeof(gasPrice) ==='string') sendOptions.gasPrice = gasPrice;
   //  if(gasLimit !='null' && typeof(gasLimit) ==='number') sendOptions.gas = gasLimit;
   //  if(value !='null' && typeof(value) ==='number') sendOptions.value = value;
@@ -139,8 +152,6 @@ class AquaTokenContract {
     sendOptions.value = "1000"
     sendOptions.data = this.contract.methods.mateFish(fish1.token_Id, fish1.headType, fish1.tailType, convertedSpeed1,fish2.token_Id, fish2.headType, fish2.tailType, convertedSpeed2).encodeABI();
  
-    console.log(this.contract.events)
-
     this.web3.eth.sendTransaction(sendOptions);
 
     return new Promise(function(resolve,reject){
@@ -169,4 +180,10 @@ class AquaTokenContract {
     return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
   }
   
+ async getMatePrice(){
+
+  return this.contract.methods.getMatePrice().call({from: this.account});
+ }
+
+
 }
