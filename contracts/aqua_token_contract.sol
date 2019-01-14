@@ -43,20 +43,24 @@ contract aqua_token_contract is ERC721, ERC165 {
     function create_token(address _to) public returns(uint256){
         require(_to != address(0));
         
-        uint256 tokenId = allTokens.length;
+        uint256 tokenId = _addToken(_to);
         //Save hash of properties
         uint256 iteration = (tokenId % 4);
         standardFish memory fish = fishes[iteration];
         bytes32 hash = keccak256(abi.encodePacked(fish.head, fish.tail, fish.speed));
         tokenPropertyHashes[tokenId] = hash;
         
+        emit NewbornFish(tokenId, fish.head, fish.tail, fish.speed);
+        return tokenId;
+    }
+    
+    function _addToken(address _to) private returns(uint256){
+        uint256 tokenId = allTokens.length;
         _addTokenTo(_to, tokenId);
         emit Transfer(address(0), _to, tokenId);
         allTokens.push(tokenId);
-        
-        emit NewbornFish(tokenId, fish.head, fish.tail, fish.speed);
         return tokenId;
-    }   
+    }
     
     function _addTokenTo(address _to, uint256 _tokenId) internal {
         require(tokenOwner[_tokenId] == address(0));
@@ -216,7 +220,7 @@ contract aqua_token_contract is ERC721, ERC165 {
         bytes32 hash2 = keccak256(abi.encodePacked(kopf2, schwanz2, speed2));
         require(hash2 == tokenPropertyHashes[id2]);
         
-        uint256 tokenId = create_token(msg.sender);
+        uint256 tokenId = _addToken(msg.sender);
         uint256 newSpeed = (speed1 + speed2)/2 + random() - 100;
         bytes32 childHash = keccak256(abi.encodePacked(kopf1, schwanz2, newSpeed));
         tokenPropertyHashes[tokenId] = childHash;
