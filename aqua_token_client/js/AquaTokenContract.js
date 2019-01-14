@@ -16,7 +16,6 @@ class AquaTokenContract {
     //Looking in a Interval of 100ms if the selected Account in Metmask was changed. Set the Default Account which is ever used as sender.
     setInterval(function() {
       if(this.account!== this.web3.currentProvider.selectedAddress) {
-        console.log("change");
         window.location.reload();
       }
     }.bind(this), 100);
@@ -29,7 +28,6 @@ class AquaTokenContract {
     optContractAdress- if the contract is already deployed the blockchain contractadress can set with this parameter.
   */
   createContract(optContractAdress) {
-    console.log(aqua_token_contract.abi)
     this.contract = new web3.eth.Contract(aqua_token_contract.abi);
     if(optContractAdress !='null' && typeof(optContractAdress) ==='string') this.contract.options.address = optContractAdress;
   }
@@ -99,8 +97,7 @@ class AquaTokenContract {
         }
 
         else {
-          console.log(event.returnValues.id);
-           resolve(event.returnValues.id);
+           resolve(event.returnValues);
         }
 
       });
@@ -143,8 +140,8 @@ class AquaTokenContract {
   
    // console.log(fish1,fish2)
     //Solidtiy doesn't know floating numbers. because this we need to convert the numbers to integers values.
-    var convertedSpeed1 = parseInt(fish1.speed*1000).toString();
-    var convertedSpeed2 = parseInt(fish2.speed* 1000).toString();
+    var convertedSpeed1 = parseInt(fish1.speed * 100).toString();
+    var convertedSpeed2 = parseInt(fish2.speed * 100).toString();
 
     var sendOptions ={ };
     sendOptions.from = this.account;
@@ -180,10 +177,6 @@ class AquaTokenContract {
     return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
   }
 
- async getMatePrice(){
-
-  return this.contract.methods.getMatePrice().call({from: this.account});
- }
 
 
 }
