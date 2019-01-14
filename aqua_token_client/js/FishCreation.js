@@ -2,13 +2,14 @@ async function createFish() {
   console.log( "CREATE FISH ");
   var contractResult = await aquaTokenContract.createToken("9000000000", 3065857, 0);
   
+	console.log(contractResult);
   //var fish = insertRandomFish();
   //TODO Generate FishToken with Values
   var headType = Math.floor(Math.random() * 4) + 1;
   var tailType = Math.floor(Math.random() * 4) + 1;
   var randSpeed = Math.random() * 5 + 1;
   var name = nameList[Math.floor(Math.random() * 9505) + 1];
-  var fishToken = new FishToken(parseInt(contractResult[1]), name, randSpeed, headType.toString(), tailType.toString());
+  var fishToken = new FishToken(parseInt(contractResult), name, randSpeed, headType.toString(), tailType.toString());
   var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
   console.log(fishToken)
   insertFish( fishToken);

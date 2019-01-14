@@ -134,7 +134,7 @@ $(document).ready(async () => {
   aquaTokenContract = new AquaTokenContract();
 
 //0xf43925f2878453014350c4e55c7697a48d3e2813
-  aquaTokenContract.createContract("0xdbe8d01ce2251425b15658adebf8cf093bb7df47");
+  aquaTokenContract.createContract("0x5266184c1a10f4c632f4f1bf03b99cf2eeb2a727");
  
 
   //Get all owned Fishes of current User:
