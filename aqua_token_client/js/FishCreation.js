@@ -69,6 +69,8 @@ function readAllFishes(){
    await fishTokenDatabase.createOrUpdateFishToken(fishToken).then(result =>{
     insertFish(fishToken);
     console.log("create fish by name: " + fishToken.name);
+	//TODO: Fix pairing Bug
+	location.reload();
    });
 
 }
