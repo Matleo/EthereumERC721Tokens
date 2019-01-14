@@ -139,7 +139,6 @@ class AquaTokenContract {
 
   async mathFish(fish1,fish2 ){
 
-   // console.log(fish1,fish2)
     //Solidtiy doesn't know floating numbers. because this we need to convert the numbers to integers values.
     var convertedSpeed1 = parseInt(fish1.speed * 100).toString();
     var convertedSpeed2 = parseInt(fish2.speed * 100).toString();
@@ -147,13 +146,12 @@ class AquaTokenContract {
     var sendOptions ={ };
     sendOptions.from = this.account;
     sendOptions.to = this.contract.options.address;
-    sendOptions.value = "1000"
+    sendOptions.value = await this.contract.methods.getMakingPrice().call({from: this.account});
     sendOptions.data = this.contract.methods.mateFish(fish1.token_Id, fish1.headType, fish1.tailType, convertedSpeed1,fish2.token_Id, fish2.headType, fish2.tailType, convertedSpeed2).encodeABI();
 
     this.web3.eth.sendTransaction(sendOptions);
 
     return new Promise(function(resolve,reject){
-
       this.contract.once("NewbornFish",function(error,event){
 
         if(error != null){

@@ -212,7 +212,7 @@ contract aqua_token_contract is ERC721, ERC165 {
     }
     
     //Paarung
-    function makeFish(uint256 id1, uint256 kopf1, uint256 schwanz1, uint256 speed1, uint256 id2, uint256 kopf2, uint256 schwanz2, uint256 speed2 ) external payable {
+    function mateFish(uint256 id1, uint256 kopf1, uint256 schwanz1, uint256 speed1, uint256 id2, uint256 kopf2, uint256 schwanz2, uint256 speed2 ) external payable {
         require(msg.value >= makingPrice); //check if he payed enough
         
         //check if hash saved for ids equals hash(kopf,schwanz,speed)

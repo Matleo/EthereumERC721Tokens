@@ -18,7 +18,6 @@ $("#createFishModal").on("shown.bs.modal", function(){
 
     var text = "Das Erstellen eines neuen Fisch kostet:"
 	var etherPrice = Number.parseFloat(result) / 1000000000000000000;
-	console.log(etherPrice);
 	$("#makingPrice").text(text + " " + etherPrice + " ether!");
 
 	//This component is responsible for triggering actions on the GUI (some kind of 'controller')
@@ -35,10 +34,8 @@ $('#addFish').click(function () {
   }).catch(function(error){
     console.log(error);
   });
-	console.log("test");
 });
 $("#createFishModal").on("hidden.bs.modal", function(){
-	console.log("here");
 	$("#addFish").unbind("click");
 });
 
@@ -67,16 +64,6 @@ $("#mateFishModal").on("shown.bs.modal", function(){
     $("#goRight").click(function(){
       fishCount < result.length? fishCount++: fishCount = 0;
       pairView(result);
-    });
-
-    $("#pair").click(function(){
-      pairFishes(fishArray).then(result => {
-
-        $('#mateFishModal').modal('hide');
-      }). catch( error => {
-        $('#mateFishModal').modal('hide');
-      });
-
     });
 
   });
@@ -144,7 +131,7 @@ $(document).ready(async() => {
 	aquaTokenContract = new AquaTokenContract();
 
 	//0xf43925f2878453014350c4e55c7697a48d3e2813
-	aquaTokenContract.createContract("0xb3a0a77c3786f113c961e6b9ce3e8d54d9c34cb4");
+	aquaTokenContract.createContract("0x87ba1b0d0a23ce8bb8e35c3b50af8881291dd6a4");
 
 	//Get all owned Fishes of current User:
 	readAllFishes(); //FishCreation.js
