@@ -1,18 +1,18 @@
 
 class AquaTokenContract {
-       
+
   constructor() {
     this.web3 = new Web3(window.web3.currentProvider);
     this.contract;
     this.contractOptions = {};
     this.account;
     this.tokens = [];
-    this.init();   
+    this.init();
   }
 
 
   init() {
-    this.account = this.web3.currentProvider.selectedAddress; 
+    this.account = this.web3.currentProvider.selectedAddress;
     //Looking in a Interval of 100ms if the selected Account in Metmask was changed. Set the Default Account which is ever used as sender.
     setInterval(function() {
       if(this.account!== this.web3.currentProvider.selectedAddress) {
@@ -23,7 +23,7 @@ class AquaTokenContract {
 
 
   /*
-    This Method create a web3 Contract Object 
+    This Method create a web3 Contract Object
     abi - Array: The json interface of the contract.
     optContractAdress- if the contract is already deployed the blockchain contractadress can set with this parameter.
   */
@@ -33,8 +33,8 @@ class AquaTokenContract {
   }
 
 
-  /* 
-    This Method deploy a Contract and override the contract Object after the deployment. 
+  /*
+    This Method deploy a Contract and override the contract Object after the deployment.
     data - String: The byte code of the contract. Used when the contract gets deployed.
     gasPrice - String: The gas price in wei to use for transactions.
     gasLimit - Number: The maximum gas provided for a transaction (gas limit).
@@ -45,7 +45,7 @@ class AquaTokenContract {
     var sendOptions={};
     this.contract.options.from = this.account;
     sendOptions.to = this.contract.options.address;
-    if(data !='null' && typeof(data) ==='string') this.contract.options.data = data; 
+    if(data !='null' && typeof(data) ==='string') this.contract.options.data = data;
     if(gasPrice !='null' && typeof(gasPrice) ==='string') sendOptions.gasPrice = gasPrice;
     if(gasLimit !='null' && typeof(gasLimit) ==='number') sendOptions.gas = gasLimit;
 
@@ -57,19 +57,19 @@ class AquaTokenContract {
       .then(function(newContractInstance) {
         this.contract = newContractInstance;
         return Promise.resolve(newContractInstance);
-      });        
+      });
   }
-  
-      
-  /* 
+
+
+  /*
     This method create a new Token (Random Tokenid) and check if the token already has a owner in the Contract.
     If not the Method create a new Token with the current Account as owner.
-   
+
     gasPrice - String (optional): The gas price in wei to use for this transaction.It is the wei per unit of gas.
     gasLimit - Number (optional): The maximum gas provided for this transaction (gas limit).
     value - ``Number|String|BN|BigNumber``(optional): The value transferred for the transaction in wei.
 
-    return in success case a Promise which include a array  
+    return in success case a Promise which include a array
   */
   async createToken(gasPrice, gasLimit, value ) {
     var tokenowner;
@@ -79,7 +79,7 @@ class AquaTokenContract {
     }
 
     var sendOptions = {};
-    sendOptions.from = this.account; 
+    sendOptions.from = this.account;
     sendOptions.data = this.contract.methods.create_token(this.account).encodeABI();
     sendOptions.to = this.contract.options.address;
     //sendOptions.gasPrice = gasPrice;
@@ -104,11 +104,11 @@ class AquaTokenContract {
       });
 
     }.bind(this));
-  } 
+  }
 
 
-  /* 
-    This method send a Token to another account 
+  /*
+    This method send a Token to another account
 
     _to - The adress of the reciever account.
     gasPrice - String (optional): The gas price in wei to use for this transaction.It is the wei per unit of gas.
@@ -132,13 +132,13 @@ class AquaTokenContract {
         return Promise.reject(error);
       }).then(function(result) {
         return Promise.resolve(result);
-      }); 
+      });
 
-    
+
   }
 
   async mathFish(fish1,fish2 ){
-  
+
    // console.log(fish1,fish2)
     //Solidtiy doesn't know floating numbers. because this we need to convert the numbers to integers values.
     var convertedSpeed1 = parseInt(fish1.speed * 100).toString();
@@ -159,27 +159,27 @@ class AquaTokenContract {
         if(error != null){
          reject(error);
         }
-  
+
         else {
            resolve(event.returnValues);
         }
-    
+
       });
 
     }.bind(this));
 
   }
-  
+
   async balanceOf(tokenowner) {
     return this.contract.methods.balanceOf(tokenowner).call({from: this.account});
   }
-  async allOwnedTokens() {
- 
+	async allOwnedTokens() {
+
     return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
   }
-  
+
   async getMakingPrice() {
- 
+
     return this.contract.methods.getMakingPrice().call({from: this.account});
   }
 
