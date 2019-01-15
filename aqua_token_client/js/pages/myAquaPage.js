@@ -47,7 +47,7 @@ $("#mateFishModal").on("shown.bs.modal", function () {
 	} else {
 
 		fishTokenDatabase.getAllFishTokens().then(function (result) {
-			fishCount = 41;
+			fishCount = 0;
 			fishArray = result;
 			pairView();
 
