@@ -109,7 +109,7 @@ function insertToSVG(svgID, fish) {
     //insert fish to fishprofile pic
   }else if(svgID =="mateModalPicture"){
     $("#mateModalPicture > svg").empty();
-    var group = svg.group();//create new group in fishprofile
+    var group = svg.group();
     appendSVGtoGroup("../resources/SVGs/Kopf/Form" + fish.headType + ".svg", svg, group, 0, -50);
     appendSVGtoGroup("../resources/SVGs/Schwanz/Form" + fish.tailType + ".svg", svg, group, 0, -50);
   }else{//profile pic
