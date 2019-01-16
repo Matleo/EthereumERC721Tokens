@@ -149,6 +149,8 @@ $(document).ready(async() => {
 
 
 function pairView() {
+	insertToSVG("mateModalPicture", fishArray[fishCount]);
+
 	$("#name").text(fishArray[fishCount].name);
 
 	$("#propertyTable").empty();
@@ -158,13 +160,17 @@ function pairView() {
 	$("#propertyTable").append("</tr>");
 
 	$("#propertyTable").append("<tr>");
-	$("#propertyTable").append("<td> Kopf: </td>");
+	$("#propertyTable").append("<td> KopfTyp: </td>");
 	$("#propertyTable").append("<td>" + fishArray[fishCount].headType + "</td>");
 	$("#propertyTable").append("</tr>");
 
 	$("#propertyTable").append("<tr>");
-	$("#propertyTable").append("<td> Flosse: </td>");
+	$("#propertyTable").append("<td> FlossenTyp: </td>");
 	$("#propertyTable").append("<td>" + fishArray[fishCount].tailType + "</td>");
 	$("#propertyTable").append("</tr>");
 
+	$("#propertyTable").append("<tr>");
+	$("#propertyTable").append("<td> Geschwindigkeit: </td>");
+	$("#propertyTable").append("<td>" + fishArray[fishCount].speed.toFixed(2) + "</td>");
+	$("#propertyTable").append("</tr>");
 }

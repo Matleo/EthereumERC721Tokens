@@ -3,6 +3,8 @@ var selectedFish = null;
 //initialize aquarium svg
 $("#aquarium").svg({ settings: { height: 400, width: 800 } });
 $("#fishProfile").svg({ settings: { height: 100, width: 100 } });
+$("#mateModalPicture").svg({ settings: { height: 100, width: 100 } });
+
 var aquarium = $('#aquarium').svg('get');
 aquarium.linearGradient('aquaGrad',
   [[0, 'rgb(66,151,255)', 1], [1, 'rgb(0,50,100)', 1]], '0%', '0%', '0%', '100%');
@@ -105,7 +107,12 @@ function insertToSVG(svgID, fish) {
     });
 
     //insert fish to fishprofile pic
-  } else {
+  }else if(svgID =="mateModalPicture"){
+    $("#mateModalPicture > svg").empty();
+    var group = svg.group();//create new group in fishprofile
+    appendSVGtoGroup("../resources/SVGs/Kopf/Form" + fish.headType + ".svg", svg, group, 0, -50);
+    appendSVGtoGroup("../resources/SVGs/Schwanz/Form" + fish.tailType + ".svg", svg, group, 0, -50);
+  }else{//profile pic
     //delete previous profile pic:
     $("#fishPlaceholder").remove();
     $("#fishProfile > svg").empty();
