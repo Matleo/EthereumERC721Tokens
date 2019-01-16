@@ -1,9 +1,9 @@
 pragma solidity ^0.5.0;
 
-import "../Interfaces/Interface_ERC165.sol";
-import "../Interfaces/Interface_ERC721.sol";
-import "../Interfaces/Interface_ERC721TokenReceiver.sol";
-import "../Library/Library_SafeMath.sol";
+import "./Interface_ERC165.sol";
+import "./Interface_ERC721.sol";
+import "./Interface_ERC721TokenReceiver.sol";
+import "./Library_SafeMath.sol";
 
 contract aqua_token_contract is ERC721, ERC165 {
     using SafeMath for uint256;
@@ -13,25 +13,55 @@ contract aqua_token_contract is ERC721, ERC165 {
     mapping(uint256 => uint256) internal ownedTokensIndex; // Mapping from token ID to index of the owner tokens list 
     mapping (address => uint256) internal ownedTokensCount;
     mapping (uint256 => address) internal tokenOwner;
+    mapping(uint256 => bytes32) public tokenPropertyHashes; //mapping id->hash of properties
     
     mapping (uint256 => address) internal tokenApprovals; //for single NFT approval
     mapping (address => mapping (address => bool)) internal operatorApprovals; //to give approval for all my NFT
 
-    uint256 matingPrice = 1000; //in wei
+    uint256 makingPrice = 10000000000000000; //in wei
 
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
     event NewbornFish(uint256 indexed id, uint256 kopf, uint256 schwanz, uint256 speed);
     
+    struct standardFish {
+        uint256 head;
+        uint256 tail;
+        uint256 speed;
+    }
+    
+    standardFish[] internal fishes;
+    constructor() public {
+        fishes.push(standardFish(1,1,200));
+        fishes.push(standardFish(2,2,200));
+        fishes.push(standardFish(3,3,200));
+        fishes.push(standardFish(4,4,200));
+    }
+    
     //------------Token Creation:------------
-    function create_token(address _to) public {
+    function create_token(address _to) public payable returns(uint256){
         require(_to != address(0));
-        _addTokenTo(_to, allTokens.length);
-        emit Transfer(address(0), _to,allTokens.length);
-        allTokens.push(allTokens.length);
-        emit NewbornFish(allTokens.length,0,0,0);
-    }   
+        require(msg.value >= makingPrice); //check if he payed enough
+        
+        uint256 tokenId = _addToken(_to);
+        //Save hash of properties
+        uint256 iteration = (tokenId % 4);
+        standardFish memory fish = fishes[iteration];
+        bytes32 hash = keccak256(abi.encodePacked(fish.head, fish.tail, fish.speed));
+        tokenPropertyHashes[tokenId] = hash;
+        
+        emit NewbornFish(tokenId, fish.head, fish.tail, fish.speed);
+        return tokenId;
+    }
+    
+    function _addToken(address _to) private returns(uint256){
+        uint256 tokenId = allTokens.length;
+        _addTokenTo(_to, tokenId);
+        emit Transfer(address(0), _to, tokenId);
+        allTokens.push(tokenId);
+        return tokenId;
+    }
     
     function _addTokenTo(address _to, uint256 _tokenId) internal {
         require(tokenOwner[_tokenId] == address(0));
@@ -177,21 +207,26 @@ contract aqua_token_contract is ERC721, ERC165 {
         return ownedTokens[_address];
     }
     
-    function getMatingPrice() external view returns(uint256){
-        return matingPrice;
+    function getMakingPrice() external view returns(uint256){
+        return makingPrice;
     }
     
     //Paarung
     function mateFish(uint256 id1, uint256 kopf1, uint256 schwanz1, uint256 speed1, uint256 id2, uint256 kopf2, uint256 schwanz2, uint256 speed2 ) external payable {
-        require(msg.value >= matingPrice); //check if he payed enough
+        require(msg.value >= makingPrice); //check if he payed enough
         
-        //TODO: check if hash saved for ids equals hash(kopf,schwanz,speed)
-        uint256 tokenId = allTokens.length +1;
-        create_token(msg.sender);
+        //check if hash saved for ids equals hash(kopf,schwanz,speed)
+        bytes32 hash1 = keccak256(abi.encodePacked(kopf1, schwanz1, speed1));
+        require(hash1 == tokenPropertyHashes[id1]);
+        bytes32 hash2 = keccak256(abi.encodePacked(kopf2, schwanz2, speed2));
+        require(hash2 == tokenPropertyHashes[id2]);
+        
+        uint256 tokenId = _addToken(msg.sender);
         uint256 newSpeed = (speed1 + speed2)/2 + random() - 100;
+        bytes32 childHash = keccak256(abi.encodePacked(kopf1, schwanz2, newSpeed));
+        tokenPropertyHashes[tokenId] = childHash;
         emit NewbornFish(tokenId, kopf1, schwanz2, newSpeed);
         
-        //TODO: hash the properties and save the hash to id
     }
     function random() private view returns (uint8) {
         return uint8(uint256(keccak256(abi.encode(block.timestamp)))%201);
