@@ -71,9 +71,18 @@ $("#mateFishModal").on("hide.bs.modal", function () {
 });
 
 
-$("#button-addon2").click(async function () {
+$("#transferButton").click(async function () {
+	//send transaction to contract
 	await aquaTokenContract.transferFrom($("#toAdress").val(), selectedFish.token_Id);
-	//Todo Remove fish from Aqua
+
+	//Remove fish from Aqua
+	for (var i = 0; i < allFish.length; i++) {
+    var fish = allFish[i];
+		if(fish.token_Id == selectedFish.token_Id){
+			$(fish.group).remove()//remove svg group
+			allFish.splice(i,1); //remove fish from array
+		}
+	}
 });
 
 
