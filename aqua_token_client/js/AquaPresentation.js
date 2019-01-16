@@ -96,6 +96,7 @@ function insertToSVG(svgID, fish) {
     //add click listener
     fish.group.addEventListener("click", () => {
       selectedFish = fish;
+      $("#idValue").html(fish.token_Id);
       $("#flosseValue").html(fish.tailType);
       $("#kopfValue").html(fish.headType);
       $("#nameValue").html(fish.name);
