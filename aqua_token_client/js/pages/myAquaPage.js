@@ -2,6 +2,7 @@ var aquaTokenContract;
 var fishCount = 0;
 var fishArray;
 var mateFishforbidden = true;
+var makingPrice;
 $("#mateFishModal").on("show.bs.modal", function () {
 
 	if (selectedFish == null) {
@@ -14,11 +15,10 @@ $("#mateFishModal").on("show.bs.modal", function () {
 });
 
 $("#createFishModal").on("shown.bs.modal", function () {
-	aquaTokenContract.getMakingPrice().then(function (result) {
 
+		// Den Preis für das erstellen eines Fisches im "CreateFisch"-Modal hinzufügen
 		var text = "Das Erstellen eines neuen Fisch kostet:"
-		var etherPrice = Number.parseFloat(result) / 1000000000000000000;
-		$("#makingPrice").text(text + " " + etherPrice + " ether!");
+		$("#makingPrice").text(text + " " + makingPrice + " ether!");
 
 		//This component is responsible for triggering actions on the GUI (some kind of 'controller')
 		$('#addFish').click(function () {
@@ -30,50 +30,37 @@ $("#createFishModal").on("shown.bs.modal", function () {
 				console.log(error);
 			});
 		});
-
-	}).catch(function (error) {
-		console.log(error);
-	});
 });
 $("#createFishModal").on("hidden.bs.modal", function () {
 	$("#addFish").unbind("click");
 });
 
-// MateFish um "aquaTokenContract.getMakingPrice()..." ergänz wegen ether Price Ermittlung
-// Übergabeparameter "resutl" bei Methoden aufruf: pairView eingefügt und mit etherPrice ergänzt
-// ganz unten im Code - function um "result" und etherPrice ergänzt
+
 $("#mateFishModal").on("shown.bs.modal", function () {
 
 	if (mateFishforbidden) {
 		$('#mateFishModal').modal('hide');
 		return;
 	} else {
-		aquaTokenContract.getMakingPrice().then(function (result) {
 
-			var text = "Das Erstellen eines neuen Fisch kostet:"
-			var etherPrice = Number.parseFloat(result) / 1000000000000000000;
-
-			fishTokenDatabase.getAllFishTokens().then(function (result) {
-				fishCount = 0;
-				fishArray = result;
-				pairView(result, etherPrice);
-				
+		fishTokenDatabase.getAllFishTokens().then(function (result) {
+			fishCount = 0;
+			fishArray = result;
+			pairView();
+			
+			console.log(fishCount);
+			$("#goLeft").click(function () {
+				fishCount > 0 ? fishCount-- : fishCount = result.length-1;
 				console.log(fishCount);
-				$("#goLeft").click(function () {
-					fishCount > 0 ? fishCount-- : fishCount = result.length-1;
-					console.log(fishCount);
-					pairView(result, etherPrice);
-				});
-	
-				$("#goRight").click(function () {
-					fishCount < result.length-1 ? fishCount++ : fishCount = 0;
-					console.log(fishCount);
-					pairView(result, etherPrice);
-				});
-				
+				pairView(result);
 			});
-		}).catch(function (error) {
-			console.log(error);
+
+			$("#goRight").click(function () {
+				fishCount < result.length-1 ? fishCount++ : fishCount = 0;
+				console.log(fishCount);
+				pairView(result);
+			});
+			
 		});
 	}
 });
@@ -150,6 +137,15 @@ $(document).ready(async() => {
 	//Get all owned Fishes of current User:
 	readAllFishes(); //FishCreation.js
 
+// read makingPrice from contract
+	aquaTokenContract.getMakingPrice().then(function (result) {
+	makingPrice = Number.parseFloat(result) / 1000000000000000000;
+	console.log(makingPrice); //geht :-)
+
+	}).catch(function (error) {
+		console.log(error);
+	});
+// END read makinPrice	
 
 	//register onclick event for "paaren" button in modal
 	$("#pair").click(function () {
@@ -162,7 +158,7 @@ $(document).ready(async() => {
 });
 
 
-function pairView(result, etherPrice) {
+function pairView() {
 	insertToSVG("mateModalPicture", fishArray[fishCount]);
 
 	$("#name").text(fishArray[fishCount].name);
@@ -192,6 +188,6 @@ function pairView(result, etherPrice) {
 	$("#propertyTable").append("<td> Kosten für Paarung: </td>");
 	$("#propertyTable").append('<td id="matePrice"></td>');
 	$("#propertyTable").append("</tr>");
-	$("#matePrice").text(etherPrice + " ether!");
+	$("#matePrice").text(makingPrice+ " Ether!");
 
 }
