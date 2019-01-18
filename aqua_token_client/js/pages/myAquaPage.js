@@ -39,27 +39,41 @@ $("#createFishModal").on("hidden.bs.modal", function () {
 	$("#addFish").unbind("click");
 });
 
+// MateFish um "aquaTokenContract.getMakingPrice()..." ergänz wegen ether Price Ermittlung
+// Übergabeparameter "resutl" bei Methoden aufruf: pairView eingefügt und mit etherPrice ergänzt
+// ganz unten im Code - function um "result" und etherPrice ergänzt
 $("#mateFishModal").on("shown.bs.modal", function () {
 
 	if (mateFishforbidden) {
 		$('#mateFishModal').modal('hide');
 		return;
 	} else {
+		aquaTokenContract.getMakingPrice().then(function (result) {
 
-		fishTokenDatabase.getAllFishTokens().then(function (result) {
-			fishCount = 0;
-			fishArray = result;
-			pairView();
+			var text = "Das Erstellen eines neuen Fisch kostet:"
+			var etherPrice = Number.parseFloat(result) / 1000000000000000000;
 
-			$("#goLeft").click(function () {
-				fishCount > 0 ? fishCount-- : fishCount = 0;
-				pairView(result);
+			fishTokenDatabase.getAllFishTokens().then(function (result) {
+				fishCount = 0;
+				fishArray = result;
+				pairView(result, etherPrice);
+				
+				console.log(fishCount);
+				$("#goLeft").click(function () {
+					fishCount > 0 ? fishCount-- : fishCount = result.length-1;
+					console.log(fishCount);
+					pairView(result, etherPrice);
+				});
+	
+				$("#goRight").click(function () {
+					fishCount < result.length-1 ? fishCount++ : fishCount = 0;
+					console.log(fishCount);
+					pairView(result, etherPrice);
+				});
+				
 			});
-
-			$("#goRight").click(function () {
-				fishCount < result.length ? fishCount++ : fishCount = 0;
-				pairView(result);
-			});
+		}).catch(function (error) {
+			console.log(error);
 		});
 	}
 });
@@ -148,7 +162,7 @@ $(document).ready(async() => {
 });
 
 
-function pairView() {
+function pairView(result, etherPrice) {
 	insertToSVG("mateModalPicture", fishArray[fishCount]);
 
 	$("#name").text(fishArray[fishCount].name);
@@ -173,4 +187,11 @@ function pairView() {
 	$("#propertyTable").append("<td> Geschwindigkeit: </td>");
 	$("#propertyTable").append("<td>" + fishArray[fishCount].speed.toFixed(2) + "</td>");
 	$("#propertyTable").append("</tr>");
+
+	$("#propertyTable").append("<tr>");
+	$("#propertyTable").append("<td> Kosten für Paarung: </td>");
+	$("#propertyTable").append('<td id="matePrice"></td>');
+	$("#propertyTable").append("</tr>");
+	$("#matePrice").text(etherPrice + " ether!");
+
 }
