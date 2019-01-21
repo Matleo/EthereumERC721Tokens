@@ -109,7 +109,7 @@ $(document).ready(async() => {
 			// User denied account access...
 			$("#access").removeClass("alert-info");
 			$("#access").addClass("alert-danger");
-			$("#access").append("<span>The App only works with Metmask access. Reload the App</span>")
+			$("#access").append("<span>The App only works with Metmask access. Reload the App</span>");
 			$("#access").append("<a class='alert-link' onclick='window.location.reload()'> here </strong>");
 			$("#access").append("<span>and accept the access in Metamask</span>");
 			return;
@@ -140,7 +140,6 @@ $(document).ready(async() => {
 // read makingPrice from contract
 	aquaTokenContract.getMakingPrice().then(function (result) {
 	makingPrice = Number.parseFloat(result) / 1000000000000000000;
-	console.log(makingPrice); //geht :-)
 
 	}).catch(function (error) {
 		console.log(error);
