@@ -5,7 +5,10 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller// This means that this class is a Controller
 @RequestMapping(path = "fishToken")
@@ -45,7 +48,6 @@ public class FishTokenController {
 
             FishToken updateToken = existingToken.get();
             updateToken.setName(fishToken.getName());
-            updateToken.setOwnerAdress(fishToken.getOwnerAdress());
             updateToken.setSpeed(fishToken.getSpeed());
             updateToken.setHeadType(fishToken.getHeadType());
             updateToken.setTailType(fishToken.getTailType());
@@ -84,6 +86,20 @@ public class FishTokenController {
         return action;
     }
 
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/owner", produces = MediaType.APPLICATION_JSON_VALUE )
+    public @ResponseBody Iterable<FishToken> getTokensByOwner(@RequestParam String token_ids) {
+
+        String[] string_ids = token_ids.split(",");
+        Set<Long> ids  = new HashSet<Long>();
+        for(int i=0; i< string_ids.length; i++){
+
+         ids.add(Long.parseLong(string_ids[i]));
+        }
+    	
+    	return fishTokenRepository.findAllById(ids);
+    }
 
 
 

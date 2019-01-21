@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -7,17 +7,22 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/myAqua.css">
 
     <title>Aqua Token</title>
   </head>
   <body>
-      <div id="access" class="alert alert-warning" role="alert">This App is only working with Metmask access. Switch to Metmask an allow the access</div>
+      <div id="access" class="alert alert-warning" role="alert">This App is only working with Metamask access. Switch to Metamask and allow access</div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <span class="navbar-brand">MyAquaToken</span>
     </nav>
-    <div class="container h-100">
-      <div class="row">
+	<div id="loader">
+		<div class="row justify-content-center mt-5"> <div class="loader" ></div></div>
+		<div class="row justify-content-center mt-3"> <p>Loading Fishes Blub ...</p> </div>
+	</div>
+    <div class="container h-100" id="content">
+      <div class="row" id="topcontent">
         <div class="col-9 offset-md-1 margin-top-1">
           <div id="aquarium"></div>
        </div>
@@ -27,13 +32,12 @@
       </div>
       <div class="row">
         <div class="col">
-          <h2>Fisch:</h2>
+          <h2 class="mt-4" >Der Fisch besitzt folgende Eigenschaften:</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-10">
-          <h3>Eigenschaften</h3>
-          <table class="table">
+          <table class="table mt-3">
             <thead>
               <tr>
                 <th scope="col">Eigenschaft</th>
@@ -43,19 +47,23 @@
             <tbody>
               <tr>
                 <th scope="row">Name</th>
-                <td>Fred</td>
+                <td id="nameValue"></td>
               </tr>
               <tr>
-                <th scope="row">Farbe</th>
-                <td>rot</td>
+                <th scope="row">TokenID</th>
+                <td id="idValue"></td>
               </tr>
               <tr>
-                <th scope="row">Kopf</th>
-                <td id="kopfValue">2</td>
+                <th scope="row">KopfTyp</th>
+                <td id="kopfValue"></td>
               </tr>
               <tr>
-                <th scope="row">Flosse</th>
-                <td id="flosseValue">1</td>
+                <th scope="row">FlossenTyp</th>
+                <td id="flosseValue"></td>
+              </tr>
+              <tr>
+                <th scope="row">Geschwindigkeit</th>
+                <td id="speedValue"></td>
               </tr>
             </tbody>
           </table>
@@ -64,15 +72,15 @@
           <div class="row">
             <div class="col-12">
               <picture id="fishPlaceholder">
-                <source srcset="../resources/2000px-Tux.svg.png" type="image/svg+xml">
-                <img src="../resources/2000px-Tux.svg.png" class="img-fluid img-thumbnail fishImage" alt="...">
+                <source srcset="../resources/placeholder.png" type="image/svg+xml">
+                <img src="../resources/placeholder.png" class="img-fluid img-thumbnail fishImage" alt="...">
               </picture>
               <div id="fishProfile"></div>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mateFishModal">paaren</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" id="openPair" data-target="#mateFishModal">paaren</button>
             </div>
           </div>
         </div>
@@ -80,15 +88,15 @@
       <div class="row">
         <div class="col-5">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Empfänger Adresse" aria-label="Recipient's address" aria-describedby="button-addon2">
+            <input type="text" class="form-control" id="toAdress" placeholder="Empfänger Adresse" aria-label="Recipient's address" aria-describedby="button-addon2">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Versenden</button>
+              <button class="btn btn-outline-secondary" type="button" id="transferButton">Versenden</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+	</div>
     <!-- Modal -->
     <div class="modal fade" id="createFishModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -100,7 +108,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Das Erstellen eines neuen Fisch kostet:</p>
+            <p id="makingPrice"></p>
             <p>Wenn sie bestätigen wird eine Transaktion initialisiert!</p>
           </div>
           <div class="modal-footer">
@@ -121,35 +129,30 @@
             </button>
           </div>
           <div class="modal-body">
-            <h6>TODO: paginierte Liste aller Fische</h2>
             <ul class="list-unstyled">
               <li class="media">
-                <img src="../resources/2000px-Tux.svg.png" class="mr-3 fishImage" alt="...">
+                <div id="mateModalPicture" class="mr-3" ></div>
                 <div class="media-body">
-                  <h5 class="mt-0 mb-1">Fisch 1</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </li>
-              <li class="media my-4">
-                <img src="../resources/2000px-Tux.svg.png" class="mr-3 fishImage" alt="...">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">Fisch 2</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </li>
-              <li class="media">
-                <img src="../resources/2000px-Tux.svg.png" class="mr-3 fishImage" alt="...">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">Fisch 3</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                  <h5 class="mt-0 mb-1" id="name">test</h5>
+                  <table class="table" >
+                    <thead>
+                      <th>Eigenschaft</th>
+                      <th>Wert</th>
+                    </thead>
+                    <tbody id="propertyTable">
+                    </tbody>
+                  </table>
                 </div>
               </li>
             </ul>
-            <button type="button" class="btn btn-primary">Mehr</button>
+           <div>
+            <button class="fa fa-chevron-left" id="goLeft" aria-hidden="true"></i>
+            <button class="fa fa-chevron-right pull-right" id="goRight" aria-hidden="true"></i>
+           </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-            <button type="button" class="btn btn-primary">paaren!</button>
+            <button type="button" class="btn btn-primary" id="pair">paaren!</button>
           </div>
         </div>
       </div>
@@ -166,12 +169,14 @@
     <script src="../js/beans/Fish.js"></script>
     <script src="../js/AquaPresentation.js"></script>
     <script src="../js/DatabaseProvider.js"></script>
-    <script src="../js/beans/Token.js"></script>
+    <script src="../js/beans/Action.js"></script>
+    <script src="../resources/namensList.js"></script>
+    <script src="../js/beans/FishToken.js"></script>
     <script src="../js/FishCreation.js"></script>
     <script src="../js/pages/myAquaPage.js"></script>
-    <script src="../js/Contracts_Bytecode/Erc721_basic.js"></script>
+    <script src="../js/Contracts_Bytecode/aqua_token_contract.js"></script>
     <script src="../js/AquaTokenContract.js"></script>
-  
+
 
     <!-- Bootstrap and Popper js -->
     <script src="../js/lib/bootstrap.bundle.min.js"></script>

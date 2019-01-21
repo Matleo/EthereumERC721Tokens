@@ -4,3 +4,6 @@
 .project
 
 /target
+
+simple_token_client/build/
+simple_token_client/node_modules/

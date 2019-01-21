@@ -1,110 +1,193 @@
-
-
 var aquaTokenContract;
+var fishCount = 0;
+var fishArray;
+var mateFishforbidden = true;
+var makingPrice;
+$("#mateFishModal").on("show.bs.modal", function () {
 
+	if (selectedFish == null) {
+		alert("please Select a fish first");
+		mateFishforbidden = true;
+		//throw new Error("no fish selected");
+	} else {
+		mateFishforbidden = false;
+	}
+});
 
-$('#addFish').click(function () {
+$("#createFishModal").on("shown.bs.modal", function () {
 
-  createToken().then(function (result) {
+		// Den Preis für das erstellen eines Fisches im "CreateFisch"-Modal hinzufügen
+		var text = "Das Erstellen eines neuen Fisch kostet:"
+		$("#makingPrice").text(text + " " + makingPrice + " ether!");
 
-    console.table(result[0]);
-    console.table(result[1]);
-    createFish(); //FishCreation.js
-    $('#createFishModal').modal('hide');
-
-  });
+		//This component is responsible for triggering actions on the GUI (some kind of 'controller')
+		$('#addFish').click(function () {
+			$('#createFishModal').modal('hide');
+			//FishCreation.js
+			createFish().then(function (result) {
+				//TODO
+			}).catch(function (error) {
+				console.log(error);
+			});
+		});
+});
+$("#createFishModal").on("hidden.bs.modal", function () {
+	$("#addFish").unbind("click");
 });
 
 
-$('#button-addon2').click(function(){
+$("#mateFishModal").on("shown.bs.modal", function () {
 
-  transferFish($('#recieverAdress').val()).then(function(result){
-    console.log(result[0],result[1])
-  })
+	if (mateFishforbidden) {
+		$('#mateFishModal').modal('hide');
+		return;
+	} else {
 
-}
+		fishTokenDatabase.getAllFishTokens().then(function (result) {
+			fishCount = 0;
+			fishArray = result;
+			pairView();
+			
+			console.log(fishCount);
+			$("#goLeft").click(function () {
+				fishCount > 0 ? fishCount-- : fishCount = result.length-1;
+				console.log(fishCount);
+				pairView(result);
+			});
 
-
-$(document).ready(async () => {
-  $("button").prop("disabled", true);
-  // Modern dapp browsers...
-  if (window.ethereum) {
-    window.web3 = new Web3(ethereum);
-    try {
-      // Request account access if needed
-      var x = await ethereum.enable();
-
-      window.web3.eth.defaultAccount = x[0];
-
-      // Acccounts now exposed
-      $("button").prop("disabled", false);
-      $("#access").hide();
-    } catch (error) {
-      // User denied account access...
-      $("#access").removeClass("alert-info");
-      $("#access").addClass("alert-danger");
-      $("#access").append("<span>The App only works with Metmask access. Reload the App</span>")
-      $("#access").append("<a class='alert-link' onclick='window.location.reload()'> here </strong>");
-      $("#access").append("<span>and accept the access in Metamask</span>");
-      return;
-    }
-  }
-  // Legacy dapp browsers...
-  else if (window.web3) {
-    window.web3 = new Web3(web3.currentProvider);
-    // Acccounts always exposed
-    $("button").prop("disabled", false);
-  }
-  // Non-dapp browsers...
-  else {
-    console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-  }
-  // Startpoint of the init Application
-  aquaTokenContract = new AquaTokenContract();
-  //aquaTokenContract.createContract(erc721.abi);
-  aquaTokenContract.createContract(erc721.abi, "0xf43925F2878453014350c4E55c7697A48D3E2813");
-
-  /* ExampleCode for deploying a Contract
-  aquaTokenContract.deployContract(erc721.byteCode,"1965857", 3065857).then(function(result){
-    console.log( result);
-    }).catch(function(error){
-    console.log("error" + error)
-    });
-    
-  */
-
+			$("#goRight").click(function () {
+				fishCount < result.length-1 ? fishCount++ : fishCount = 0;
+				console.log(fishCount);
+				pairView(result);
+			});
+			
+		});
+	}
 });
 
 
+$("#mateFishModal").on("hide.bs.modal", function () {
+	$("#goRight").unbind("click");
+	$("#goLeft").unbind("click");
+});
 
-/*Should moved in a seperater Helper Script or in FishCreation */
 
-async function createToken() {
+$("#transferButton").click(async function () {
+	//send transaction to contract
+	await aquaTokenContract.transferFrom($("#toAdress").val(), selectedFish.token_Id);
 
-  var contractResult = await aquaTokenContract.createToken("1965857", 3065857, 0);
+	//Remove fish from Aqua
+	for (var i = 0; i < allFish.length; i++) {
+    var fish = allFish[i];
+		if(fish.token_Id == selectedFish.token_Id){
+			$(fish.group).remove()//remove svg group
+			allFish.splice(i,1); //remove fish from array
+		}
+	}
+});
 
-  //TODO Generate FishToken with Values 
-  console.log(contractResult[1]);
-  console.log(parseInt(contractResult[1]));
-  var fishToken = new FishToken(parseInt(contractResult[1]), "Anton", 2.9, "Form1.svg", "Form3.svg", aquaTokenContract.account);
-  console.log(fishToken);
-  var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
-  /* aquaTokenContract.transferFrom("0x5Afd91398E7118e15c2fC1e295b6C0bA1456602D",result[1],"1965857",3065857,0).then(function(result){
-    console.log(result);});  
-     }).catch(function(error){
-      console.log(error)
-     });
-    */
-  return Promise.resolve([contractResult, databaseResult]);
-};
 
-/* unchecked */
-async function transferFish(recieverAdress){
+$(document).ready(async() => {
+	$("button").prop("disabled", true);
+	var loader = $("#loader");
+	var content = $("#content");
+	loader.show();
+	content.hide();
+	// Modern dapp browsers...
+	if (window.ethereum) {
+		window.web3 = new Web3(ethereum);
+		try {
+			// Request account access if needed
+			var x = await ethereum.enable();
 
-  var contractResult = await aquaTokenContract.transferFrom(recieverAdress,"1965857",3065857,0 );
-  var existingFishToken =  await fishTokenDatabase.getFishToken("Hier Id rein");
-  existingFishToken.ownerAdress(recieverAdress)
-  var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(existingFishToken);
-  return Promise.resolve(databaseResult );
+			window.web3.eth.defaultAccount = x[0];
+
+			// Acccounts now exposed
+			$("button").prop("disabled", false);
+			$("#access").hide();
+		} catch (error) {
+			// User denied account access...
+			$("#access").removeClass("alert-info");
+			$("#access").addClass("alert-danger");
+			$("#access").append("<span>The App only works with Metmask access. Reload the App</span>")
+			$("#access").append("<a class='alert-link' onclick='window.location.reload()'> here </strong>");
+			$("#access").append("<span>and accept the access in Metamask</span>");
+			return;
+		}
+	}
+	// Legacy dapp browsers...
+	else if (window.web3) {
+		window.web3 = new Web3(web3.currentProvider);
+		// Acccounts always exposed
+		$("button").prop("disabled", false);
+	}
+	// Non-dapp browsers...
+	else {
+		console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+	}
+	loader.hide();
+	content.show();
+
+	// Startpoint of the init Application
+	aquaTokenContract = new AquaTokenContract();
+
+	//0xf43925f2878453014350c4e55c7697a48d3e2813
+	aquaTokenContract.createContract("0x105f746683ffd80ee80529e0ad4b96756e7bdcdb");
+
+	//Get all owned Fishes of current User:
+	readAllFishes(); //FishCreation.js
+
+// read makingPrice from contract
+	aquaTokenContract.getMakingPrice().then(function (result) {
+	makingPrice = Number.parseFloat(result) / 1000000000000000000;
+	console.log(makingPrice); //geht :-)
+
+	}).catch(function (error) {
+		console.log(error);
+	});
+// END read makinPrice	
+
+	//register onclick event for "paaren" button in modal
+	$("#pair").click(function () {
+		pairFishes(fishArray).then(result => {
+			$('#mateFishModal').modal('hide');
+		}).catch(error => {
+			$('#mateFishModal').modal('hide');
+		});
+	});
+});
+
+
+function pairView() {
+	insertToSVG("mateModalPicture", fishArray[fishCount]);
+
+	$("#name").text(fishArray[fishCount].name);
+
+	$("#propertyTable").empty();
+	$("#propertyTable").append("<tr>");
+	$("#propertyTable").append("<td> tokenid: </td>");
+	$("#propertyTable").append("<td>" + fishArray[fishCount].token_Id + "</td>");
+	$("#propertyTable").append("</tr>");
+
+	$("#propertyTable").append("<tr>");
+	$("#propertyTable").append("<td> KopfTyp: </td>");
+	$("#propertyTable").append("<td>" + fishArray[fishCount].headType + "</td>");
+	$("#propertyTable").append("</tr>");
+
+	$("#propertyTable").append("<tr>");
+	$("#propertyTable").append("<td> FlossenTyp: </td>");
+	$("#propertyTable").append("<td>" + fishArray[fishCount].tailType + "</td>");
+	$("#propertyTable").append("</tr>");
+
+	$("#propertyTable").append("<tr>");
+	$("#propertyTable").append("<td> Geschwindigkeit: </td>");
+	$("#propertyTable").append("<td>" + fishArray[fishCount].speed.toFixed(2) + "</td>");
+	$("#propertyTable").append("</tr>");
+
+	$("#propertyTable").append("<tr>");
+	$("#propertyTable").append("<td> Kosten für Paarung: </td>");
+	$("#propertyTable").append('<td id="matePrice"></td>');
+	$("#propertyTable").append("</tr>");
+	$("#matePrice").text(makingPrice+ " Ether!");
+
 }
-
