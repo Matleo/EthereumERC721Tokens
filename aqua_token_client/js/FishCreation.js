@@ -4,7 +4,7 @@ async function createFish() {
   var name = nameList[Math.floor(Math.random() * 9505) + 1];
   var convertedSpeed = Number.parseFloat(contractResult.speed)/100;
   var fishToken = new FishToken(parseInt(contractResult.id), name, convertedSpeed, contractResult.kopf.toString(), contractResult.schwanz.toString());
-  var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
+  //var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
   insertFish( fishToken);
   /*aquaTokenContract.transferFrom("0x5Afd91398E7118e15c2fC1e295b6C0bA1456602D",result[1],"1965857",28000000,0).then(function(result){
   console.log(result);
@@ -37,25 +37,24 @@ insertFishToAquarium(fish);
 function readAllFishes(){
   aquaTokenContract.allOwnedTokens().then(function(result){
 
-    if(result.length ==0 ){
-      return;
-    }
-    var token_ids_String="";
-    for(i in result){
-    token_ids_String+= result[i] +",";
-  }
-
-  token_ids_String = token_ids_String.substr(0, token_ids_String.length-1);
-  fishTokenDatabase.getFishTokensByIds(token_ids_String).then(function(result){
-  for( element in result){
-    var fish= result[element];
-    insertFish(fish);
-  }
-
+		if(result.length ==0 ){
+		  return;
+		}
+		fishes = {}
+	    for( id in result ){
+		    var fish= new Fish(id,4, 4, Math.round(Math.random() * 300) + 200, Math.round(Math.random() * 200), 2, "Matze");
+			fishes[id] = fish;
+			
+			//hier wird validiert, ob eigenschaften passen: 
+			aquaTokenContract.validateFish(fish).then(function(validResult){
+				if(validResult[0] == true){	
+					insertFish(fishes[validResult[1]]);
+				}else{
+					console.log("Die Eigenschaften vom Fisch mit der ID "+validResult[1] +" wurden manipuliert. Er wird nun nicht im Aquarium angezeigt.")
+				}
+			});
+	    }
   });
-});
-
-
 }
 
  async function pairFishes(){

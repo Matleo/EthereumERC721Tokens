@@ -132,7 +132,7 @@ $(document).ready(async() => {
 	aquaTokenContract = new AquaTokenContract();
 
 	//0xf43925f2878453014350c4e55c7697a48d3e2813
-	aquaTokenContract.createContract("0x105f746683ffd80ee80529e0ad4b96756e7bdcdb");
+	aquaTokenContract.createContract("0x79edf72e5482714a30d208405ed66e140787069c");
 
 	//Get all owned Fishes of current User:
 	readAllFishes(); //FishCreation.js

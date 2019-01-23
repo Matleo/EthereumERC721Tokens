@@ -232,5 +232,10 @@ contract aqua_token_contract is ERC721, ERC165 {
         return uint8(uint256(keccak256(abi.encode(block.timestamp)))%201);
     }
     
+    function validateFish(uint256 id, uint256 kopf, uint256 schwanz, uint256 speed) public view returns (bool, uint256) {
+        bytes32 hash = keccak256(abi.encodePacked(kopf, schwanz, speed));
+        return (hash == tokenPropertyHashes[id] , id);
+    }
+    
 }
 
