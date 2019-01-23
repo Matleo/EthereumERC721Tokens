@@ -181,7 +181,13 @@ class AquaTokenContract {
     return this.contract.methods.getMakingPrice().call({from: this.account});
   }
 
+  async getTokenPropertyURL(tokenId) {
+    return this.contract.methods.getTokenPropertyURL(tokenId).call({from: this.account})
+  }
 
+  async setTokenPropertyURL(tokenId, tokenUrl) {
+    return this.contract.methods.setTokenPropertyURL(tokenId, tokenUrl).call({from: this.account})
+  }
 
 
 }

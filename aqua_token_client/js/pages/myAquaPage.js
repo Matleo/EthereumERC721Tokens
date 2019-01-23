@@ -3,6 +3,7 @@ var fishCount = 0;
 var fishArray;
 var mateFishforbidden = true;
 var makingPrice;
+
 $("#mateFishModal").on("show.bs.modal", function () {
 
 	if (selectedFish == null) {
@@ -37,13 +38,21 @@ $("#createFishModal").on("hidden.bs.modal", function () {
 
 
 $("#mateFishModal").on("shown.bs.modal", function () {
-
 	if (mateFishforbidden) {
 		$('#mateFishModal').modal('hide');
 		return;
 	} else {
+		let tokenIds = await aquaTokenContract.getAllTokenIds();
+		let fishes = [];//TODO: create list
+		for (id in tokenIds) {
 
-		fishTokenDatabase.getAllFishTokens().then(function (result) {
+			let url = await aquaTokenContract.getTokenPropertyURL(id);
+			fishTokenDatabase.getFishToken(url).then(function(result) {
+				fishes.add(result);
+			});
+		}
+		//TODO
+		/*fishTokenDatabase.getAllFishTokens().then(function (result) {
 			fishCount = 0;
 			fishArray = result;
 			pairView();
@@ -61,7 +70,7 @@ $("#mateFishModal").on("shown.bs.modal", function () {
 				pairView(result);
 			});
 			
-		});
+		});*/
 	}
 });
 
@@ -132,7 +141,7 @@ $(document).ready(async() => {
 	aquaTokenContract = new AquaTokenContract();
 
 	//0xf43925f2878453014350c4e55c7697a48d3e2813
-	aquaTokenContract.createContract("0x105f746683ffd80ee80529e0ad4b96756e7bdcdb");
+	aquaTokenContract.createContract("0xb5110e3cbc70472b7dfce93d57d910b3b0e741f6");
 
 	//Get all owned Fishes of current User:
 	readAllFishes(); //FishCreation.js

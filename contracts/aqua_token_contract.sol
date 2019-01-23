@@ -4,6 +4,7 @@ import "./Interface_ERC165.sol";
 import "./Interface_ERC721.sol";
 import "./Interface_ERC721TokenReceiver.sol";
 import "./Library_SafeMath.sol";
+import "./verifyIPFS.sol";
 
 contract aqua_token_contract is ERC721, ERC165 {
     using SafeMath for uint256;
@@ -42,7 +43,7 @@ contract aqua_token_contract is ERC721, ERC165 {
     //------------Token Creation:------------
     function create_token(address _to) public payable returns(uint256){
         require(_to != address(0));
-        require(msg.value >= makingPrice); //check if he payed enough
+        require(msg.value >= makingPrice); //check sender payed enough
         
         uint256 tokenId = _addToken(_to);
         //Save hash of properties
