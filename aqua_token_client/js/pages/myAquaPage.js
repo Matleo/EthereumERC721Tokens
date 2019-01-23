@@ -132,14 +132,14 @@ $(document).ready(async() => {
 	aquaTokenContract = new AquaTokenContract();
 
 	//0xf43925f2878453014350c4e55c7697a48d3e2813
-	aquaTokenContract.createContract("0x79edf72e5482714a30d208405ed66e140787069c");
+	aquaTokenContract.createContract("0xe5bc518277d08622efaabf203b1534d52341a304");
 
 	//Get all owned Fishes of current User:
 	readAllFishes(); //FishCreation.js
 
 // read makingPrice from contract
 	aquaTokenContract.getMakingPrice().then(function (result) {
-	makingPrice = Number.parseFloat(result) / 1000000000000000000;
+		makingPrice = Number.parseFloat(result) / 1000000000000000000;
 
 	}).catch(function (error) {
 		console.log(error);
