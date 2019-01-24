@@ -4,7 +4,6 @@ import "./Interface_ERC165.sol";
 import "./Interface_ERC721.sol";
 import "./Interface_ERC721TokenReceiver.sol";
 import "./Library_SafeMath.sol";
-import "./verifyIPFS.sol";
 
 contract aqua_token_contract is ERC721, ERC165 {
     using SafeMath for uint256;
@@ -14,7 +13,8 @@ contract aqua_token_contract is ERC721, ERC165 {
     mapping(uint256 => uint256) internal ownedTokensIndex; // Mapping from token ID to index of the owner tokens list 
     mapping (address => uint256) internal ownedTokensCount;
     mapping (uint256 => address) internal tokenOwner;
-    mapping(uint256 => bytes32) public tokenPropertyHashes; //mapping id->hash of properties
+    mapping(uint256 => bytes32) internal tokenPropertyHashes; //mapping id->hash of properties
+    mapping(uint256 => string) internal tokenPropertyURLs;
     
     mapping (uint256 => address) internal tokenApprovals; //for single NFT approval
     mapping (address => mapping (address => bool)) internal operatorApprovals; //to give approval for all my NFT
@@ -66,10 +66,10 @@ contract aqua_token_contract is ERC721, ERC165 {
     
     function _addTokenTo(address _to, uint256 _tokenId) internal {
         require(tokenOwner[_tokenId] == address(0));
-		
-		uint256 length = ownedTokens[_to].length;
+        
+        uint256 length = ownedTokens[_to].length;
         ownedTokensIndex[_tokenId] = length;
-		
+        
         tokenOwner[_tokenId] = _to;
         ownedTokens[_to].push(_tokenId);
         
@@ -105,8 +105,8 @@ contract aqua_token_contract is ERC721, ERC165 {
     }
 
     modifier canTransfer(uint256 _tokenId) {
-		address _spender = msg.sender;
-		address owner = tokenOwner[_tokenId];
+        address _spender = msg.sender;
+        address owner = tokenOwner[_tokenId];
         bool isApprovedOrOwner = _spender == owner || getApproved(_tokenId) == _spender || isApprovedForAll(owner, _spender);
         require(isApprovedOrOwner);
         _;
@@ -229,9 +229,21 @@ contract aqua_token_contract is ERC721, ERC165 {
         emit NewbornFish(tokenId, kopf1, schwanz2, newSpeed);
         
     }
+    
     function random() private view returns (uint8) {
         return uint8(uint256(keccak256(abi.encode(block.timestamp)))%201);
     }
     
+    function setTokenPropertyURL(string memory _url, uint256 _tokenId) public {
+        require(msg.sender == tokenOwner[_tokenId]);
+        tokenPropertyURLs[_tokenId] = _url;
+    }
+    
+    function getTokenPropertyURL(uint256 _tokenId) public view returns(string memory url) {
+        return tokenPropertyURLs[_tokenId];
+    }
+    
+    function getAllTokenIds() public view returns (uint256[] memory ids) {
+        return allTokens;
+    }
 }
-

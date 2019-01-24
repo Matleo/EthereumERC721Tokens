@@ -5,11 +5,13 @@ async function createFish() {
   var convertedSpeed = Number.parseFloat(contractResult.speed)/100;
   var fishToken = new FishToken(parseInt(contractResult.id), name, convertedSpeed, contractResult.kopf.toString(), contractResult.schwanz.toString());
   
-  var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
+  var url = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
+
+  //var ipfsFishToken = await fishTokenDatabase.getFishToken(url);
 
   insertFish(fishToken);
 
-  aquaTokenContract.setTokenPropertyURL(parseInt(contractResult.id), databaseResult);
+  aquaTokenContract.setTokenPropertyURL(contractResult.id, url);
 
   return Promise.resolve([contractResult]);
 }
@@ -33,15 +35,17 @@ insertFishToAquarium(fish);
 }
 
 function readAllFishes(){
-  aquaTokenContract.allOwnedTokens().then(function(result){
+  aquaTokenContract.getAllTokenIds().then(function(result){
     if(result.length == 0){
       return;
     }
 
     for(i in result){
-      let url = await aquaTokenContract.getTokenPropertiesURL(result[i]);
-      fishTokenDatabase.getFishToken(url).then(function(result){
-        insertFish(result);
+      aquaTokenContract.getTokenPropertyURL(result[i]).then(function(url){
+        console.log("readAllFishes():" + url)
+        fishTokenDatabase.getFishToken(url).then(function(fishToken){
+          insertFish(fishToken);
+        });
       });
     }
   });

@@ -182,12 +182,20 @@ class AquaTokenContract {
   }
 
   async getTokenPropertyURL(tokenId) {
-    return this.contract.methods.getTokenPropertyURL(tokenId).call({from: this.account})
+    return this.contract.methods.getTokenPropertyURL(tokenId).call({from: this.account});
   }
 
   async setTokenPropertyURL(tokenId, tokenUrl) {
-    return this.contract.methods.setTokenPropertyURL(tokenId, tokenUrl).call({from: this.account})
+
+	var sendOptions = { };
+    sendOptions.from = this.account;
+    sendOptions.to = this.contract.options.address;
+    sendOptions.data = this.contract.methods.setTokenPropertyURL(tokenUrl, tokenId).encodeABI();
+
+    this.web3.eth.sendTransaction(sendOptions);
   }
 
-
+  async getAllTokenIds() {
+  	return this.contract.methods.getAllTokenIds().call({from: this.account});
+  }
 }

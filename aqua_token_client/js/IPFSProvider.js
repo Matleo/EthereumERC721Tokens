@@ -4,14 +4,16 @@ const fishTokenDatabase = {
     getFishToken: async function (token_url) {
         return new Promise(function (resolve, reject) {
             ipfs.get(token_url, function (err, files) {
-                resolve(files[0].content.toString('utf8'))
+                console.log("getFishToken():" + files[0].content.toString('utf8'))
+                resolve(JSON.parse(files[0].content.toString('utf8')));
             })
         });
     },
     createOrUpdateFishToken: async function (fishToken) {
-        let content = ipfs.types.Buffer.from(fishToken);//ToString()?
-        let results = await ipfs.files.add(content);
-        console.log(result[0].hash);
+        let content = ipfs.types.Buffer.from(JSON.stringify(fishToken));
+        console.log("createOrUpdateFishToken():" + JSON.stringify(fishToken))
+        let results = await ipfs.add(content);
+        console.log("createOrUpdateFishToken():" + results[0].hash);
         return results[0].hash; // "Qm...WW"
     },
     getAllFishTokens: async function () {

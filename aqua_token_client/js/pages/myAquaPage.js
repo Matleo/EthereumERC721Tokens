@@ -42,15 +42,17 @@ $("#mateFishModal").on("shown.bs.modal", function () {
 		$('#mateFishModal').modal('hide');
 		return;
 	} else {
-		let tokenIds = await aquaTokenContract.getAllTokenIds();
-		let fishes = [];//TODO: create list
-		for (id in tokenIds) {
+		let tokenIds = aquaTokenContract.getAllTokenIds();
+		let fishes = [];
 
-			let url = await aquaTokenContract.getTokenPropertyURL(id);
-			fishTokenDatabase.getFishToken(url).then(function(result) {
-				fishes.add(result);
+		for (i in tokenIds) {
+			aquaTokenContract.getTokenPropertyURL(tokenIds[i]).then(function(url){
+				fishTokenDatabase.getFishToken(url).then(function(result) {
+					fishes.push(result);
+				});
 			});
 		}
+		console.log(fishes);
 		//TODO
 		/*fishTokenDatabase.getAllFishTokens().then(function (result) {
 			fishCount = 0;
@@ -141,7 +143,7 @@ $(document).ready(async() => {
 	aquaTokenContract = new AquaTokenContract();
 
 	//0xf43925f2878453014350c4e55c7697a48d3e2813
-	aquaTokenContract.createContract("0xb5110e3cbc70472b7dfce93d57d910b3b0e741f6");
+	aquaTokenContract.createContract("0x92cd0d44072f8d6a9af52800a28e980b9e6a65d7");
 
 	//Get all owned Fishes of current User:
 	readAllFishes(); //FishCreation.js
