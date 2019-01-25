@@ -159,10 +159,11 @@ $(document).ready(async() => {
 
 	//register onclick event for "paaren" button in modal
 	$("#pair").click(function () {
+		$('#mateFishModal').modal('hide');
 		pairFishes(fishArray).then(result => {
-			$('#mateFishModal').modal('hide');
+			
 		}).catch(error => {
-			$('#mateFishModal').modal('hide');
+		alert("following error is onccurred: " + error);
 		});
 	});
 });
