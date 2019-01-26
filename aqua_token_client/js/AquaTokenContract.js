@@ -168,18 +168,22 @@ class AquaTokenContract {
 
   }
 
-  async balanceOf(tokenowner) {
-    return this.contract.methods.balanceOf(tokenowner).call({from: this.account});
-  }
+	async balanceOf(tokenowner) {
+		return this.contract.methods.balanceOf(tokenowner).call({from: this.account});
+	}
+	
 	async allOwnedTokens() {
+		return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
+	}
 
-    return this.contract.methods.allOwnedTokens(this.account).call({from: this.account});
-  }
-
-  async getMakingPrice() {
-
-    return this.contract.methods.getMakingPrice().call({from: this.account});
-  }
+	async getMakingPrice() {
+		return this.contract.methods.getMakingPrice().call({from: this.account});
+	}
+  
+	async validateFish(fish) {
+		var convertedSpeed = parseInt(fish.speed * 100).toString();
+		return this.contract.methods.validateFish(fish.token_Id, fish.headType, fish.tailType, convertedSpeed).call({from: this.account});
+	}
 
   async getTokenPropertyURL(tokenId) {
     return this.contract.methods.getTokenPropertyURL(tokenId).call({from: this.account});

@@ -43,13 +43,11 @@ $("#mateFishModal").on("shown.bs.modal", asny => {
 	
 	$("#goLeft").click(function () {
 		fishCount > 0 ? fishCount-- : fishCount = fishArray.length-1;
-		console.log(fishCount);
 		pairView();
 	});
 
 	$("#goRight").click(function () {
 		fishCount < fishArray.length-1 ? fishCount++ : fishCount = 0;
-		console.log(fishCount);
 		pairView();
 	});
 	
@@ -130,16 +128,14 @@ $(document).ready(async() => {
 	// Startpoint of the init Application
 	aquaTokenContract = new AquaTokenContract();
 
-	//0xf43925f2878453014350c4e55c7697a48d3e281
-	//Marius ganache:0x96ae50fb06704547e14b4956a050e94ce92bd76d
-	aquaTokenContract.createContract("0xff5a839d75bf767733a2105ef227d2c2fd8905f6");
+	aquaTokenContract.createContract("0x7bc1768fe33bb4bee65dd4179779520428537bec");
 
 	//Get all owned Fishes of current User:
 	readAllOwnedFishes(); //FishCreation.js
 
 	// read makingPrice from contract
 	aquaTokenContract.getMakingPrice().then(function (result) {
-	makingPrice = Number.parseFloat(result) / 1000000000000000000;
+		makingPrice = Number.parseFloat(result) / 1000000000000000000;
 
 	}).catch(function (error) {
 		console.log(error);
@@ -160,8 +156,6 @@ $(document).ready(async() => {
 
 
 function pairView() {
-	console.log(fishArray + fishCount)
-
 	insertToSVG("mateModalPicture", fishArray[fishCount]);
 
 	$("#name").text(fishArray[fishCount].name);

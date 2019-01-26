@@ -217,10 +217,10 @@ contract aqua_token_contract is ERC721, ERC165 {
         require(msg.value >= makingPrice); //check if he payed enough
         
         //check if hash saved for ids equals hash(kopf,schwanz,speed)
-        bytes32 hash1 = keccak256(abi.encodePacked(kopf1, schwanz1, speed1));
-        require(hash1 == tokenPropertyHashes[id1]);
-        bytes32 hash2 = keccak256(abi.encodePacked(kopf2, schwanz2, speed2));
-        require(hash2 == tokenPropertyHashes[id2]);
+        (bool fish1Valid, uint256 _id1) = validateFish(id1, kopf1, schwanz1, speed1);
+        require(fish1Valid);
+        (bool fish2Valid, uint256 _id2) = validateFish(id2, kopf2, schwanz2, speed2);
+        require(fish2Valid);
         
         uint256 tokenId = _addToken(msg.sender);
         uint256 newSpeed = (speed1 + speed2)/2 + random() - 100;
@@ -234,13 +234,18 @@ contract aqua_token_contract is ERC721, ERC165 {
         return uint8(uint256(keccak256(abi.encode(block.timestamp)))%201);
     }
     
+    function validateFish(uint256 id, uint256 kopf, uint256 schwanz, uint256 speed) public view returns (bool, uint256) {
+        bytes32 hash = keccak256(abi.encodePacked(kopf, schwanz, speed));
+        return (hash == tokenPropertyHashes[id] , id);
+    }
+    
     function setTokenPropertyURL(string memory _url, uint256 _tokenId) public {
         require(msg.sender == tokenOwner[_tokenId]);
         tokenPropertyURLs[_tokenId] = _url;
     }
     
-    function getTokenPropertyURL(uint256 _tokenId) public view returns(string memory url) {
-        return tokenPropertyURLs[_tokenId];
+    function getTokenPropertyURL(uint256 _tokenId) public view returns(string memory url, uint256 tokenId) {
+        return (tokenPropertyURLs[_tokenId], _tokenId);
     }
     
     function getAllTokenIds() public view returns (uint256[] memory ids) {
