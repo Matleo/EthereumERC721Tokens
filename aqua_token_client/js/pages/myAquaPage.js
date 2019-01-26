@@ -43,13 +43,11 @@ $("#mateFishModal").on("shown.bs.modal", asny => {
 	
 	$("#goLeft").click(function () {
 		fishCount > 0 ? fishCount-- : fishCount = fishArray.length-1;
-		console.log(fishCount);
 		pairView();
 	});
 
 	$("#goRight").click(function () {
 		fishCount < fishArray.length-1 ? fishCount++ : fishCount = 0;
-		console.log(fishCount);
 		pairView();
 	});
 	
@@ -132,7 +130,7 @@ $(document).ready(async() => {
 
 	//0xf43925f2878453014350c4e55c7697a48d3e281
 	//Marius ganache:0x96ae50fb06704547e14b4956a050e94ce92bd76d
-	aquaTokenContract.createContract("0x1e742ea87647dc5c98b49722f8ae66f1b1c7d547");
+	aquaTokenContract.createContract("0x0f04b0ead77359d7bf9a3dc98a1a71b8afba4537");
 
 	//Get all owned Fishes of current User:
 	readAllOwnedFishes(); //FishCreation.js
@@ -157,8 +155,6 @@ $(document).ready(async() => {
 
 
 function pairView() {
-	console.log(fishArray + fishCount)
-
 	insertToSVG("mateModalPicture", fishArray[fishCount]);
 
 	$("#name").text(fishArray[fishCount].name);
