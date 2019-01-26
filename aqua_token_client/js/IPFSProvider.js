@@ -1,11 +1,11 @@
 const ipfs = window.IpfsHttpClient('localhost', '5001');
 
 const fishTokenDatabase = {
-    getFishToken: async function (token_url) {
+    getFishToken: async function (token_url, id) {
         return new Promise(function (resolve, reject) {
             ipfs.get(token_url, function (err, files) {
                 console.log("getFishToken():" + files[0].content.toString('utf8'))
-                resolve(JSON.parse(files[0].content.toString('utf8')));
+                resolve([JSON.parse(files[0].content.toString('utf8')),id]);
             })
         });
     },

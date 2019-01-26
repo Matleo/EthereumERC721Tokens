@@ -244,8 +244,8 @@ contract aqua_token_contract is ERC721, ERC165 {
         tokenPropertyURLs[_tokenId] = _url;
     }
     
-    function getTokenPropertyURL(uint256 _tokenId) public view returns(string memory url) {
-        return tokenPropertyURLs[_tokenId];
+    function getTokenPropertyURL(uint256 _tokenId) public view returns(string memory url, uint256 tokenId) {
+        return (tokenPropertyURLs[_tokenId], _tokenId);
     }
     
     function getAllTokenIds() public view returns (uint256[] memory ids) {

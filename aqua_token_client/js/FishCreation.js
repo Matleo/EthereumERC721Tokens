@@ -42,10 +42,16 @@ function readAllOwnedFishes(){
 
 	fishes = {}
     for(i in result){
-      aquaTokenContract.getTokenPropertyURL(result[i]).then(function(url){
+	  id = result[i]
+	  aquaTokenContract.getTokenPropertyURL(id).then(function(urlIdResult){
+		url = urlIdResult[0]
+		id = urlIdResult[1]
         console.log("readAllFishes():" + url)
-        fishTokenDatabase.getFishToken(url).then(function(fishToken){
-			fishes[i] = fishToken;
+        fishTokenDatabase.getFishToken(url, id).then(function(fishTokenResult){
+			fishTokenIPFS = fishTokenResult[0];
+			id = fishTokenResult[1] //id from allOwnedTokens() needs to be pulled through, because id in IPFS file can be set randomly
+			var fishToken = new FishToken(id, fishTokenIPFS.name, fishTokenIPFS.speed, fishTokenIPFS.headType, fishTokenIPFS.tailType);
+			fishes[id] = fishToken
 			
 			//hier wird validiert, ob eigenschaften passen: 
 			aquaTokenContract.validateFish(fishToken).then(function(validResult){
@@ -57,7 +63,24 @@ function readAllOwnedFishes(){
 			});
         });
       });
-    }
+	}
+		
+	/*		
+	for(i in result){
+		id = result[i]
+		fishTokenIPFS = fishTokens[i]
+		var fishToken = new FishToken(id, fishTokenIPFS.name, fishTokenIPFS.speed, fishTokenIPFS.headType, fishTokenIPFS.tailType);
+		//hier wird validiert, ob eigenschaften passen: 
+		aquaTokenContract.validateFish(fishToken).then(function(validResult){
+			if(validResult[0] == true){	
+				insertFish(fishes[validResult[1]]);
+			}else{
+				console.log("Die Eigenschaften vom Fisch mit der ID "+validResult[1] +" wurden manipuliert. Er wird nun nicht im Aquarium angezeigt.")
+			}
+		});
+	}
+	*/
+	
   });
 }
 
