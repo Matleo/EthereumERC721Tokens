@@ -1,19 +1,10 @@
 var aquaTokenContract;
 var fishCount = 0;
-var fishArray;
+var fishArray = new Array();
 var mateFishforbidden = true;
 var makingPrice;
 
-$("#mateFishModal").on("show.bs.modal", function () {
 
-	if (selectedFish == null) {
-		alert("please Select a fish first");
-		mateFishforbidden = true;
-		//throw new Error("no fish selected");
-	} else {
-		mateFishforbidden = false;
-	}
-});
 
 $("#createFishModal").on("shown.bs.modal", function () {
 
@@ -37,44 +28,39 @@ $("#createFishModal").on("hidden.bs.modal", function () {
 });
 
 
-$("#mateFishModal").on("shown.bs.modal", function () {
+$("#mateFishModal").on("show.bs.modal", function () {
+
+	if (selectedFish == null) {
+		alert("please Select a fish first");
+		mateFishforbidden = true;
+		//throw new Error("no fish selected");
+	} else {
+		mateFishforbidden = false;
+	}
+});
+
+$("#mateFishModal").on("shown.bs.modal", asny => {
+	
+	$("#goLeft").click(function () {
+		fishCount > 0 ? fishCount-- : fishCount = fishArray.length-1;
+		pairView();
+	});
+
+	$("#goRight").click(function () {
+		fishCount < fishArray.length-1 ? fishCount++ : fishCount = 0;
+		pairView();
+	});
+	
 	if (mateFishforbidden) {
 		$('#mateFishModal').modal('hide');
 		return;
 	} else {
-		let tokenIds = aquaTokenContract.getAllTokenIds();
-		let fishes = [];
-
-		for (i in tokenIds) {
-			aquaTokenContract.getTokenPropertyURL(tokenIds[i]).then(function(url){
-				fishTokenDatabase.getFishToken(url).then(function(result) {
-					fishes.push(result);
-				});
-			});
-		}
-		console.log(fishes);
-		//TODO
-		/*fishTokenDatabase.getAllFishTokens().then(function (result) {
-			fishCount = 0;
-			fishArray = result;
+		readAllFishesFromIpfs().then(() => {
 			pairView();
-			
-			console.log(fishCount);
-			$("#goLeft").click(function () {
-				fishCount > 0 ? fishCount-- : fishCount = result.length-1;
-				console.log(fishCount);
-				pairView(result);
-			});
-
-			$("#goRight").click(function () {
-				fishCount < result.length-1 ? fishCount++ : fishCount = 0;
-				console.log(fishCount);
-				pairView(result);
-			});
-			
-		});*/
+		});
 	}
 });
+
 
 
 $("#mateFishModal").on("hide.bs.modal", function () {
@@ -142,29 +128,26 @@ $(document).ready(async() => {
 	// Startpoint of the init Application
 	aquaTokenContract = new AquaTokenContract();
 
-	//0xf43925f2878453014350c4e55c7697a48d3e2813
 	aquaTokenContract.createContract("0x7bc1768fe33bb4bee65dd4179779520428537bec");
 
 	//Get all owned Fishes of current User:
 	readAllOwnedFishes(); //FishCreation.js
 
-// read makingPrice from contract
+	// read makingPrice from contract
 	aquaTokenContract.getMakingPrice().then(function (result) {
 		makingPrice = Number.parseFloat(result) / 1000000000000000000;
 
 	}).catch(function (error) {
 		console.log(error);
 	});
-// END read makinPrice	
+	// END read makinPrice	
 
 	//register onclick event for "paaren" button in modal
 	$("#pair").click(function () {
 		$('#mateFishModal').modal('hide');
-		pairFishes(fishArray).then(result => {
-			
+		pairFishes().then(result => {
 		}).catch(error => {
-		alert("following error is onccurred: " + error);
-		});
+		});	
 	});
 });
 
