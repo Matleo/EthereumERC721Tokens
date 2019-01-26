@@ -53,7 +53,9 @@ async function readAllFishesFromIpfs(){
           }
         });
       }).catch(error => {
-        console.log("getFishTokenError: " + error);
+		  if (error != "TypeError: Cannot read property '0' of undefined") {
+			console.log("getFishTokenError: " + error);
+		  }
       });
     }).catch(error =>{
       console.log("getTokenPropertyError " + error);

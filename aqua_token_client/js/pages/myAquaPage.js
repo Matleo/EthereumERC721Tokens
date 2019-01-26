@@ -56,7 +56,13 @@ $("#mateFishModal").on("shown.bs.modal", asny => {
 		return;
 	} else {
 		readAllFishesFromIpfs().then(() => {
-			pairView();
+			//show the modal only after some fishes were received
+			let waitArray = setInterval ( function checkArray() {
+			    if (fishArray.length > 0) {
+				    clearInterval(waitArray)
+					pairView();
+			    }
+			},100);
 		});
 	}
 });

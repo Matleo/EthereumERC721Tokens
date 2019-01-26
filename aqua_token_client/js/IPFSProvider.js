@@ -12,9 +12,9 @@ const fishTokenDatabase = {
     },
     createOrUpdateFishToken: async function (fishToken) {
         let content = ipfs.types.Buffer.from(JSON.stringify(fishToken));
-        console.log("createOrUpdateFishToken():" + JSON.stringify(fishToken))
+        //console.log("createOrUpdateFishToken():" + JSON.stringify(fishToken))
         let results = await ipfs.add(content);
-        console.log("createOrUpdateFishToken():" + results[0].hash);
+        //console.log("createOrUpdateFishToken():" + results[0].hash);
         return results[0].hash; // "Qm...WW"
     },
     getAllFishTokens: async function () {
