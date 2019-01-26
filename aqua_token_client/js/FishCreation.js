@@ -5,7 +5,7 @@ async function createFish() {
   var convertedSpeed = Number.parseFloat(contractResult.speed)/100;
   var fishToken = new FishToken(parseInt(contractResult.id), name, convertedSpeed, contractResult.kopf.toString(), contractResult.schwanz.toString());
   
-  //var url = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
+  var url = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
 
   //var ipfsFishToken = await fishTokenDatabase.getFishToken(url);
 
