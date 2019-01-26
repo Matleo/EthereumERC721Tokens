@@ -34,8 +34,8 @@ insertFishToAquarium(fish);
   return fish;
 }
 
-function readAllFishes(){
-  aquaTokenContract.getAllTokenIds().then(function(result){
+function readAllOwnedFishes(){
+  aquaTokenContract.allOwnedTokens().then(function(result){
     if(result.length == 0){
       return;
     }
