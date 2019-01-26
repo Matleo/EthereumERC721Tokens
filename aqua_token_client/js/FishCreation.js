@@ -25,14 +25,35 @@ function insertFish(fishToken) {
 }
 
 
-function insertRandomFish(fish) {
-  //AquaPresentation: inserts random fish into svg div "aquarium":
- fish.posX =Math.round(Math.random() * 300) + 200;
- fish.posY = Math.round(Math.random() * 200);
-insertFishToAquarium(fish);
+async function readAllFishesFromIpfs(){
+  var allTokenIds = await aquaTokenContract.getAllTokenIds();
+  
+  if(allTokenIds.isRejected){
+    console.log("Couldn't load TokenIds from Contract");
+    return Promise.reject("Couldn't load TokenIds from Contract");
+  }
+  //iterate about the Array of TokenIds
+    for(token_id in allTokenIds) {
 
-  return fish;
-}
+    console.log(token_id);
+    //Execute following Promise Function and read the FishToken or throw an Error 
+ 
+      aquaTokenContract.getTokenPropertyURL(token_id).then( url => {
+        console.log("url is: " + url);
+
+          fishTokenDatabase.getFishToken(url).then(fish => {
+            console.log("successful fish " + fish)
+            fishArray.push(fish);
+          }).catch(error => {
+            console.log("getFishTokenError: " + error);
+          });
+      }).catch(error =>{
+        console.log("getTokenPropertyError " + error);
+      });
+
+  }
+  return Promise.resolve();
+} 
 
 function readAllOwnedFishes(){
   aquaTokenContract.allOwnedTokens().then(function(result){
@@ -51,17 +72,27 @@ function readAllOwnedFishes(){
   });
 }
 
- async function pairFishes(){
+function insertRandomFish(fish) {
+  //AquaPresentation: inserts random fish into svg div "aquarium":
+ fish.posX =Math.round(Math.random() * 300) + 200;
+ fish.posY = Math.round(Math.random() * 200);
+insertFishToAquarium(fish);
+
+  return fish;
+}
+
+async function pairFishes(){
   //console.log(selectedFish,fishArray[fishCount]);
- var contractResult = await aquaTokenContract.mathFish(selectedFish, fishArray[fishCount]);
+  var contractResult = await aquaTokenContract.mathFish(selectedFish, fishArray[fishCount]);
 
   //convert Speed back to floatingPoint
   var convertSpeed = Number.parseFloat(contractResult.speed)/100;
   var name = nameList[Math.floor(Math.random() * 9505) + 1];
   var fishToken = new FishToken(contractResult.id,name, convertSpeed,contractResult.kopf, contractResult.schwanz );
 
-   await fishTokenDatabase.createOrUpdateFishToken(fishToken).then(result =>{
+  await fishTokenDatabase.createOrUpdateFishToken(fishToken).then(hash =>{
     insertFish(fishToken);
+    aquaTokenContract.setTokenPropertyURL(contractResult.id, hash);
     console.log("create fish by name: " + fishToken.name);
-   });
+  });
 }
