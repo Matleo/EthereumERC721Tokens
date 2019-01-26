@@ -142,11 +142,12 @@ $(document).ready(async() => {
 	// Startpoint of the init Application
 	aquaTokenContract = new AquaTokenContract();
 
-	//0xf43925f2878453014350c4e55c7697a48d3e2813
-	aquaTokenContract.createContract("0x84c615dea63b87b2194cb1c3e957a0983c4861ad");
+	//0xf43925f2878453014350c4e55c7697a48d3e281
+	//Marius ganache:0x96ae50fb06704547e14b4956a050e94ce92bd76d
+	aquaTokenContract.createContract("0x1e742ea87647dc5c98b49722f8ae66f1b1c7d547");
 
 	//Get all owned Fishes of current User:
-	readAllFishes(); //FishCreation.js
+	readAllOwnedFishes(); //FishCreation.js
 
 // read makingPrice from contract
 	aquaTokenContract.getMakingPrice().then(function (result) {
