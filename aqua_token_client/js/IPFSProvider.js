@@ -5,7 +5,7 @@ const fishTokenDatabase = {
     getFishToken: async function (token_url, id) {
         return new Promise(function (resolve, reject) {
             ipfs.get(token_url, function (err, files) {
-				if(typeof(files) =="undefined") alert("Zu dem IPFS Hash: "+token_url+" wurde keine passende Datei gefunden")
+				if(typeof(files) =="undefined") console.log("Zu dem IPFS Hash: "+token_url+" wurde keine passende Datei gefunden")
                 //console.log("getFishToken():" + files[0].content.toString('utf8'))
                 resolve([JSON.parse(files[0].content.toString('utf8')),id]);
             })
