@@ -17,11 +17,8 @@ async function createFish() {
 }
 
 function insertFish(fishToken) {
-
-
   var fish = new Fish(fishToken.token_Id,fishToken.headType, fishToken.tailType, Math.round(Math.random() * 300) + 200, Math.round(Math.random() * 200), fishToken.speed, fishToken.name);
   insertFishToAquarium(fish);
-
 }
 
 
@@ -94,23 +91,6 @@ function readAllOwnedFishes(){
         });
       });
 	}
-		
-	/*		
-	for(i in result){
-		id = result[i]
-		fishTokenIPFS = fishTokens[i]
-		var fishToken = new FishToken(id, fishTokenIPFS.name, fishTokenIPFS.speed, fishTokenIPFS.headType, fishTokenIPFS.tailType);
-		//hier wird validiert, ob eigenschaften passen: 
-		aquaTokenContract.validateFish(fishToken).then(function(validResult){
-			if(validResult[0] == true){	
-				insertFish(fishes[validResult[1]]);
-			}else{
-				console.log("Die Eigenschaften vom Fisch mit der ID "+validResult[1] +" wurden manipuliert. Er wird nun nicht im Aquarium angezeigt.")
-			}
-		});
-	}
-	*/
-	
   });
 }
 

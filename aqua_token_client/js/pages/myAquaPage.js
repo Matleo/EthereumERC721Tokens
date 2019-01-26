@@ -85,6 +85,12 @@ $("#transferButton").click(async function () {
 		if(fish.token_Id == selectedFish.token_Id){
 			$(fish.group).remove()//remove svg group
 			allFish.splice(i,1); //remove fish from array
+			$("#idValue").html("");
+		    $("#flosseValue").html("");
+		    $("#kopfValue").html("");
+		    $("#nameValue").html("");
+		    $("#speedValue").html("");
+			$("#fishProfile > svg").empty();
 		}
 	}
 });
