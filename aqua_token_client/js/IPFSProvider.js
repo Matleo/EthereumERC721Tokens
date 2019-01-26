@@ -1,4 +1,5 @@
-const ipfs = window.IpfsHttpClient('localhost', '5001');
+//const ipfs = window.IpfsHttpClient('ipfs.infura.io', '5001', { protocol: 'https' });
+const ipfs = window.IpfsHttpClient('localhost', '5001', { protocol: 'http' });
 
 const fishTokenDatabase = {
     getFishToken: async function (token_url) {

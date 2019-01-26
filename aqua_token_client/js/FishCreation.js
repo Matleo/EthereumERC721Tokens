@@ -33,27 +33,28 @@ async function readAllFishesFromIpfs(){
     return Promise.reject("Couldn't load TokenIds from Contract");
   }
   //iterate about the Array of TokenIds
-    for(token_id in allTokenIds) {
+  for(token_id in allTokenIds) {
 
     console.log(token_id);
     //Execute following Promise Function and read the FishToken or throw an Error 
  
-      aquaTokenContract.getTokenPropertyURL(token_id).then( url => {
-        console.log("url is: " + url);
+    aquaTokenContract.getTokenPropertyURL(token_id).then( url => {
+      console.log("url is: " + url);
 
-          fishTokenDatabase.getFishToken(url).then(fish => {
-            console.log("successful fish " + fish)
-            fishArray.push(fish);
-          }).catch(error => {
-            console.log("getFishTokenError: " + error);
-          });
-      }).catch(error =>{
-        console.log("getTokenPropertyError " + error);
+      fishTokenDatabase.getFishToken(url).then(fish => {
+        console.log("successful fish " + fish)
+        fishArray.push(fish);
+      }).catch(error => {
+        console.log("getFishTokenError: " + error);
       });
-
+    }).catch(error =>{
+      console.log("getTokenPropertyError " + error);
+    }); 
   }
+
   return Promise.resolve();
 } 
+
 
 function readAllOwnedFishes(){
   aquaTokenContract.allOwnedTokens().then(function(result){

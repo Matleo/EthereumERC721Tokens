@@ -132,7 +132,7 @@ $(document).ready(async() => {
 
 	//0xf43925f2878453014350c4e55c7697a48d3e281
 	//Marius ganache:0x96ae50fb06704547e14b4956a050e94ce92bd76d
-	aquaTokenContract.createContract("0x1e742ea87647dc5c98b49722f8ae66f1b1c7d547");
+	aquaTokenContract.createContract("0xff5a839d75bf767733a2105ef227d2c2fd8905f6");
 
 	//Get all owned Fishes of current User:
 	readAllOwnedFishes(); //FishCreation.js
@@ -149,9 +149,12 @@ $(document).ready(async() => {
 	//register onclick event for "paaren" button in modal
 	$("#pair").click(function () {
 		$('#mateFishModal').modal('hide');
-		pairFishes().then(result => {
+
+		pairFishes(fishArray).then(result => {
+			
 		}).catch(error => {
-		});	
+		alert("following error is onccurred: " + error);
+		});
 	});
 });
 
