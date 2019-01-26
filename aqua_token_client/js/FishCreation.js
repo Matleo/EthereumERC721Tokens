@@ -4,15 +4,15 @@ async function createFish() {
   var name = nameList[Math.floor(Math.random() * 9505) + 1];
   var convertedSpeed = Number.parseFloat(contractResult.speed)/100;
   var fishToken = new FishToken(parseInt(contractResult.id), name, convertedSpeed, contractResult.kopf.toString(), contractResult.schwanz.toString());
-  //var databaseResult = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
-  insertFish( fishToken);
-  /*aquaTokenContract.transferFrom("0x5Afd91398E7118e15c2fC1e295b6C0bA1456602D",result[1],"1965857",28000000,0).then(function(result){
-  console.log(result);
-   }).catch(function(error){
-    console.log(error)
-   });
 
- */
+  var url = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
+
+  //var ipfsFishToken = await fishTokenDatabase.getFishToken(url);
+
+  insertFish(fishToken);
+
+  aquaTokenContract.setTokenPropertyURL(contractResult.id, url);
+
   return Promise.resolve([contractResult]);
 }
 
@@ -34,26 +34,30 @@ insertFishToAquarium(fish);
   return fish;
 }
 
-function readAllFishes(){
+function readAllOwnedFishes(){
   aquaTokenContract.allOwnedTokens().then(function(result){
+    if(result.length == 0){
+      return;
+    }
 
-		if(result.length ==0 ){
-		  return;
-		}
-		fishes = {}
-	    for( id in result ){
-		    var fish= new Fish(id,4, 4, Math.round(Math.random() * 300) + 200, Math.round(Math.random() * 200), 2, "Matze");
-			fishes[id] = fish;
+	fishes = {}
+    for(i in result){
+      aquaTokenContract.getTokenPropertyURL(result[i]).then(function(url){
+        console.log("readAllFishes():" + url)
+        fishTokenDatabase.getFishToken(url).then(function(fishToken){
+			fishes[i] = fishToken;
 			
 			//hier wird validiert, ob eigenschaften passen: 
-			aquaTokenContract.validateFish(fish).then(function(validResult){
+			aquaTokenContract.validateFish(fishToken).then(function(validResult){
 				if(validResult[0] == true){	
 					insertFish(fishes[validResult[1]]);
 				}else{
 					console.log("Die Eigenschaften vom Fisch mit der ID "+validResult[1] +" wurden manipuliert. Er wird nun nicht im Aquarium angezeigt.")
 				}
 			});
-	    }
+        });
+      });
+    }
   });
 }
 
@@ -70,5 +74,4 @@ function readAllFishes(){
     insertFish(fishToken);
     console.log("create fish by name: " + fishToken.name);
    });
-
 }

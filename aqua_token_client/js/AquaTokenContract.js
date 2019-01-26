@@ -185,7 +185,21 @@ class AquaTokenContract {
 		return this.contract.methods.validateFish(fish.token_Id, fish.headType, fish.tailType, convertedSpeed).call({from: this.account});
 	}
 
+  async getTokenPropertyURL(tokenId) {
+    return this.contract.methods.getTokenPropertyURL(tokenId).call({from: this.account});
+  }
 
+  async setTokenPropertyURL(tokenId, tokenUrl) {
 
+	var sendOptions = { };
+    sendOptions.from = this.account;
+    sendOptions.to = this.contract.options.address;
+    sendOptions.data = this.contract.methods.setTokenPropertyURL(tokenUrl, tokenId).encodeABI();
 
+    this.web3.eth.sendTransaction(sendOptions);
+  }
+
+  async getAllTokenIds() {
+  	return this.contract.methods.getAllTokenIds().call({from: this.account});
+  }
 }

@@ -3,6 +3,7 @@ var fishCount = 0;
 var fishArray;
 var mateFishforbidden = true;
 var makingPrice;
+
 $("#mateFishModal").on("show.bs.modal", function () {
 
 	if (selectedFish == null) {
@@ -37,13 +38,23 @@ $("#createFishModal").on("hidden.bs.modal", function () {
 
 
 $("#mateFishModal").on("shown.bs.modal", function () {
-
 	if (mateFishforbidden) {
 		$('#mateFishModal').modal('hide');
 		return;
 	} else {
+		let tokenIds = aquaTokenContract.getAllTokenIds();
+		let fishes = [];
 
-		fishTokenDatabase.getAllFishTokens().then(function (result) {
+		for (i in tokenIds) {
+			aquaTokenContract.getTokenPropertyURL(tokenIds[i]).then(function(url){
+				fishTokenDatabase.getFishToken(url).then(function(result) {
+					fishes.push(result);
+				});
+			});
+		}
+		console.log(fishes);
+		//TODO
+		/*fishTokenDatabase.getAllFishTokens().then(function (result) {
 			fishCount = 0;
 			fishArray = result;
 			pairView();
@@ -61,7 +72,7 @@ $("#mateFishModal").on("shown.bs.modal", function () {
 				pairView(result);
 			});
 			
-		});
+		});*/
 	}
 });
 
@@ -135,7 +146,7 @@ $(document).ready(async() => {
 	aquaTokenContract.createContract("0xe5bc518277d08622efaabf203b1534d52341a304");
 
 	//Get all owned Fishes of current User:
-	readAllFishes(); //FishCreation.js
+	readAllOwnedFishes(); //FishCreation.js
 
 // read makingPrice from contract
 	aquaTokenContract.getMakingPrice().then(function (result) {
@@ -148,10 +159,11 @@ $(document).ready(async() => {
 
 	//register onclick event for "paaren" button in modal
 	$("#pair").click(function () {
+		$('#mateFishModal').modal('hide');
 		pairFishes(fishArray).then(result => {
-			$('#mateFishModal').modal('hide');
+			
 		}).catch(error => {
-			$('#mateFishModal').modal('hide');
+		alert("following error is onccurred: " + error);
 		});
 	});
 });
