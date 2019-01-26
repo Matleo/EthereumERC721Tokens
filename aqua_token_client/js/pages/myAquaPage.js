@@ -140,7 +140,7 @@ $(document).ready(async() => {
 	// Startpoint of the init Application
 	aquaTokenContract = new AquaTokenContract();
 
-	aquaTokenContract.createContract("0x7bc1768fe33bb4bee65dd4179779520428537bec");
+	aquaTokenContract.createContract("0xa041cd3598cd1ffb917624540eb25bc5a6ae2d06");
 
 	//Get all owned Fishes of current User:
 	readAllOwnedFishes(); //FishCreation.js
