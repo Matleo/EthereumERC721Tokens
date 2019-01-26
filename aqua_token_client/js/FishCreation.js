@@ -88,7 +88,7 @@ function readAllOwnedFishes(){
 				if(validResult[0] == true){	
 					insertFish(fishes[validResult[1]]);
 				}else{
-					console.log("Die Eigenschaften vom Fisch mit der ID "+validResult[1] +" wurden manipuliert. Er wird nun nicht im Aquarium angezeigt.")
+					alert("Die Eigenschaften vom Fisch mit der ID "+validResult[1] +" wurden manipuliert. Er wird nun nicht im Aquarium angezeigt.")
 				}
 			});
         });
