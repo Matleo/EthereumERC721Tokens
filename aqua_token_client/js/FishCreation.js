@@ -32,18 +32,26 @@ async function readAllFishesFromIpfs(){
     console.log("Couldn't load TokenIds from Contract");
     return Promise.reject("Couldn't load TokenIds from Contract");
   }
-  //iterate about the Array of TokenIds
+  //iterate through the Array of TokenIds
+    maybeValidFishes = {}
     for(token_id in allTokenIds) {
 
-    console.log(token_id);
     //Execute following Promise Function and read the FishToken or throw an Error 
- 
-      aquaTokenContract.getTokenPropertyURL(token_id).then( url => {
-        console.log("url is: " + url);
-
-          fishTokenDatabase.getFishToken(url).then(fish => {
-            console.log("successful fish " + fish)
-            fishArray.push(fish);
+      aquaTokenContract.getTokenPropertyURL(token_id).then( urlIdResult => {
+		  url = urlIdResult[0]
+		  id = urlIdResult[1]
+          fishTokenDatabase.getFishToken(url, id).then(fishResult => {
+			fishTokenIPFS = fishResult[0];
+			id = fishResult[1]
+			var fishToken = new FishToken(id, fishTokenIPFS.name, fishTokenIPFS.speed, fishTokenIPFS.headType, fishTokenIPFS.tailType);
+			maybeValidFishes[id] = fishToken
+			
+			//hier wird validiert, ob eigenschaften manipuliert worden: 
+			aquaTokenContract.validateFish(fishToken).then(function(validResult){
+				if(validResult[0] == true){	
+					fishArray.push(maybeValidFishes[validResult[1]]);
+				}
+			});
           }).catch(error => {
             console.log("getFishTokenError: " + error);
           });
@@ -67,7 +75,6 @@ function readAllOwnedFishes(){
 	  aquaTokenContract.getTokenPropertyURL(id).then(function(urlIdResult){
 		url = urlIdResult[0]
 		id = urlIdResult[1]
-        console.log("readAllFishes():" + url)
         fishTokenDatabase.getFishToken(url, id).then(function(fishTokenResult){
 			fishTokenIPFS = fishTokenResult[0];
 			id = fishTokenResult[1] //id from allOwnedTokens() needs to be pulled through, because id in IPFS file can be set randomly
