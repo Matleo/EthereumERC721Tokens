@@ -72,12 +72,12 @@ Der Pinning Service kostet ca. $0.01/Monat für unsere ~10MB Applikation. Zusät
 
 Wenn die Installation erfolgreich war, sollten sie unter folgender Adresse in ihrem Browser auf unseren Aqua Token Client zugreifen können (ipfs daemon muss im Hintergrund laufen):
 
-[https://ipfs.eternum.io/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html](https://ipfs.eternum.io/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html)
+[https://ipfs.eternum.io/ipfs/QmP9QZEcSdd1ZX7rDWNnTCa2vVRUnMjs19sXbtyvwwSML8/html/myAqua.html](https://ipfs.eternum.io/ipfs/QmP9QZEcSdd1ZX7rDWNnTCa2vVRUnMjs19sXbtyvwwSML8/html/myAqua.html)
 
 Es ist zwar komfortabel das public gateway von eternum.io zu Nutzen, allerdings entsteht hier wieder eine gewisse Zentralität. Da auf deren Node der Hash für unsere Applikation (QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig) gepinned und damit dauerhaft im Netz verfügbar ist, können sie die Applikation genauso gut lokal starten, indem sie das IPFS Netz über HTTP nach dem Hash fragen.
 Unsere Applikation können sie lokal unter folgender URL beziehen:
 
-[http://localhost:8080/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html](http://localhost:8080/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html)
+[http://localhost:8080/ipfs/QmP9QZEcSdd1ZX7rDWNnTCa2vVRUnMjs19sXbtyvwwSML8/html/myAqua.html](http://localhost:8080/ipfs/QmP9QZEcSdd1ZX7rDWNnTCa2vVRUnMjs19sXbtyvwwSML8/html/myAqua.html)
 
 Mit diesem Aufruf fragen sie alle ihre Peers im IPFS Netzwerk an, ob jemand den Hash kennt und Ihnen weiterleiten kann. Dieser Prozess kann durchaus eine ganze Weile dauern. Haben sie Geduld beim erstmaligen Aufruf.
 
