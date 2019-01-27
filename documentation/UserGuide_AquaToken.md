@@ -28,18 +28,14 @@ In der Konsole zu einen neu angelegten Ordner navigieren und folgenden Befehl ei
     ipfs init
 
 Nach dem der Befehl eingegeben wurde sollte die Konsolen Ausgabe etwa so aussehen:
-
-
-```
-ipfs init
-initializing ipfs node at /Users/jbenet/.go-ipfs
-generating 2048-bit RSA keypair...done
-peer identity: Qmcpo2iLBikrdf1d6QU6vXuNb6P7hwrbNPW9kLAH8eG67z
-to get started, enter:
-
-ipfs cat /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
-
-```
+    
+    ipfs init
+    initializing ipfs node at /Users/jbenet/.go-ipfs
+    generating 2048-bit RSA keypair...done
+    peer identity: Qmcpo2iLBikrdf1d6QU6vXuNb6P7hwrbNPW9kLAH8eG67z
+    to get started, enter:
+    
+    ipfs cat /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
   
 Wenn dies erfolgreich funktioniert hat muss noch eine Änderung an der Configurations Datei von IPFS vorgenommen werden, um später über IPFS Dateien beziehen zu können. Dies erfolgt je nach Benutzterkonsole mit leicht unterschiedlichen Befehlen (auf Grunde von Escape Mechanismen).
 - Windows Konsole:
@@ -56,15 +52,12 @@ Der Befehl um diesen zu starten ist:
 
 Nachdem der Befehl eingegeben wurde sollte eine Konsolen Ausgabe erscheinen. Wenn diese bei "Daemon is ready" angelangt ist, ist der Daemon bereit. 
 
-```
 
-Initializing daemon...
-...
-API server listening on /ip4/127.0.0.1/tcp/5001
-Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
-Daemon is ready
-
-```
+    Initializing daemon...
+    ...
+    API server listening on /ip4/127.0.0.1/tcp/5001
+    Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
+    Daemon is ready
 
 Nun ist die Installation abgeschlossen um mit Aqua Token interagieren zu können. 
 
