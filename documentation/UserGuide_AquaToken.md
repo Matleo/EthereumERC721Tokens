@@ -76,7 +76,7 @@ um spätere Transaktionen durchführen zu können.
 
 Wenn diese beiden Schritte erfüllt sind sollten sie unter folgender Adresse in ihrem Browser auf Aqua Token Client zugreifen können:
 
-` ------ https://ipfs.eternum.io/ipfs/Qmds1wR7B6w9RaU8eb8v9cGPUiYVhUUHKznV95T22N1o5M/html/myAqua.html ------ `
+` ------ https://ipfs.eternum.io/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html ------ `
 
 ---
 
