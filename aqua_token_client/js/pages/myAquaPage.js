@@ -7,29 +7,27 @@ var makingPrice;
 
 
 $("#createFishModal").on("shown.bs.modal", function () {
+	// Den Preis für das erstellen eines Fisches im "CreateFisch"-Modal hinzufügen
+	var text = "Das Erstellen eines neuen Fisch kostet:"
+	$("#makingPrice").text(text + " " + makingPrice + " ether!");
 
-		// Den Preis für das erstellen eines Fisches im "CreateFisch"-Modal hinzufügen
-		var text = "Das Erstellen eines neuen Fisch kostet:"
-		$("#makingPrice").text(text + " " + makingPrice + " ether!");
-
-		//This component is responsible for triggering actions on the GUI (some kind of 'controller')
-		$('#addFish').click(function () {
-			$('#createFishModal').modal('hide');
-			//FishCreation.js
-			createFish().then(function (result) {
-				//TODO
-			}).catch(function (error) {
-				console.log(error);
-			});
+	//This component is responsible for triggering actions on the GUI (some kind of 'controller')
+	$('#addFish').click(function () {
+		$('#createFishModal').modal('hide');
+		//FishCreation.js
+		createFish().catch(function (error) {
+			console.log(error);
 		});
+	});
 });
+
+
 $("#createFishModal").on("hidden.bs.modal", function () {
 	$("#addFish").unbind("click");
 });
 
 
 $("#mateFishModal").on("show.bs.modal", function () {
-
 	if (selectedFish == null) {
 		alert("please Select a fish first");
 		mateFishforbidden = true;
@@ -40,7 +38,6 @@ $("#mateFishModal").on("show.bs.modal", function () {
 });
 
 $("#mateFishModal").on("shown.bs.modal", asny => {
-	
 	$("#goLeft").click(function () {
 		fishCount > 0 ? fishCount-- : fishCount = fishArray.length-1;
 		pairView();
@@ -57,7 +54,7 @@ $("#mateFishModal").on("shown.bs.modal", asny => {
 	} else {
 		readAllFishesFromIpfs().then(() => {
 			//show the modal only after some fishes were received
-			let waitArray = setInterval ( function checkArray() {
+			let waitArray = setInterval(function checkArray() {
 			    if (fishArray.length > 0) {
 				    clearInterval(waitArray)
 					pairView();
@@ -66,7 +63,6 @@ $("#mateFishModal").on("shown.bs.modal", asny => {
 		});
 	}
 });
-
 
 
 $("#mateFishModal").on("hide.bs.modal", function () {
@@ -81,8 +77,8 @@ $("#transferButton").click(async function () {
 
 	//Remove fish from Aqua
 	for (var i = 0; i < allFish.length; i++) {
-    var fish = allFish[i];
-		if(fish.token_Id == selectedFish.token_Id){
+    	var fish = allFish[i];
+		if(fish.token_Id == selectedFish.token_Id) {
 			$(fish.group).remove()//remove svg group
 			allFish.splice(i,1); //remove fish from array
 			$("#idValue").html("");
@@ -148,7 +144,6 @@ $(document).ready(async() => {
 	// read makingPrice from contract
 	aquaTokenContract.getMakingPrice().then(function (result) {
 		makingPrice = Number.parseFloat(result) / 1000000000000000000;
-
 	}).catch(function (error) {
 		console.log(error);
 	});
@@ -158,10 +153,8 @@ $(document).ready(async() => {
 	$("#pair").click(function () {
 		$('#mateFishModal').modal('hide');
 
-		pairFishes(fishArray).then(result => {
-			
-		}).catch(error => {
-		alert("following error is onccurred: " + error);
+		pairFishes(fishArray).catch(error => {
+			alert("following error is onccurred: " + error);
 		});
 	});
 });
@@ -198,5 +191,4 @@ function pairView() {
 	$("#propertyTable").append('<td id="matePrice"></td>');
 	$("#propertyTable").append("</tr>");
 	$("#matePrice").text(makingPrice+ " Ether!");
-
 }

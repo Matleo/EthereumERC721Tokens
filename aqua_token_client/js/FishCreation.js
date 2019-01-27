@@ -7,14 +7,13 @@ async function createFish() {
 
   var url = await fishTokenDatabase.createOrUpdateFishToken(fishToken);
 
-  //var ipfsFishToken = await fishTokenDatabase.getFishToken(url);
-
   insertFish(fishToken);
 
   aquaTokenContract.setTokenPropertyURL(contractResult.id, url);
 
   return Promise.resolve([contractResult]);
 }
+
 
 function insertFish(fishToken) {
   var fish = new Fish(fishToken.token_Id,fishToken.headType, fishToken.tailType, Math.round(Math.random() * 300) + 200, Math.round(Math.random() * 200), fishToken.speed, fishToken.name);
@@ -34,7 +33,7 @@ async function readAllFishesFromIpfs(){
   maybeValidFishes = {}
   for(token_id in allTokenIds) {
     //Execute following Promise Function and read the FishToken or throw an Error 
-    aquaTokenContract.getTokenPropertyURL(token_id).then( urlIdResult => {
+    aquaTokenContract.getTokenPropertyURL(token_id).then(urlIdResult => {
       url = urlIdResult[0]
       id = urlIdResult[1]
       fishTokenDatabase.getFishToken(url, id).then(fishResult => {
@@ -50,11 +49,11 @@ async function readAllFishesFromIpfs(){
           }
         });
       }).catch(error => {
-		  if (error != "TypeError: Cannot read property '0' of undefined") {
-			console.log("getFishTokenError: " + error);
-		  }
+  		  if (error != "TypeError: Cannot read property '0' of undefined") {
+  			  console.log("getFishTokenError: " + error);
+		    }
       });
-    }).catch(error =>{
+    }).catch(error => {
       console.log("getTokenPropertyError " + error);
     });
   }
@@ -62,46 +61,49 @@ async function readAllFishesFromIpfs(){
   return Promise.resolve();
 } 
 
+
 function readAllOwnedFishes(){
   aquaTokenContract.allOwnedTokens().then(function(result){
     if(result.length == 0){
       return;
     }
 
-	fishes = {}
+    fishes = {}
     for(i in result){
-	  id = result[i]
-	  aquaTokenContract.getTokenPropertyURL(id).then(function(urlIdResult){
-		url = urlIdResult[0]
-		id = urlIdResult[1]
+  	  id = result[i]
+  	  aquaTokenContract.getTokenPropertyURL(id).then(function(urlIdResult){
+    		url = urlIdResult[0]
+    		id = urlIdResult[1]
         fishTokenDatabase.getFishToken(url, id).then(function(fishTokenResult){
-			fishTokenIPFS = fishTokenResult[0];
-			id = fishTokenResult[1] //id from allOwnedTokens() needs to be pulled through, because id in IPFS file can be set randomly
-			var fishToken = new FishToken(id, fishTokenIPFS.name, fishTokenIPFS.speed, fishTokenIPFS.headType, fishTokenIPFS.tailType);
-			fishes[id] = fishToken
-			
-			//hier wird validiert, ob eigenschaften passen: 
-			aquaTokenContract.validateFish(fishToken).then(function(validResult){
-				if(validResult[0] == true){	
-					insertFish(fishes[validResult[1]]);
-				}else{
-					alert("Die Eigenschaften vom Fisch mit der ID "+validResult[1] +" wurden manipuliert. Er wird nun nicht im Aquarium angezeigt.")
-				}
-			});
+    			fishTokenIPFS = fishTokenResult[0];
+    			id = fishTokenResult[1] //id from allOwnedTokens() needs to be pulled through, because id in IPFS file can be set randomly
+    			var fishToken = new FishToken(id, fishTokenIPFS.name, fishTokenIPFS.speed, fishTokenIPFS.headType, fishTokenIPFS.tailType);
+    			fishes[id] = fishToken
+    			
+    			//hier wird validiert, ob eigenschaften passen: 
+    			aquaTokenContract.validateFish(fishToken).then(function(validResult){
+    				if(validResult[0] == true){	
+    					insertFish(fishes[validResult[1]]);
+    				}else{
+    					alert("Die Eigenschaften vom Fisch mit der ID "+validResult[1] +" wurden manipuliert. Er wird nun nicht im Aquarium angezeigt.")
+    				}
+    			});
         });
       });
-	}
+    }
   });
 }
 
+
 function insertRandomFish(fish) {
   //AquaPresentation: inserts random fish into svg div "aquarium":
- fish.posX =Math.round(Math.random() * 300) + 200;
- fish.posY = Math.round(Math.random() * 200);
-insertFishToAquarium(fish);
+  fish.posX =Math.round(Math.random() * 300) + 200;
+  fish.posY = Math.round(Math.random() * 200);
+  insertFishToAquarium(fish);
 
   return fish;
 }
+
 
 async function pairFishes(){
   //console.log(selectedFish,fishArray[fishCount]);
@@ -112,7 +114,7 @@ async function pairFishes(){
   var name = nameList[Math.floor(Math.random() * 9505) + 1];
   var fishToken = new FishToken(contractResult.id,name, convertSpeed,contractResult.kopf, contractResult.schwanz );
 
-  await fishTokenDatabase.createOrUpdateFishToken(fishToken).then(hash =>{
+  await fishTokenDatabase.createOrUpdateFishToken(fishToken).then(hash => {
     insertFish(fishToken);
     aquaTokenContract.setTokenPropertyURL(contractResult.id, hash);
     console.log("create fish by name: " + fishToken.name);

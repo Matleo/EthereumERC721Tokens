@@ -1,4 +1,4 @@
-
+// Provides database access to read and write fish tokens
 const fishTokenDatabase = {
     getFishToken: async function (token_id) {
 
@@ -27,10 +27,7 @@ const fishTokenDatabase = {
 
 
 async function databaseRequest(path, method, dataType, contentType, params) {
-
     return new Promise(function (resolve, reject) {
-
-
         $.ajax({
             url: "https://math2i.bounceme.net:8080/database/fishToken/" + path,
             method: method,
@@ -42,13 +39,9 @@ async function databaseRequest(path, method, dataType, contentType, params) {
 
                 resolve(result);
             },
-
             error: function (error) {
                 reject(error);
             }
         });
-
-
     });
-
 }

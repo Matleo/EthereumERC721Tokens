@@ -1,6 +1,8 @@
 //const ipfs = window.IpfsHttpClient('ipfs.infura.io', '5001', { protocol: 'https' });
 const ipfs = window.IpfsHttpClient('localhost', '5001', { protocol: 'http' });
 
+
+// Provides ipfs access to write and store fish tokens
 const fishTokenDatabase = {
     getFishToken: async function (token_url, id) {
         return new Promise(function (resolve, reject) {
