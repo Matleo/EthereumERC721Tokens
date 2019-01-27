@@ -1,21 +1,14 @@
 # GenTokens
-This project was realized as students project from the HTWG Konstanz. We are trying to develop a System to 
-1) create Non-Fungible Tokens on the Etherium Blockchain
-2) provide a generic Token inheritance method, to combine 2 or more Tokens
-3) (if possible) provide a mechanism to further modify an existing NFT
+Dieses Projekt wurde realisiert im Rahmen eines Teamprojekts für WIN an der HTWG Konstanz. Die Betreuung hat Herr Prof. Haase übernommen.
+Das Ziel dieses Projekts war:
+1. Non-Fungible Tokens auf der Etherium Blockchain zu erzeugen
+2. Einen Mechanismus zu entwickeln um Eigenschaften von NFTs zu erweitern
+3. Eine DAPP zu entwickeln, um das Zusammenspiel zwischen Ethereum Smart Contracts, IPFS und einem web3.js Client näher zu verstehen
 
-### Structure
-
-1. [Entwicklungsumgebung einrichten](./documentation/test_Setup.md)
-2. [ERC 20](./documentation/erc20.md)
-3. [ERC 721](./documentation/erc721.md)
-4. [FAQ](./documentation/faq.md)
-5. [Solidity Basics](./documentation/solidity.md)
-6. [Relevanz von Interfaces](./documentation/relevanz_von_interfaces.md)
-7. [Quellverzeichnis](documentation/references.md)
-
-
-###Projects
-
-1. [GenToken-Client](./gentoken-client/readme.md)
-2. [GenToken-Database-Service](./gentoken-database/readme.md)
+## Projektstruktur
+- [aqua_token_client-Client](./gentoken-aqua_token_client): Unsere DAPP, welche FishTokens in einem Ethereum Smart Contracts speichert, und die Eigenschaften sowie den Client über IPFS dezentral zur Verfügung stellt.
+- [contracts](./contracts): Diverse, in Solidity entwickelte Smart Contracts
+- [documentation](./documentation): Beinhaltet unsere gesamte Dokumentation. Unter anderem auch den [UserGuide_AquaToken](./documentation/UserGuide_AquaToken.md)
+- [GenToken-Client](./gentoken-client): (veraltet) Beinhaltet unsere ersten Versuche für einen Client mit web3js 
+- [GenToken-Database-Service](./gentoken-database): (veraltet) Beinhaltet unseren Datenbank Service, um Eigenschaften zu speichern. Ist nun durch IPFS ersetzt worden
+- [simple_token_client_with_truffle](./simple_token_client_with_truffle): (veraltet) Beinhaltet einen experimentellen Versuch einen Client mit truffle zu entwerfen
