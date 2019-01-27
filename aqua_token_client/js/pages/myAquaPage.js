@@ -72,6 +72,8 @@ $("#mateFishModal").on("shown.bs.modal", asny => {
 $("#mateFishModal").on("hide.bs.modal", function() {
     $("#goRight").unbind("click");
     $("#goLeft").unbind("click");
+    fishArray = [];
+    fishCount = 0;
 });
 
 
@@ -141,12 +143,10 @@ $(document).ready(async () => {
     content.show();
 	//------Metamask is setup now.
 	
-	
-	
     // Startpoint of the init Application
     aquaTokenContract = new AquaTokenContract();
 
-    aquaTokenContract.createContract("0x5e73d26bf05ade87d8eac5ee9e3f1d29fb2556ed"); //connect to deployed contract at given address
+    aquaTokenContract.createContract("0x21d819f1b6fcd1b4734e11fcc3dd01dea54cb227"); //connect to deployed contract at given address
 
     //Get all owned Fishes of current User and put them into Aquarium:
     readAllOwnedFishes(); //FishCreation.js
