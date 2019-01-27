@@ -83,28 +83,28 @@ Mit diesem Aufruf fragen sie alle ihre Peers im IPFS Netzwerk an, ob jemand den 
 
 ## Nutzung
 ### Funktionen
-Nachdem sie Aqua Token Client nun erfolgreich zum ersten mal aufgerufen haben sollten sie ein leeres Aquarium vorfinden, falls dies nicht der Fall ist Seite Neu Laden (STRG + F5) oder 
+Nachdem sie Aqua Token Client nun erfolgreich zum ersten mal aufgerufen haben sollten sie ein leeres Aquarium vorfinden, falls dies nicht der Fall ist versuchen sie die Seite neu zu laden (STRG + F5) oder 
 die Punkte des letzten Checks wiederholen. Unsere Application bietet nun unterschiedlichen Möglichkeiten um mit der Blockchain und
 IPFS zu interagieren. Im Folgenden wird auf die Haupfunktionen **Erstellen**, **Versenden** und **Paaren** eingegangen und zudem werden noch Tipps gegeben wie man am besten mit aufkommenden Fehlern der Seite umgehen sollte.
 
 ### Erstellen: 
 Beim betaetigen des "Erstellen" Buttons wird ein Modal geöffnet, dass die Ether Kosten für den Fisch zeigt. Wenn dann auf Bestätigen geklickt wird kommt eine Transaktion die das Erstellen eines Fisches
 durchführt. Sobald die Transaktion losgeschickt ist kann es zwischen 1-5 Minuten brauchen bis diese "confirmed" ist. "Confirmed" ist der Status der Transaktion, dieser kann in Meta Mask abgefragt werden. Der Fisch müsste nun im Aquarium erscheinen, 
-allerdings sollte auch eine zweite Tranaktion
+allerdings sollte auch eine zweite Transaktion
 von Meta Mask angefragt werden. Diese Transaktion wird für das Speichern der Daten in IPFS benötigt. Erst nach dem auch diese Transaktion confirmed wurde ist der Fisch auch wirklich mit seinen Eigenschaften in
 IPFS gespeichert. Wenn man die zweite Tranaktion ablehnt und die Seite neulädt, wird der Fisch nicht mehr angezeigt da keine Eigenschaften in IPFS gespeichert wurden.
 
 ### Verschicken:
-Beim Verschicken eines Tokens muss im Eingabefeld eine valide Adresse eines Accounts im Ropsten Testnetzwerk angegeben werden. Sobald dann der Fisch verschickt wird und die Meta Mask Transaktion bestätigt ist
-sowie auch confirmed, sollte der Fisch verschwinden. Ist dies nicht der Fall Seite neuladen. Wenn der Account in Meta Mask, auf den Empfänger Account, geändert wird, sollte der verschickte Fisch dort schwimmen.
+Beim Verschicken eines Tokens muss im Eingabefeld eine valide Adresse eines Accounts im Ropsten Testnetzwerk angegeben werden, der den Token erhalten soll. Sobald dann der Fisch verschickt wird und die Meta Mask Transaktion bestätigt ist
+sowie auch confirmed, sollte der Fisch verschwinden. Ist dies nicht der Fall, dann die Seite neuladen. Wenn der Account in Meta Mask, auf den Empfänger Account, geändert wird, sollte der verschickte Fisch dort schwimmen.
 
 ### Paaren:
 Das Paaren eines Fisches läuft wie folgt ab. Zuerst muss ein Partner für den eigenen Fisch gefunden werden. Dies geschieht, indem sie einen ihrer schwimmenden Fische anklicken und dann auf den "paaren" Button klicken. Nun öffnet sich ein Modal, in welchem sie einen Paarungspartner wählen können.
 Wenn nun ein passender Fisch ausgewählt wurde können sie den "paaren" Button im Modal anklicken um die passende Transaktion zu triggern. Auch hier werden wieder 2 Transaktionen ausgelöst. 
-Eine für das Paaren an sich, und eine um den IPFS Hash für Eigenschaften des Kindes im Smart Contract zu speichern. Nachem alles fuhnktioniert hat, ist dann der neue Fisch mit den gemischten Eigenschaften im Aquarium zu sehen.
+Eine für das Paaren an sich, und eine um den IPFS Hash für die Eigenschaften des Kindes im Smart Contract zu speichern. Nachem alles fuhnktioniert hat, ist dann der neue Fisch mit den gemischten Eigenschaften im Aquarium zu sehen.
 
 Da die Fischeigenschaften über IPFS gespeichert werden, ist nicht garantiert, dass die Eigenschaften für alle Fische (auch von anderen Nutzern) verfügbar sind. 
-Auf der lokalen Node sind erstmal nur die Eigenschaften von den eigenen Fischen gespeichert, daher werden einem nur diese garantiert zur Paarung vorgeschlagen. Um zu garantieren, dass für jeden Anwender alle Fische zum Paaren zur verfügung stehen, könnten die Eigenschaften der Fische auch auf einem Public Gate gepinnen werden(so wie das mit der Applikation selber getan wurde),
+Auf der lokalen Node sind erstmal nur die Eigenschaften von den eigenen Fischen gespeichert, daher werden einem nur diese garantiert zur Paarung vorgeschlagen. Um zu garantieren, dass für jeden Anwender alle Fische zum Paaren zur Verfügung stehen, könnten die Eigenschaften der Fische auch auf einem Public Gate gepinnen werden(so wie das mit der Applikation selber getan wurde),
 dies haben wir allerdings nicht mehr implementiert. 
 
 ### Allgemeine Tipps und Tricks:
@@ -122,4 +122,4 @@ Diese Funktionalität können sie folgendermaßen Testen:
 2. Über den "Run" Tab, den Contract "aqua_token_contract" auswählen und den Contract über den Button "At Adress" unter der Adresse "0x54dbd88c382ed4dc2e0bd1e8d649ad62d53a7bb5" dem Remix GUI bekannt machen.
 3. Den IPFS Eigenschaften Hash eines anderen Tokens suchen: Die "getTokenPropertyURL" Methode ausführen. Die "_tokenId" kann die ID eines beliebigen Tokens sei, von dem sie den Eigenschaften Hash kennen wollen (Beispielsweise 1).
 4. Den gefundene IPFS Hash für einen eigenen Fisch setzen: Die "setTokenPropertyURL" Methode ausführen. Die "_url" sollte hierbei der bei Punkt 3 erhaltene Hash sein.  Die "_tokenId" sollte nun die ID eines ihrer Fische sein (Beispielsweise 2). Nun haben sie den Smart Contract so manipuliert, dass ihr Fisch mit der ID 2 die selben Eigenschaften haben sollte wie der Fisch mit ID 1.
-5. Beim neu Laden der Applikation werden sie nun allerdings merken, dass der Fisch mit der ID 2 nicht mehr angezeigt wird, da das System erkannt hat, dass hier eine Manipulation vorgenommen wurde.
+5. Beim Neuladen der Applikation werden sie nun allerdings merken, dass der Fisch mit der ID 2 nicht mehr angezeigt wird, da das System erkannt hat, dass hier eine Manipulation vorgenommen wurde.
