@@ -147,7 +147,7 @@ $(document).ready(async () => {
     // Startpoint of the init Application
     aquaTokenContract = new AquaTokenContract();
 
-    aquaTokenContract.createContract("0x3fbdb16fb2540d4ac2515ca7534b3954490a5c62"); //connect to deployed contract at given address
+    aquaTokenContract.createContract("0x54dbd88c382ed4dc2e0bd1e8d649ad62d53a7bb5"); //connect to deployed contract at given address
 
     //Get all owned Fishes of current User and put them into Aquarium:
     readAllOwnedFishes(); //FishCreation.js
