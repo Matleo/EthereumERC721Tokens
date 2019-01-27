@@ -31,7 +31,6 @@ Nach dem der Befehl eingegeben wurde sollte die Konsolen Ausgabe etwa so aussehe
 
 
 ```
-
 ipfs init
 initializing ipfs node at /Users/jbenet/.go-ipfs
 generating 2048-bit RSA keypair...done
