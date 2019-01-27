@@ -1,11 +1,11 @@
 # User Guide
 
-Die Application **"Aqua Token"** ist eine verteilte Application die über den Browser aufgrufen werden kann. Sie ermöglicht das Handeln sowie Paaren von Non-Fungible Tokens im Ropsten Test Netzwerk. Sie ist über IPFS erreichbar und die Speicherung der Eigenschaften der Tokens erfolgt auch in IPFS. 
-Die Logik unsere Application, wie auch verschiedenste validierungs Mechanismen werden über die Blockchain bzw. den Smart Contract geregelt.
-Aufgrund des Alpha Status von IPFS kann es jedoch zu unvorhergesehen Fehlern bei der Übertragung der Daten kommen was auch Fehler in der Application hervorruft. Sollte ein solcher unerwarteter Fehler auftreten, ist die Wahrscheinlichkeit hoch, dass nach einiger Wartezeit und  mehrmaligem neu laden der Seite, der Fehler nicht mehr auftritt.
+Die Application **"Aqua Token"** ist eine verteilte Applikation die über den Browser aufgrufen werden kann. Sie ermöglicht das Handeln sowie Paaren von Non-Fungible Tokens im Ropsten Test Netzwerk. Sie ist über IPFS erreichbar und die Speicherung der Eigenschaften der Tokens erfolgt auch in IPFS. 
+Die Logik unsere Applikation, wie auch verschiedenste validierungs Mechanismen werden über die Blockchain bzw. den Smart Contract geregelt.
+Aufgrund des Alpha Status von IPFS kann es jedoch zu unvorhergesehen Fehlern bei der Übertragung der Daten kommen was auch Fehler in der Applikation hervorruft. Sollte ein solcher unerwarteter Fehler auftreten, ist die Wahrscheinlichkeit hoch, dass nach einiger Wartezeit und  mehrmaligem neu laden der Seite, der Fehler nicht mehr auftritt.
 
 ## Setup
-Um auf die Application zugreifen zu können müssen gewisse Programme installiert werden, auf die ich im folgenden eingehen werde.
+Um auf die Application zugreifen zu können müssen gewisse Programme installiert werden, auf die im folgenden beschrieben werden.
 
 ### Meta Mask:
 Meta Mask wird als Wallet benötigt und Meta Mask stellt die Verbindung zum Robsten Test Netzwerk her. 
@@ -85,7 +85,7 @@ Mit diesem Aufruf fragen sie alle ihre Peers im IPFS Netzwerk an, ob jemand den 
 ### Funktionen
 Nachdem sie Aqua Token Client nun erfolgreich zum ersten mal aufgerufen haben sollten sie ein leeres Aquarium vorfinden, falls dies nicht der Fall ist Seite Neu Laden (STRG + F5) oder 
 die Punkte des letzten Checks wiederholen. Unsere Application bietet nun unterschiedlichen Möglichkeiten um mit der Blockchain und
-IPFS zu interagieren. Im Folgenden werde ich auf die Haupfunktionen **Erstellen**, **Versenden** und **Paaren** eingehen und zudem noch Tipps geben wie man am besten mit aufkommenden Fehlern der Seite umgehen sollte.
+IPFS zu interagieren. Im Folgenden wird auf die Haupfunktionen **Erstellen**, **Versenden** und **Paaren** eingegangen und zudem werden noch Tipps gegeben wie man am besten mit aufkommenden Fehlern der Seite umgehen sollte.
 
 ### Erstellen: 
 Beim betaetigen des "Erstellen" Buttons wird ein Modal geöffnet das die Ether Kosten für den Fisch zeigt. Wenn dann auf Bestätigen geklickt wird kommt eine Transaktion die das Erstellen eines Fisches
