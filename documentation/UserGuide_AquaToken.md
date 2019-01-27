@@ -88,7 +88,7 @@ die Punkte des letzten Checks wiederholen. Unsere Application bietet nun untersc
 IPFS zu interagieren. Im Folgenden werde ich auf die Haupfunktionen **Erstellen**, **Versenden** und **Paaren** eingehen und zudem noch Tipps geben wie man am besten mit aufkommenden Fehlern der Seite umgehen sollte.
 
 ### Erstellen: 
-Beim betaetigen des "Erstellen" Buttons wird ein Modal geöffnet das die Ether Kosten für den Fisch zeigt. Wenn dann auf Bestätigen geklickt wird kommt eine Transaktionen die das Erstellen eines Fisches
+Beim betaetigen des "Erstellen" Buttons wird ein Modal geöffnet das die Ether Kosten für den Fisch zeigt. Wenn dann auf Bestätigen geklickt wird kommt eine Transaktion die das Erstellen eines Fisches
 durchführt. Sobald die Transaktion losgeschickt ist kann es zwischen 1-5 Minuten brauchen bis diese "confirmed" ist. "Confirmed" ist der Status der Transaktion, dieser kann in Meta Mask abgefragt werden. Der Fisch müsste nun im Aquarium erscheinen, 
 allerdings sollte auch eine zweite Tranaktion
 von Meta Mask angefragt werden. Diese Transaktion wird für das Speichern der Daten in IPFS benötigt. Erst nach dem auch diese Transaktion confirmed wurde ist der Fisch auch wirklich mit seinen Eigenschaften in
