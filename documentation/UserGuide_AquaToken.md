@@ -43,7 +43,7 @@ Wenn dies erfolgreich funktioniert hat muss noch eine Änderung an der Configura
 - Windows Powershell:
 ` ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '[\"*\"]'  `
 - Mac Konsole:
-` ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "["*"]" `
+` ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]' `
 
 Wenn das erfolgreich geklappt hat kann der IPFS Daemon gestartet werden. Dieser ermöglicht die Kommunikation mit anderen Nodes.
 Der Befehl um diesen zu starten ist:
