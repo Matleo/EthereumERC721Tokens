@@ -117,8 +117,8 @@ beim Anzeigen und Paaren der Fische ob die von IPFS erhaltenen Eigenschaften man
 
 Diese Funktionalität können sie folgendermaßen Testen:
 
-1. Remix öffnen und den Source Code des [aqia_token_contract](../contracts/aqua_token_contract.sol) kompilieren. (Stellen sie sicher, dass sie die passenden Interfaces und Libraries in Solidity geöffnet haben)
-2. Über den "Run" Tab, den Contract "aqia_token_contract" auswählen und den Contract über den Button "At Adress" und der Adresse "0x5e73d26bf05ade87d8eac5ee9e3f1d29fb2556ed" dem Remix GUI bekannt machen.
-3. Den IPFS Eigenschaften Hash eines anderen Tokens suchen: Die "getTokenPropertyURL" Methode ausführen. Die "_tokenId" kann die ID eines beliebigen Tokens sein (Beispielsweise 1).
-4. Die "setTokenPropertyURL" Methode ausführen. Die "_url" sollte hierbei der bei Punkt 3 erhaltene Hash sein.  Die "_tokenId" sollte nun die ID eines ihrer Fische sein (Beispielsweise 2). Nun haben sie den Smart Contract so manipuliert, dass ihr Fisch mit der ID 2 die selben Eigenschaften haben sollte wie der Fisch mit ID 1.
+1. Remix öffnen und den Source Code des [aqua_token_contract](../contracts/aqua_token_contract.sol) kompilieren. (Stellen sie sicher, dass sie die passenden Interfaces und Libraries in Solidity geöffnet haben)
+2. Über den "Run" Tab, den Contract "aqua_token_contract" auswählen und den Contract über den Button "At Adress" unter der Adresse "0x5e73d26bf05ade87d8eac5ee9e3f1d29fb2556ed" dem Remix GUI bekannt machen.
+3. Den IPFS Eigenschaften Hash eines anderen Tokens suchen: Die "getTokenPropertyURL" Methode ausführen. Die "_tokenId" kann die ID eines beliebigen Tokens sei, von dem sie den Eigenschaften Hash kennen wollen (Beispielsweise 1).
+4. Den gefundeneIPFS Hash für einen eigenen Fisch setzen: Die "setTokenPropertyURL" Methode ausführen. Die "_url" sollte hierbei der bei Punkt 3 erhaltene Hash sein.  Die "_tokenId" sollte nun die ID eines ihrer Fische sein (Beispielsweise 2). Nun haben sie den Smart Contract so manipuliert, dass ihr Fisch mit der ID 2 die selben Eigenschaften haben sollte wie der Fisch mit ID 1.
 5. Beim neu laden der Applikation werden sie nun allerdings merken, dass der Fisch mit der ID 2 nicht mehr angezeigt wird, da das System erkannt hat, dass hier eine Manipulation vorgenommen wurde.
