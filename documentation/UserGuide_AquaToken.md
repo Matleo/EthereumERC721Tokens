@@ -70,7 +70,7 @@ um spätere Transaktionen durchführen zu können.
 Da IPFS erstmal nicht garantiert, dass eine Datei dauerhaft im Netzwerk verfügbar ist und wir keinen Server besitzen, auf dem wir dauerhaft eine Node laufen lassen könnten, haben wir unsere Applikation mithilfe des Pinning Service [eternum.io](eternum.io) auf deren Node pinnen lassen um die Applikation dauerhaft erreichbar zu halten. 
 Der Pinning Service kostet ca. $0.01/Monat für unsere ~10MB Applikation. Zusätzlich zum pinnen auf der Server Node, bietet eternum.io ebenfalls ein public gateway an, um auf IPFS Dateien zugreifen zu können.
 
-Wenn die Installation erfolgreich war, sollten sie unter folgender Adresse in ihrem Browser auf unseren Aqua Token Client zugreifen können (ipfs daemon muss im Hintergrund laufen):
+Wenn die Installation erfolgreich war, sollten sie unter folgender Adresse in ihrem Browser(empfohlen:Chrome) auf unseren Aqua Token Client zugreifen können (ipfs daemon muss im Hintergrund laufen):
 
 [https://ipfs.eternum.io/ipfs/QmP9QZEcSdd1ZX7rDWNnTCa2vVRUnMjs19sXbtyvwwSML8/html/myAqua.html](https://ipfs.eternum.io/ipfs/QmP9QZEcSdd1ZX7rDWNnTCa2vVRUnMjs19sXbtyvwwSML8/html/myAqua.html)
 
