@@ -72,8 +72,9 @@ $("#mateFishModal").on("shown.bs.modal", asny => {
 $("#mateFishModal").on("hide.bs.modal", function() {
     $("#goRight").unbind("click");
     $("#goLeft").unbind("click");
-    fishArray = [];
-    fishCount = 0;
+    //Reset fishArray to prevent duplicates
+	fishArray = [];
+	fishCount = 0;
 });
 
 
@@ -160,9 +161,13 @@ $(document).ready(async () => {
 
     //register onclick event for "paaren" button in modal
     $("#pair").click(function() {
+    	//copy fishes to mate
+    	var matingFish1 = new FishToken(selectedFish.token_Id, selectedFish.name, selectedFish.speed, selectedFish.headType, selectedFish.tailType);
+    	var matingFish2 = new FishToken(fishArray[fishCount].token_Id, fishArray[fishCount].name, fishArray[fishCount].speed, fishArray[fishCount].headType, fishArray[fishCount].tailType);
+
         $('#mateFishModal').modal('hide');
 		//Trigger function in FishCreation.js: 
-        pairFishes(fishArray).then(result => {
+        pairFishes(matingFish1, matingFish2).then(result => { 	
         }).catch(error => {
             alert("following error has onccurred: " + error);
         });

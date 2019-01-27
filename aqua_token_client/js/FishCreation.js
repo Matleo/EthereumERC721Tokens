@@ -113,9 +113,9 @@ function readAllOwnedFishes() {
 
 
 // Mates/Pairs two fishes, to create a new child fish. First Parent is the fish that was clicked on and the second parent is selected in the Mate Modal
-async function pairFishes() {
+async function pairFishes(fish1, fish2) {
 	  //Call contract to mate the fishes
-    var contractResult = await aquaTokenContract.mathFish(selectedFish, fishArray[fishCount]);
+    var contractResult = await aquaTokenContract.mathFish(fish1, fish2);
 
     //convert Speed back to floatingPoint
     var convertSpeed = Number.parseFloat(contractResult.speed) / 100;
