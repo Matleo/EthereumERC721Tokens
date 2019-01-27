@@ -4,7 +4,7 @@ Die Application **"Aqua Token"** ist eine verteilte Application die über den Br
 Die Logik unsere Application, wie auch verschiedenste validierungs Mechanismen werden über die Blockchain bzw. den Smart Contract geregelt.
 Aufgrund des Alpha Status von IPFS kann es jedoch zu unvorhergesehen Fehlern bei der Übertragung der Daten kommen was auch Fehler in der Application hervorruft. Sollte ein solcher unerwarteter Fehler auftreten, ist die Wahrscheinlichkeit hoch, dass nach einiger Wartezeit und  mehrmaligem neu laden der Seite, der Fehler nicht mehr auftritt.
 
-## Installations Guide
+## Setup
 Um auf die Application zugreifen zu können müssen gewisse Programme installiert werden, auf die ich im folgenden eingehen werde.
 
 ### Meta Mask:
@@ -16,6 +16,7 @@ Im Folgenden ist der Link zur erfolgreichen Einrichtung von Meta Mask:
 
 
 ### IPFS:
+#### Installation:
 Damit die Application die Eigenschaften des Fisches im IPFS Netzwerk speichern kann, muss eine lokale Node für IPFS gestartet werden. Um dies zu tun wird eine Installation von IPFS vorrausgesetzt.
 Auf folgender Webseite kann eine passende Version heruntergeladen werden: 
 
@@ -73,6 +74,7 @@ Noch ein letzter Check ob sie alles richtig gestartet haben.
 um spätere Transaktionen durchführen zu können.
 2. Der IPFS Daemon sollte auf einer Konsole im Hintergrund laufen. Die Konsolen Ausgabe sollte mit "Daemon is ready" enden.
 
+#### Aufruf:
 Da IPFS erstmal nicht garantiert, dass eine Datei dauerhaft im Netzwerk verfügbar ist und wir keinen Server besitzen, auf dem wir dauerhaft eine Node laufen lassen könnten, haben wir unsere Applikation mithilfe des Pinning Service [eternum.io](eternum.io) auf deren Node pinnen lassen um die Applikation dauerhaft erreichbar zu halten. 
 Der Pinning Service kostet ca. $0.01/Monat für unsere ~10MB Applikation. Zusätzlich zum pinnen auf der Server Node, bietet eternum.io ebenfalls ein public gateway an, um auf IPFS Dateien zugreifen zu können.
 
@@ -80,7 +82,14 @@ Wenn die Installation erfolgreich war, sollten sie unter folgender Adresse in ih
 
 [https://ipfs.eternum.io/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html](https://ipfs.eternum.io/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html)
 
+Es ist zwar komfortabel das public gateway von eternum.io zu Nutzen, allerdings entsteht hier wieder eine gewisse Zentralität. Da auf deren Node der Hash für unsere Applikation (QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig) gepinned und damit dauerhaft im Netz verfügbar ist, können sie die Applikation genauso gut lokal starten, indem sie das IPFS Netz über HTTP nach dem Hash fragen.
+Unsere Applikation können sie lokal unter folgender URL beziehen:
 
+[http://localhost:8080/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html](http://localhost:8080/ipfs/QmYq2FnHiX78PSX3wgyCUnLt2RLTbqBdXZpiDfsio3VRig/html/myAqua.html)
+
+Mit diesem Aufruf fragen sie alle ihre Peers im IPFS Netzwerk an, ob jemand den Hash kennt und Ihnen weiterleiten kann. Dieser Prozess kann durchaus eine ganze Weile dauern. Haben sie Geduld beim erstmaligen Aufruf.
+
+## Nutzung
 ### Funktionen
 Nachdem sie Aqua Token Client nun erfolgreich zum ersten mal aufgerufen haben sollten sie ein leeres Aquarium vorfinden, falls dies nicht der Fall ist Seite Neu Laden (STRG + F5) oder 
 die Punkte des letzten Checks wiederholen. Unsere Application bietet nun unterschiedlichen Möglichkeiten um mit der Blockchain und
