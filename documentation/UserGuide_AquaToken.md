@@ -25,7 +25,7 @@ Auf folgender Webseite kann eine passende Version heruntergeladen werden:
 Nach dem die Datei heruntergeladen und die IPFS.exe in der Umgebungsvariable %PATH% gespeichert wurde kann die Konsole geöffnet werden. 
 In der Konsole zu einem neu angelegten Ordner navigieren und folgenden Befehl eingeben um eine lokale Node zu inizialiseren:
 
-    ipfs init
+`ipfs init`
 
 Nach dem der Befehl eingegeben wurde sollte die Konsolen Ausgabe etwa so aussehen:
     
@@ -48,7 +48,7 @@ Wenn dies erfolgreich funktioniert hat muss noch eine Änderung an der Configura
 Wenn das erfolgreich geklappt hat kann der IPFS Daemon gestartet werden. Dieser ermöglicht die Kommunikation mit anderen Nodes.
 Der Befehl um diesen zu starten ist:
 
-    ipfs daemon
+`ipfs daemon`
 
 Nachdem der Befehl eingegeben wurde sollte eine Konsolen Ausgabe erscheinen. Wenn diese bei "Daemon is ready" angelangt ist, ist der Daemon bereit. 
 
