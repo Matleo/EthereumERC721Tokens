@@ -3,12 +3,18 @@ TODO:Einleitung
 ## Inhaltsverzeichnis
 1. [Technologienlandkarte - Kontextdiagramm](#1-technologienlandkarte-kontextdiagramm)
 2. [Komponentenbeschreibung](#2-komponentenbeschreibung)
+
     2.1. [Komponentendiagramm / Klassendiagramm](#21-komponentendiagramm-klassendiagramm)
+    
     2.2 [Aqua Token Smart Contract](#22-aqua-token-smart-contract)
+    
     2.3 [Aqua Client Javascript](#23-aqua-client-javascript)
 3. [Geschäftsprozesse - Sequenzdiagramme](#3-geschäftsprozesse-sequenzdiagramme)
+
     3.1 [Kaufen](#31-kaufen)
+
     3.2 [Paaren](#32-paaren)
+    
     3.3 [Versenden](#33-versenden)
 
 ## 1. Technologienlandkarte - Kontextdiagramm
