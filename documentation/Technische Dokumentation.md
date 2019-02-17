@@ -1,15 +1,15 @@
 # Technische Dokumentation
 TODO:Einleitung
 ## Inhaltsverzeichnis
-1. [Technologienlandkarte - Kontextdiagramm](1.-technologielandkarte-kontextdiagram)
-2. [Komponentenbeschreibung]
-    2.1. [Komponentendiagramm / Klassendiagramm]
-    2.2 [Aqua Token Smart Contract]
-    2.3 [Aqua Client Javascript]
-3. [Geschäftsprozesse - Sequenzdiagramme]
-    3.1 [Kaufen]
-    3.2 [Paaren]
-    3.3 [Versenden]
+1. [Technologienlandkarte - Kontextdiagramm](#1-technologienlandkarte-kontextdiagramm)
+2. [Komponentenbeschreibung](#2-komponentenbeschreibung)
+    2.1. [Komponentendiagramm / Klassendiagramm](#21-komponentendiagramm-klassendiagramm)
+    2.2 [Aqua Token Smart Contract](#22-aqua-token-smart-contract)
+    2.3 [Aqua Client Javascript](#23-aqua-client-javascript)
+3. [Geschäftsprozesse - Sequenzdiagramme](#3-geschäftsprozesse-sequenzdiagramme)
+    3.1 [Kaufen](#31-kaufen)
+    3.2 [Paaren](#32-paaren)
+    3.3 [Versenden](#33-versenden)
 
 ## 1. Technologienlandkarte - Kontextdiagramm
 
@@ -20,10 +20,15 @@ TODO:Einleitung
 
 ### 2.3 Aqua Client Javascript
 **2.3.1 AquaTokenContract.js:**
+
 **2.3.2 DatabaseProvider.js:**
+
 **2.3.3 FishCreation.js:**
+
 **2.3.4 IPFSProvider.js:**
+
 **2.3.5 myAquaPage.js:**
+
 **2.3.6 beans/:**
 
 ## 3. Geschäftsprozesse - Sequenzdiagramme
