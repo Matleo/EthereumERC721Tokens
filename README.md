@@ -6,7 +6,7 @@ Das Ziel dieses Projekts war:
 3. Eine DAPP zu entwickeln, um das Zusammenspiel zwischen Ethereum Smart Contracts, IPFS und einem web3.js Client näher zu verstehen
 
 ## Projektstruktur
-- [aqua_token_client-Client](./gentoken-aqua_token_client): Unsere DAPP, welche FishTokens in einem Ethereum Smart Contracts speichert, und die Eigenschaften sowie den Client über IPFS dezentral zur Verfügung stellt.
+- [aqua_token_client](./aqua_token_client): Unsere DAPP, welche FishTokens in einem Ethereum Smart Contracts speichert, und die Eigenschaften sowie den Client über IPFS dezentral zur Verfügung stellt.
 - [contracts](./contracts): Diverse, in Solidity entwickelte Smart Contracts
 - [documentation](./documentation): Beinhaltet unsere gesamte Dokumentation. Unter anderem auch den [UserGuide_AquaToken](./documentation/UserGuide_AquaToken.md)
 - [GenToken-Client](./gentoken-client): (veraltet) Beinhaltet unsere ersten Versuche für einen Client mit web3js 
