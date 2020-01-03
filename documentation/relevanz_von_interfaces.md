@@ -141,11 +141,11 @@ Der Ablauf eines anfragenden, externen Contracts an einen ERC721-implementierend
 
 - Klassendiagramm
 
-![Klassendiagramm](documentation/Bilder/Klassendiagramm_ERC165.png)
+![Klassendiagramm](Bilder/Klassendiagramm_ERC165.png)
 
 - Sequenzdiagramm:
 
-![Sequenzdiagramm](documentation/Bilder/Sequenzdiagramm_ERC165.png)
+![Sequenzdiagramm](Bilder/Sequenzdiagramm_ERC165.png)
 
 ##### Speziell auf ERC165 Implementierung prüfen
 Technisch gesehen ist es nicht sinnvoll das ERC165 zu nutzen, um einen Contract zu überprüfen, ob er ERC165 implementiert (so wie es hier getan wird). Um auf einem Contract die Methode `supportsInterface` aufzurufen, müssen wir annehmen, dass dieser das ERC165 Interface implementiert.
