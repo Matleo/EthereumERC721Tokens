@@ -20,7 +20,7 @@ zur Ausführung des Codes verwendet werden soll. Zum Setzten der Adresse ist nat
 	
 -> Diese Vor- und Nachteile lassen sich auf die folgenden Anwendungsfälle übertragen!
 
-Eine Beispielimplementierung befindet sich [hier](../contracts/Modular_Contracts/Delegate_Example)
+Eine Beispielimplementierung befindet sich [hier](../contracts/Modular_Contract_Examples/Delegate_Example)
 
 ## Anwendungsfall 1: Delegate-Pattern API
 Beim Delegate Pattern im Bezug auf das Design von Smart Contracts, versuchen wir eine unveränderliche API von deployten Contracts zu erstellen,
@@ -33,7 +33,7 @@ ohne externe Contracts über die neuen Addressen informieren zu müssen.
 2. Nachteile
 	- siehe Nachteile beim 'Aufruf über Interfaces'
 
-Eine Beispielimplementierung befindet sich [hier](../contracts/Modular_Contracts/Delegate_API_Example)
+Eine Beispielimplementierung befindet sich [hier](../contracts/Modular_Contract_Examples/Delegate_API_Example)
 
 ## Anwendungsfall 2: Seperater Datenspeicher
 Dieser Abschnitt beschäftig sich mit der Abgrenzung der Daten eines Contracts - seinen Zustandsvariablen, in einen seperat deplyoten Contract.
@@ -48,4 +48,4 @@ Hierbei wird der Datenspeicher über seine Adresse referenziert und so in belibi
 	
 Da bei dieser Vorgehensweise große Arrays über Transaktionen ausgetauscht werden, sollten die beteiligten Funktionen als external deklariert werden.
 
-Eine Beispielimplementierung befindet sich [hier](../contracts/Modular_Contracts/Daten_Contract_Example)
+Eine Beispielimplementierung befindet sich [hier](../contracts/Modular_Contract_Examples/Daten_Contract_Example)
